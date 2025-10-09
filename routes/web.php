@@ -3,25 +3,25 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('home');
+    return view('home', ['title' => 'Home Page']);
 });
 
 Route::get('/tentangKami', function () {
-    return view('tentangKami');
+    return view('tentangKami' , ['title' => 'Tentang Kami']);
 });
 
 Route::get('/layanan', function () {
-    return view('layanan');
+    return view('layanan', ['title' => 'Layanan']);
 });
 
 Route::get('/dokter', function () {
-    return view('dokter');
+    return view('dokter', ['title' => 'Dokter']);
 });
 
 Route::get('/berita', function () {
-    return view('berita');
+    return view('berita', ['title' => 'Berita']);
 });
 
 Route::get('/kontak', function () {
-    return view('kontak');
+    return view('kontak', ['title' => 'Kontak']);
 });
