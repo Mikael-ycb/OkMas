@@ -8,12 +8,13 @@
                         <div class="hidden md:block">
                             <div class="ml-10 flex items-baseline space-x-4">
                                 <!-- Current: "bg-gray-950/50 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
-                                <a href="/" aria-current="page" class="rounded-md bg-gray-950/50 px-3 py-2 text-sm font-medium text-white">Beranda</a>
-                                <a href="/tentangKami" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">tentang Kami</a>
-                                <a href="/layanan" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Layanan</a>
-                                <a href="/dokter" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Dokter</a>
-                                <a href="/berita" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Berita</a>
-                                <a href="/kontak" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Kontak</a>
+                                <x-nav-link href="/" :active="request()->is('/')">Beranda</x-nav-link>
+                                <x-nav-link href="/tentangKami" :active="request()->is('tentangKami')">Tentang Kami</x-nav-link>
+                                <x-nav-link href="/layanan" :active="request()->is('layanan')">Layanan</x-nav-link>
+                                <x-nav-link href="/dokter" :active="request()->is('dokter')">Dokter</x-nav-link>
+                                <x-nav-link href="/berita" :active="request()->is('berita')">Berita</x-nav-link>
+                                <x-nav-link href="/kontak" :active="request()->is('kontak')">Kontak</x-nav-link>
+
                             </div>
                         </div>
                     </div>
@@ -62,12 +63,31 @@
             <el-disclosure id="mobile-menu" hidden class="block md:hidden">
                 <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
                     <!-- Current: "bg-gray-950/50 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
-                    <a href="/" aria-current="page" class="rounded-md bg-gray-950/50 px-3 py-2 text-sm font-medium text-white">Beranda</a>
-                    <a href="/tentangKami" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">tentang Kami</a>
-                    <a href="/layanan" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Layanan</a>
-                    <a href="/dokter" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Dokter</a>
-                    <a href="/berita" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Berita</a>
-                    <a href="/kontak" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Kontak</a>
+                    <a href="/" aria-current="page"
+                        class="{{ request()->is('/') ? 'bg-gray-950/50 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium text-white">
+                        Beranda
+                    </a>
+                    <a href="/tentangKami"
+                        class="{{ request()->is('tentangKami') ? 'bg-gray-950/50 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium text-white">
+                        Tentang Kami
+                    </a>
+                    <a href="/layanan"
+                        class="{{ request()->is('layanan') ? 'bg-gray-950/50 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium text-white">
+                        Layanan
+                    </a>
+                    <a href="/dokter"
+                        class="{{ request()->is('dokter') ? 'bg-gray-950/50 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium text-white">
+                        Dokter
+                    </a>
+                    <a href="/berita"
+                        class="{{ request()->is('berita') ? 'bg-gray-950/50 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium text-white">
+                        Berita
+                    </a>
+                    <a href="/kontak"
+                        class="{{ request()->is('kontak') ? 'bg-gray-950/50 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium text-white">
+                        Kontak
+                    </a>
+
                 </div>
                 <div class="border-t border-white/10 pt-4 pb-3">
                     <div class="flex items-center px-5">
