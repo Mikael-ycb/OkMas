@@ -30,14 +30,43 @@
 
             <div class="mt-10 md:mt-0 flex justify-center md:justify-end w-full md:w-1/2">
                 <img src="{{ asset('img/dokter.jpg') }}"
-                     alt="Doctor"
-                     class="w-[400px] md:w-[480px] rounded-lg shadow-lg object-cover">
+                    alt="Doctor"
+                    class="w-[400px] md:w-[480px] rounded-lg shadow-lg object-cover">
             </div>
         </div>
     </section>
 
-    <div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
-        <h1 class="text-2xl font-bold">Home Page</h1>
-        <p class="mt-2 text-gray-700">Ini Halaman Beranda</p>
+    <div class="relative z-10 flex flex-col items-center justify-center py-12 px-8 lg:px-20 text-center">
+        <div class="max-w-3xl text-white space-y-6">
+            <h5 class="uppercase tracking-widest font-semibold text-blue-400">
+                <b>Selamat Datang di Okemas</b>
+            </h5>
+            <h1 class="text-4xl sm:text-5xl font-bold leading-tight text-blue-900">
+                Untuk Kesehatan Anda <br> Mengutamakan Pelayanan, Menjaga Kehidupan
+            </h1>
+            <p class="text-black text-lg">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita assumenda itaque necessitatibus,
+                dignissimos accusamus corporis consequatur distinctio suscipit, officia at illum ab.
+                Eos similique voluptatem id unde hic magnam tempora?
+            </p>
+            <a href="" class="text-blue-400">Pelajari Lebih Lanjut -></a>
+        </div>
     </div>
+    <div class="mt-10 md:mt-0 flex justify-center items-center w-full">
+        <img src="{{ asset('img/oke.avif') }}"
+            alt="Doctor"
+            class="w-[400px] md:w-[800px] rounded-lg shadow-lg object-cover">
+    </div>
+
+    <div class="relative z-10 flex flex-col items-center justify-center py-12 px-8 lg:px-20 text-center">
+        <h5 class="uppercase tracking-widest font-semibold text-blue-400">
+            <b>PELAYANAN KESEHATAN YANG TERPERCAYA</b>
+        </h5>
+        <h1 class="text-4xl sm:text-5xl font-bold leading-tight text-black">
+            Layanan Kami
+        </h1>
+    </div>
+
+
+
 </x-layout>
