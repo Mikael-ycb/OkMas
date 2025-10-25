@@ -67,6 +67,36 @@
         </h1>
     </div>
 
+    <div class="relative z-10 flex flex-col md:flex-row items-center justify-between h-full px-8 lg:px-20">
+        <div class="text-center md:text-left max-w-2xl text-white space-y-6">
+            <h3 class="text-4xl sm:text-5xl font-bold leading-tight text-black">
+                Kami Selalu Mengutamakan Pasien
+            </h3>
+            <ul class="text-black">
+                <li>Dedikasi Untuk Penyembuhan</li>
+                <li>Pelayanan Terbaik Kami</li>
+                <li>Melayani Dengan Sepenuh Hati</li>
+                <li>Pelayanan Berkualitas</li>
+                <li>Percayakan Pada Kami</li>
+                <li>Selalu Peduli</li>
+            </ul>
+
+            <p class="text-black text-lg">
+                Puskesmas kami berkomitmen memberikan layanan kesehatan yang ramah, cepat, dan terjangkau. Dengan tenaga medis profesional serta fasilitas yang memadai, kami siap melayani mulai dari pemeriksaan rutin, layanan gizi, imunisasi, hingga penanganan darurat. Tidak hanya mengobati, kami juga mendampingi masyarakat untuk hidup lebih sehat dan sejahtera.
+            </p>
+        </div>
+
+        <div class="mt-10 md:mt-0 flex flex-col items-center md:items-end w-full md:w-1/2">
+            <img src="{{ asset('img/dokter.jpg') }}"
+                alt="Doctor"
+                class="w-[400px] md:w-[480px] rounded-lg shadow-lg object-cover mb-4">
+            <img src="{{ asset('img/dokter.jpg') }}"
+                alt="Doctor"
+                class="w-[400px] md:w-[480px] rounded-lg shadow-lg object-cover">
+        </div>
+
+
+
 
 
 </x-layout>
