@@ -31,6 +31,8 @@
             @endif
         </main>
 
+
+        <x-footer></x-footer>
     </div>
 
 </body>
