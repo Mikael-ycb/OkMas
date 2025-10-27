@@ -8,14 +8,10 @@
 <body class="h-full overflow-x-hidden">
 
     <div class="min-h-full">
-        <!-- HEADER -->
         <x-header class="fixed top-0 left-0 w-full z-50 bg-white shadow">okeh</x-header>
 
-        <!-- NAVBAR (tepat di bawah header) -->
         <x-navbar class="fixed top-[64px] left-0 w-full z-40 bg-blue-900 shadow"></x-navbar>
 
-        <!-- MAIN CONTENT -->
-        <!-- Tambahkan padding-top untuk memberi ruang di bawah header + navbar -->
         <main class="bg-white pt-[150px]"> 
             {{ $slot }}
         </main>
