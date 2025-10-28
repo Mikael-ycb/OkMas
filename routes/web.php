@@ -25,3 +25,7 @@ Route::get('/berita', function () {
 Route::get('/kontak', function () {
     return view('kontak', ['title' => 'Kontak']);
 });
+
+Route::get('/janjiTemu', function () {
+    return view('janjiTemu', ['title' => 'janjiTemu']);
+});

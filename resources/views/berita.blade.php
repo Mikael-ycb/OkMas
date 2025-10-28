@@ -66,7 +66,7 @@
     </div>
 
     <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
-        <img src="{{ asset('img/hehe3.jpg') }}" alt="Artikel" class="w-full h-64 object-contain">
+        <img src="{{ asset('img/hehe3.jpg') }}" alt="Artikel" class="w-full h-64 object-cover">
 
         <div class="p-6">
             <div class="flex flex-wrap items-center text-gray-500 text-sm mb-3 space-x-4">
