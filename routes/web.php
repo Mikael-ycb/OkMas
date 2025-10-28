@@ -29,3 +29,7 @@ Route::get('/kontak', function () {
 Route::get('/janjiTemu', function () {
     return view('janjiTemu', ['title' => 'janjiTemu']);
 });
+
+Route::get('/notifikasi', function () {
+    return view('notifikasi', ['title' => 'notifikasi']);
+});
