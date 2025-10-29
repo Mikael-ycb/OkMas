@@ -12,7 +12,7 @@
 
         <x-navbar class="fixed top-[64px] left-0 w-full z-40 bg-blue-900 shadow"></x-navbar>
 
-        <main class="bg-white pt-[150px]"> 
+        <main class="bg-white pt-[144px]"> 
             {{ $slot }}
         </main>
 
