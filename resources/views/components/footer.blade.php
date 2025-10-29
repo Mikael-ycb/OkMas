@@ -37,7 +37,6 @@
   <div class="mt-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-300">
     <p>© 2021 Puskesmas Candiroto. 2025 by Proyek Informatika Sanata Dharma</p>
     <div class="flex space-x-4 mt-3 md:mt-0">
-      <a href="#" class="hover:text-white"><i class="fab fa-linkedin">IN</i></a>
       <a href="https://www.facebook.com/share/17jCNLJvWx/" class="hover:text-white"><i class="fab fa-facebook">FB</i></a>
       <a href="https://www.instagram.com/pkmcandiroto?igsh=ZTR5NmN4eHJkeWhm" class="hover:text-white"><i class="fab fa-instagram">IG</i></a>
     </div>

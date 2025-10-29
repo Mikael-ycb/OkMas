@@ -33,3 +33,7 @@ Route::get('/janjiTemu', function () {
 Route::get('/notifikasi', function () {
     return view('notifikasi', ['title' => 'notifikasi']);
 });
+
+Route::get('/laporan', function () {
+    return view('laporan', ['title' => 'laporan']);
+});

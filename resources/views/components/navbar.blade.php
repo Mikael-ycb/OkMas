@@ -1,4 +1,4 @@
-        <nav class="fixed top-[88px] left-0 w-full z-40 bg-blue-900 shadow"">
+        <nav class="fixed top-[80px] left-0 w-full z-40 bg-blue-900 shadow"">
             <div class=" mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex h-16 items-center justify-between">
                 <div class="flex items-center">
@@ -11,6 +11,7 @@
                             <x-nav-link href="/dokter" :active="request()->is('dokter')">Dokter</x-nav-link>
                             <x-nav-link href="/berita" :active="request()->is('berita')">Berita</x-nav-link>
                             <x-nav-link href="/kontak" :active="request()->is('kontak')">Kontak</x-nav-link>
+                            <x-nav-link href="/laporan" :active="request()->is('laporan')">Laporan</x-nav-link>
 
                         </div>
                     </div>
