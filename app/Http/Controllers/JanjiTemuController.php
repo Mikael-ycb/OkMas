@@ -33,4 +33,37 @@ class JanjiTemuController extends Controller
 
         return redirect()->route('janjiTemu.index')->with('success', 'Janji temu berhasil dibuat!');
     }
+
+    public function edit($id)
+    {
+        $janji = JanjiTemu::findOrFail($id);
+        $tanggals = \App\Models\Tanggal::all();
+        $klasters = \App\Models\Klaster::all();
+        $dokters = \App\Models\Dokter::all();
+
+        return view('janjiTemu.edit', compact('janji', 'tanggals', 'klasters', 'dokters'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'tanggal_id' => 'required',
+            'klaster_id' => 'required',
+            'dokter_id' => 'required',
+            'keluhan' => 'required|string|max:255',
+        ]);
+
+        $janji = JanjiTemu::findOrFail($id);
+        $janji->update($request->all());
+
+        return redirect()->route('janjiTemu.index')->with('success', 'Janji temu berhasil diperbarui!');
+    }
+
+    public function destroy($id)
+    {
+        $janji = JanjiTemu::findOrFail($id);
+        $janji->delete();
+
+        return redirect()->route('janjiTemu.index')->with('success', 'Janji temu berhasil dibatalkan.');
+    }
 }

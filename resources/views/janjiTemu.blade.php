@@ -91,12 +91,22 @@
                 <p><em>Keluhan:</em> {{ $janji->keluhan }}</p>
 
                 <div class="mt-3 flex gap-2">
-                    <button class="bg-blue-900 text-white px-3 py-1 rounded-md hover:bg-blue-800">Edit Jadwal</button>
-                    <button class="bg-blue-900 text-white px-3 py-1 rounded-md hover:bg-blue-800">Batal Periksa</button>
+                    <a href="{{ route('janjiTemu.edit', $janji->id) }}"
+                        class="bg-blue-900 text-white px-3 py-1 rounded-md hover:bg-blue-800">
+                        Edit Jadwal
+                    </a>
+
+                    <form action="{{ route('janjiTemu.destroy', $janji->id) }}" method="POST" onsubmit="return confirm('Yakin ingin membatalkan janji ini?')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded-md hover:bg-red-700">
+                            Batal Periksa
+                        </button>
+                    </form>
                 </div>
+
+                @endforeach
             </div>
-            @endforeach
-        </div>
     </section>
 
 
