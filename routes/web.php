@@ -26,8 +26,8 @@ Route::get('/kontak', function () {
     return view('kontak', ['title' => 'Kontak']);
 });
 
-Route::get('/janjiTemu', function () {
-    return view('janjiTemu', ['title' => 'janjiTemu']);
+Route::get('/jajiTemu', function () {
+    return view('janjiTemu', ['title' => 'Janji Temu']);
 });
 
 Route::get('/notifikasi', function () {

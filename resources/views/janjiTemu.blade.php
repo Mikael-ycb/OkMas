@@ -22,17 +22,28 @@
                 Melalui sistem ini, pasien dapat memilih jenis layanan, menentukan jadwal kunjungan, serta melakukan pendaftaran secara online.
             </p>
 
-            <form >
-                <select class="w-full p-3 bg-blue-900 text-white rounded-md focus:outline-none">
-                    <option>Tanggal</option>
+            <form>
+                <select class="w-full p-3 bg-blue-900 text-white focus:outline-none">
+                    <option selected disabled>Pilih Tanggal</option>
+                    <option value="2025-08-19">20/08/2025</option>
+                    <option value="2025-08-20">20/08/2025</option>
+                    <option value="2025-08-21">21/08/2025</option>
+                    <option value="2025-08-22">22/08/2025</option>
                 </select>
-                <select class="w-full p-3 bg-blue-900 text-white rounded-md focus:outline-none">
-                    <option>Klaster</option>
+
+                <select class="w-full p-3 bg-blue-900 text-white  focus:outline-none">
+                    <option selected disabled>Klaster</option>
+                    <option value="2025-08-19">Bidan</option>
+                    <option value="2025-08-20">Dokter Gigi dan Mulut</option>
+                    <option value="2025-08-21">Dokter Umum</option>
                 </select>
-                <select class="w-full p-3 bg-blue-900 text-white rounded-md focus:outline-none">
-                    <option>Dokter</option>
+                <select class="w-full p-3 bg-blue-900 text-white  focus:outline-none">
+                    <option selected disabled>Dokter</option>
+                    <option value="2025-08-19">dr. Asep, M.M</option>
+                    <option value="2025-08-20">dr. Andrew Nugroho, M.M</option>
+                    <option value="2025-08-21">dr. Sumanto, M.M</option>
                 </select>
-                <textarea class="w-full p-3 bg-blue-900 text-white rounded-md focus:outline-none" placeholder="Keluhan"></textarea>
+                <textarea class="w-full p-3 bg-blue-900 text-white  focus:outline-none" placeholder="Keluhan"></textarea>
                 <button class="w-full bg-blue-200 text-blue-900 font-semibold py-2 rounded-md hover:bg-blue-300">KIRIM</button>
             </form>
         </div>
@@ -73,6 +84,9 @@
 
             <div class="flex flex-col items-end gap-3">
                 <div class="bg-blue-900 text-white px-3 py-1 rounded-md font-semibold">01</div>
+                <button class="bg-blue-900 text-white py-1 px-4 rounded-md hover:bg-blue-800">
+                    Edit Jadwal
+                </button>
                 <button class="bg-blue-900 text-white py-1 px-4 rounded-md hover:bg-blue-800">
                     Batal Periksa
                 </button>
