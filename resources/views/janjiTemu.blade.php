@@ -23,29 +23,36 @@
             </p>
 
             <form>
+                {{-- Pilih Tanggal --}}
                 <select class="w-full p-3 bg-blue-900 text-white focus:outline-none">
                     <option selected disabled>Pilih Tanggal</option>
-                    <option value="2025-08-19">20/08/2025</option>
-                    <option value="2025-08-20">20/08/2025</option>
-                    <option value="2025-08-21">21/08/2025</option>
-                    <option value="2025-08-22">22/08/2025</option>
+                    @foreach ($tanggals as $tgl)
+                    <option value="{{ $tgl->id }}">
+                        {{ \Carbon\Carbon::parse($tgl->tanggal)->format('d/m/Y') }}
+                    </option>
+                    @endforeach
                 </select>
 
-                <select class="w-full p-3 bg-blue-900 text-white  focus:outline-none">
+                {{-- Pilih Klaster --}}
+                <select class="w-full p-3 bg-blue-900 text-white focus:outline-none">
                     <option selected disabled>Klaster</option>
-                    <option value="2025-08-19">Bidan</option>
-                    <option value="2025-08-20">Dokter Gigi dan Mulut</option>
-                    <option value="2025-08-21">Dokter Umum</option>
+                    @foreach ($klasters as $klaster)
+                    <option value="{{ $klaster->id }}">{{ $klaster->nama }}</option>
+                    @endforeach
                 </select>
-                <select class="w-full p-3 bg-blue-900 text-white  focus:outline-none">
+
+                {{-- Pilih Dokter --}}
+                <select class="w-full p-3 bg-blue-900 text-white focus:outline-none">
                     <option selected disabled>Dokter</option>
-                    <option value="2025-08-19">dr. Asep, M.M</option>
-                    <option value="2025-08-20">dr. Andrew Nugroho, M.M</option>
-                    <option value="2025-08-21">dr. Sumanto, M.M</option>
+                    @foreach ($dokters as $dokter)
+                    <option value="{{ $dokter->id }}">{{ $dokter->nama }}</option>
+                    @endforeach
                 </select>
-                <textarea class="w-full p-3 bg-blue-900 text-white  focus:outline-none" placeholder="Keluhan"></textarea>
+
+                <textarea class="w-full p-3 bg-blue-900 text-white focus:outline-none" placeholder="Keluhan"></textarea>
                 <button class="w-full bg-blue-200 text-blue-900 font-semibold py-2 rounded-md hover:bg-blue-300">KIRIM</button>
             </form>
+
         </div>
 
         <div class="bg-blue-900 text-white rounded-md p-8 w-full md:w-1/2">

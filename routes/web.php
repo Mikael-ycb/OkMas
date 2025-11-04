@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\JanjiTemuController;
+
 
 Route::get('/', function () {
     return view('home', ['title' => 'Home Page']);
@@ -26,9 +29,7 @@ Route::get('/kontak', function () {
     return view('kontak', ['title' => 'Kontak']);
 });
 
-Route::get('/jajiTemu', function () {
-    return view('janjiTemu', ['title' => 'Janji Temu']);
-});
+Route::get('/janjiTemu', [JanjiTemuController::class, 'index']);
 
 Route::get('/notifikasi', function () {
     return view('notifikasi', ['title' => 'notifikasi']);
@@ -37,3 +38,7 @@ Route::get('/notifikasi', function () {
 Route::get('/laporan', function () {
     return view('laporan', ['title' => 'laporan']);
 });
+
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.form');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
