@@ -22,9 +22,9 @@
                 Melalui sistem ini, pasien dapat memilih jenis layanan, menentukan jadwal kunjungan, serta melakukan pendaftaran secara online.
             </p>
 
-            <form>
-                {{-- Pilih Tanggal --}}
-                <select class="w-full p-3 bg-blue-900 text-white focus:outline-none">
+            <form action="{{ route('janjiTemu.store') }}" method="POST">
+                @csrf
+                <select name="tanggal_id" class="w-full p-3 bg-blue-900 text-white focus:outline-none mb-2">
                     <option selected disabled>Pilih Tanggal</option>
                     @foreach ($tanggals as $tgl)
                     <option value="{{ $tgl->id }}">
@@ -33,25 +33,25 @@
                     @endforeach
                 </select>
 
-                {{-- Pilih Klaster --}}
-                <select class="w-full p-3 bg-blue-900 text-white focus:outline-none">
+                <select name="klaster_id" class="w-full p-3 bg-blue-900 text-white focus:outline-none mb-2">
                     <option selected disabled>Klaster</option>
                     @foreach ($klasters as $klaster)
                     <option value="{{ $klaster->id }}">{{ $klaster->nama }}</option>
                     @endforeach
                 </select>
 
-                {{-- Pilih Dokter --}}
-                <select class="w-full p-3 bg-blue-900 text-white focus:outline-none">
+                <select name="dokter_id" class="w-full p-3 bg-blue-900 text-white focus:outline-none mb-2">
                     <option selected disabled>Dokter</option>
                     @foreach ($dokters as $dokter)
                     <option value="{{ $dokter->id }}">{{ $dokter->nama }}</option>
                     @endforeach
                 </select>
 
-                <textarea class="w-full p-3 bg-blue-900 text-white focus:outline-none" placeholder="Keluhan"></textarea>
+                <textarea name="keluhan" class="w-full p-3 bg-blue-900 text-white focus:outline-none mb-3" placeholder="Keluhan"></textarea>
+
                 <button class="w-full bg-blue-200 text-blue-900 font-semibold py-2 rounded-md hover:bg-blue-300">KIRIM</button>
             </form>
+
 
         </div>
 
@@ -82,24 +82,23 @@
     <section class="px-10 py-8 bg-gray-50">
         <h2 class="text-3xl font-bold text-blue-900 mb-6">Janji Temu</h2>
 
-        <div class="bg-blue-200 p-6 rounded-md flex justify-between items-center w-full md:w-2/3">
-            <div>
-                <p class="font-semibold text-blue-900">Dokter Umum</p>
-                <p class="font-bold text-blue-900 text-lg">dr. Andrew Nugroho, M.M</p>
-                <p class="text-sm text-blue-900 mt-1">19/08/2025</p>
-            </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            @foreach ($janjiTemus as $janji)
+            <div class="bg-blue-200 p-6 rounded-md">
+                <p class="font-semibold">{{ $janji->klaster->nama }}</p>
+                <p class="text-lg font-bold">{{ $janji->dokter->nama }}</p>
+                <p>{{ \Carbon\Carbon::parse($janji->tanggal->tanggal)->format('d/m/Y') }}</p>
+                <p><em>Keluhan:</em> {{ $janji->keluhan }}</p>
 
-            <div class="flex flex-col items-end gap-3">
-                <div class="bg-blue-900 text-white px-3 py-1 rounded-md font-semibold">01</div>
-                <button class="bg-blue-900 text-white py-1 px-4 rounded-md hover:bg-blue-800">
-                    Edit Jadwal
-                </button>
-                <button class="bg-blue-900 text-white py-1 px-4 rounded-md hover:bg-blue-800">
-                    Batal Periksa
-                </button>
+                <div class="mt-3 flex gap-2">
+                    <button class="bg-blue-900 text-white px-3 py-1 rounded-md hover:bg-blue-800">Edit Jadwal</button>
+                    <button class="bg-blue-900 text-white px-3 py-1 rounded-md hover:bg-blue-800">Batal Periksa</button>
+                </div>
             </div>
+            @endforeach
         </div>
     </section>
+
 
 
 </x-layout>
