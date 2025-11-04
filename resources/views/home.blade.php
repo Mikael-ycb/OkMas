@@ -22,9 +22,8 @@
                     </a>
                 </div>
                 <div class="flex flex-wrap justify-center md:justify-start gap-4 mt-6">
-                    <a href="#" class="bg-white text-blue-700 hover:bg-gray-100 px-6 py-3 rounded-md font-medium shadow-md transition">Book an Appointment</a>
-                    <a href="#" class="bg-white text-blue-700 hover:bg-gray-100 px-6 py-3 rounded-md font-medium shadow-md transition">Book an Appointment</a>
-                    <a href="#" class="bg-white text-blue-700 hover:bg-gray-100 px-6 py-3 rounded-md font-medium shadow-md transition">Book an Appointment</a>
+                    <a href="#" class="bg-white text-blue-700 hover:bg-gray-100 px-6 py-3 rounded-md font-medium shadow-md transition">Buat Janji</a>
+                    <a href="#" class="bg-white text-blue-700 hover:bg-gray-100 px-6 py-3 rounded-md font-medium shadow-md transition">Aduan Pelayanan</a>
                 </div>
             </div>
 
