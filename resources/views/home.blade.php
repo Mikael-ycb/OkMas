@@ -94,7 +94,21 @@
                 class="w-[400px] md:w-[480px] rounded-lg shadow-lg object-cover">
         </div>
 
+        
 
+        <!-- <script>
+            window.embeddedChatbotConfig = {
+                chatbotId: "DSBtB6oZ5g55DkR0z28JR", // ganti dengan AGENT_ID kamu dari Chatbase
+                domain: "www.chatbase.co", // gunakan domain proxy kamu
+            };
+        </script>
+
+        <script
+            src="https://www.chatbase.co/embed.min.js"
+            chatbotId="your_agent_id_here"
+            domain="localhost:3000"
+            defer>
+        </script> -->
 
 
 

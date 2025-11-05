@@ -1,4 +1,5 @@
 <html class="h-full bg-white">
+
 <head>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
@@ -12,12 +13,15 @@
 
         <x-navbar class="fixed top-[64px] left-0 w-full z-40 bg-blue-900 shadow"></x-navbar>
 
-        <main class="bg-white pt-[144px]"> 
+        <main class="bg-white pt-[144px]">
             {{ $slot }}
         </main>
 
+        <x-chat></x-chat>
         <x-footer></x-footer>
+
     </div>
 
 </body>
+
 </html>

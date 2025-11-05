@@ -14,7 +14,7 @@
 
             </div>
     </section>
-    
+
     <section class="bg-gray-50 py-16">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-blue-900 mb-10">Hubungi Kami</h2>
@@ -84,5 +84,6 @@
             </div>
         </div>
     </section>
+
 
 </x-layout>

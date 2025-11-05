@@ -54,10 +54,10 @@
                     "Kami Hadir Memberikan pelayanan kesehatan yang ramah, cepay, dan terpercaya, karena kesehatan anda adalah prioritas utama kami."
                 </p>
                 <p>Motto</p>
-        </div>
+            </div>
     </section>
 
-
+    
 
 
 
