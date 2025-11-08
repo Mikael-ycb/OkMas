@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\JanjiTemuController;
-
+use App\Http\Controllers\LaporanController;
 
 Route::get('/', function () {
     return view('home', ['title' => 'Home Page']);
@@ -46,3 +46,11 @@ Route::get('/laporan', function () {
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::prefix('laporanAdmin')->group(function () {
+    Route::get('/', [LaporanController::class, 'index'])->name('laporanAdmin.index');
+    Route::get('/{nik}', [LaporanController::class, 'show'])->name('laporanAdmin.show');
+    Route::get('/edit/{id}', [LaporanController::class, 'edit'])->name('laporanAdmin.edit');
+    Route::post('/update/{id}', [LaporanController::class, 'update'])->name('laporanAdmin.update');
+    Route::delete('/delete/{id}', [LaporanController::class, 'destroy'])->name('laporanAdmin.destroy');
+});

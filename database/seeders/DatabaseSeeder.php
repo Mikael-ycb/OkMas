@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
             DokterSeeder::class,
             TanggalSeeder::class,
             KlasterSeeder::class,
+            LaporanSeeder::class,
         ]);
     }
 }
