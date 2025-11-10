@@ -53,4 +53,6 @@ class LoginController extends Controller
         $request->session()->flush();
         return redirect('/login')->with('success', 'Berhasil logout!');
     }
+
+    
 }

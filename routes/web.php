@@ -6,6 +6,9 @@ use App\Http\Controllers\JanjiTemuController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\PeriksaController;
+use App\Http\Controllers\AkunPasienController;
+use App\Http\Controllers\ObatController;
+use App\Http\Controllers\DokterController;
 
 
 Route::get('/', function () {
@@ -52,9 +55,11 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::prefix('laporanAdmin')->group(function () {
     Route::get('/', [LaporanController::class, 'index'])->name('laporanAdmin.index');
+    Route::get('/create', [LaporanController::class, 'create'])->name('laporanAdmin.create');
+    Route::post('/store', [LaporanController::class, 'store'])->name('laporanAdmin.store');
     Route::get('/{nik}', [LaporanController::class, 'show'])->name('laporanAdmin.show');
     Route::get('/edit/{id}', [LaporanController::class, 'edit'])->name('laporanAdmin.edit');
-    Route::post('/update/{id}', [LaporanController::class, 'update'])->name('laporanAdmin.update');
+    Route::put('/update/{id}', [LaporanController::class, 'update'])->name('laporanAdmin.update');
     Route::delete('/delete/{id}', [LaporanController::class, 'destroy'])->name('laporanAdmin.destroy');
 });
 
@@ -74,4 +79,31 @@ Route::prefix('daftarPeriksaAdmin')->group(function () {
 
     Route::get('/{id}/edit', [PeriksaController::class, 'edit'])->name('periksa.edit');
     Route::put('/{id}', [PeriksaController::class, 'update'])->name('periksa.update');
+});
+
+Route::prefix('akunPasienAdmin')->group(function () {
+    Route::get('/', [AkunPasienController::class, 'index'])->name('akunPasienAdmin.index');
+    Route::get('/create', [AkunPasienController::class, 'create'])->name('akunPasienAdmin.create');
+    Route::post('/store', [AkunPasienController::class, 'store'])->name('akunPasienAdmin.store');
+    Route::get('/edit/{id}', [AkunPasienController::class, 'edit'])->name('akunPasienAdmin.edit');
+    Route::post('/update/{id}', [AkunPasienController::class, 'update'])->name('akunPasienAdmin.update');
+    Route::delete('/{id}', [AkunPasienController::class, 'destroy'])->name('akunPasienAdmin.destroy');
+});
+
+Route::prefix('obatAdmin')->group(function () {
+    Route::get('/', [ObatController::class, 'index'])->name('obatAdmin.index');
+    Route::get('/create', [ObatController::class, 'create'])->name('obatAdmin.create');
+    Route::post('/store', [ObatController::class, 'store'])->name('obatAdmin.store');
+    Route::get('/edit/{id}', [ObatController::class, 'edit'])->name('obatAdmin.edit');
+    Route::post('/update/{id}', [ObatController::class, 'update'])->name('obatAdmin.update');
+    Route::delete('/{id}', [ObatController::class, 'destroy'])->name('obatAdmin.destroy');
+});
+
+Route::prefix('dokterAdmin')->group(function () {
+    Route::get('/', [DokterController::class, 'index'])->name('dokterAdmin.index');
+    Route::get('/create', [DokterController::class, 'create'])->name('dokterAdmin.create');
+    Route::post('/store', [DokterController::class, 'store'])->name('dokterAdmin.store');
+    Route::get('/edit/{id}', [DokterController::class, 'edit'])->name('dokterAdmin.edit');
+    Route::post('/update/{id}', [DokterController::class, 'update'])->name('dokterAdmin.update');
+    Route::delete('/{id}', [DokterController::class, 'destroy'])->name('dokterAdmin.destroy');
 });

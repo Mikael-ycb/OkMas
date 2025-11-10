@@ -2,19 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Laporan extends Model
 {
-    use HasFactory;
-
     protected $table = 'laporan';
+
     protected $fillable = [
         'nama_pasien',
         'nik',
         'tanggal',
         'jenis_pemeriksaan',
+        'hasil_pemeriksaan',
         'anamnesis',
         'tekanan_darah',
         'riwayat_penyakit_sekarang',
@@ -23,4 +22,12 @@ class Laporan extends Model
         'riwayat_kebiasaan',
         'anamnesis_organ',
     ];
+
+    protected $dates = ['tanggal'];
+    protected $casts = [
+    'tanggal' => 'datetime',
+    'created_at' => 'datetime',
+    'updated_at' => 'datetime',
+];
+
 }

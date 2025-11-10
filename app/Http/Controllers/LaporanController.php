@@ -4,30 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Models\Laporan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class LaporanController extends Controller
 {
-    /**
-     * Halaman utama daftar semua laporan pasien.
-     */
+    // Daftar semua pasien (unik per NIK)
     public function index()
-    {
-        // ambil semua laporan, dengan pagination 7 data per halaman
-        $laporan = Laporan::orderBy('updated_at', 'desc')->paginate(7);
+{
+    $laporan = \App\Models\Laporan::select('nama_pasien', 'nik', \DB::raw('MAX(id) as id'), \DB::raw('MAX(updated_at) as updated_at'))
+        ->groupBy('nama_pasien', 'nik')
+        ->orderByRaw('MAX(updated_at) DESC')
+        ->paginate(7);
 
-        return view('laporanAdmin.index', compact('laporan'));
-    }
+    return view('laporanAdmin.index', compact('laporan'));
+}
 
-    /**
-     * Halaman detail laporan per pasien.
-     * Tampilkan daftar pemeriksaan pasien berdasarkan NIK atau nama.
-     */
+
+    // Halaman list laporan per pasien (by NIK)
     public function show($nik)
     {
-        // ambil nama pasien
         $nama_pasien = Laporan::where('nik', $nik)->value('nama_pasien');
 
-        // ambil semua laporan pasien tsb dengan pagination
         $pasien = Laporan::where('nik', $nik)
             ->orderBy('tanggal', 'desc')
             ->paginate(6);
@@ -35,31 +32,87 @@ class LaporanController extends Controller
         return view('laporanAdmin.detail', compact('pasien', 'nama_pasien'));
     }
 
-    /**
-     * Halaman form edit laporan.
-     */
+    // Form tambah laporan
+    public function create()
+    {
+        return view('laporanAdmin.create');
+    }
+
+    // Simpan laporan
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nama_pasien'        => 'required|string',
+            'nik'                => 'required|string',
+            'tanggal'            => 'nullable|date',
+            'jenis_pemeriksaan'  => 'required|string',
+            'hasil_pemeriksaan'  => 'nullable|string',
+            // Field klinis opsional (jika sudah ada di migration)
+            'anamnesis'                    => 'nullable|string',
+            'tekanan_darah'                => 'nullable|string',
+            'riwayat_penyakit_sekarang'   => 'nullable|string',
+            'riwayat_penyakit_dahulu'     => 'nullable|string',
+            'riwayat_penyakit_keluarga'   => 'nullable|string',
+            'riwayat_kebiasaan'           => 'nullable|string',
+            'anamnesis_organ'             => 'nullable|string',
+        ]);
+
+        Laporan::create([
+            'nama_pasien'        => $request->nama_pasien,
+            'nik'                => $request->nik,
+            'tanggal'            => $request->tanggal ? Carbon::parse($request->tanggal) : now(),
+            'jenis_pemeriksaan'  => $request->jenis_pemeriksaan,
+            'hasil_pemeriksaan'  => $request->hasil_pemeriksaan,
+
+            'anamnesis'                    => $request->anamnesis,
+            'tekanan_darah'                => $request->tekanan_darah,
+            'riwayat_penyakit_sekarang'   => $request->riwayat_penyakit_sekarang,
+            'riwayat_penyakit_dahulu'     => $request->riwayat_penyakit_dahulu,
+            'riwayat_penyakit_keluarga'   => $request->riwayat_penyakit_keluarga,
+            'riwayat_kebiasaan'           => $request->riwayat_kebiasaan,
+            'anamnesis_organ'             => $request->anamnesis_organ,
+        ]);
+
+        return redirect()->route('laporanAdmin.index')->with('success', 'Laporan baru berhasil ditambahkan!');
+    }
+
+    // Form edit laporan
     public function edit($id)
     {
         $laporan = Laporan::findOrFail($id);
-
         return view('laporanAdmin.edit', compact('laporan'));
     }
 
-    /**
-     * Proses update laporan.
-     */
+    // Update laporan
     public function update(Request $request, $id)
     {
         $laporan = Laporan::findOrFail($id);
 
+        $request->validate([
+            'tanggal'            => 'nullable|date',
+            'jenis_pemeriksaan'  => 'required|string',
+            'hasil_pemeriksaan'  => 'nullable|string',
+            'anamnesis'                    => 'nullable|string',
+            'tekanan_darah'                => 'nullable|string',
+            'riwayat_penyakit_sekarang'   => 'nullable|string',
+            'riwayat_penyakit_dahulu'     => 'nullable|string',
+            'riwayat_penyakit_keluarga'   => 'nullable|string',
+            'riwayat_kebiasaan'           => 'nullable|string',
+            'anamnesis_organ'             => 'nullable|string',
+        ]);
+
         $laporan->update([
-            'anamnesis' => $request->anamnesis,
-            'tekanan_darah' => $request->tekanan_darah,
-            'riwayat_penyakit_sekarang' => $request->riwayat_penyakit_sekarang,
-            'riwayat_penyakit_dahulu' => $request->riwayat_penyakit_dahulu,
-            'riwayat_penyakit_keluarga' => $request->riwayat_penyakit_keluarga,
-            'riwayat_kebiasaan' => $request->riwayat_kebiasaan,
-            'anamnesis_organ' => $request->anamnesis_organ,
+            'tanggal'            => $request->tanggal ? Carbon::parse($request->tanggal) : $laporan->tanggal,
+            'jenis_pemeriksaan'  => $request->jenis_pemeriksaan,
+            'hasil_pemeriksaan'  => $request->hasil_pemeriksaan,
+
+            'anamnesis'                    => $request->anamnesis,
+            'tekanan_darah'                => $request->tekanan_darah,
+            'riwayat_penyakit_sekarang'   => $request->riwayat_penyakit_sekarang,
+            'riwayat_penyakit_dahulu'     => $request->riwayat_penyakit_dahulu,
+            'riwayat_penyakit_keluarga'   => $request->riwayat_penyakit_keluarga,
+            'riwayat_kebiasaan'           => $request->riwayat_kebiasaan,
+            'anamnesis_organ'             => $request->anamnesis_organ,
         ]);
 
         return redirect()
@@ -67,9 +120,7 @@ class LaporanController extends Controller
             ->with('success', 'Laporan berhasil diperbarui.');
     }
 
-    /**
-     * (Optional) Hapus laporan
-     */
+    // Hapus laporan
     public function destroy($id)
     {
         $laporan = Laporan::findOrFail($id);

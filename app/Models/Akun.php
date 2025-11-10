@@ -12,9 +12,17 @@ class Akun extends Authenticatable
     protected $table = 'akun';
 
     protected $fillable = [
+        'nama',
         'nik',
-        'username', // kalau kamu pakai kolom "id" lain selain auto_increment, sesuaikan
+        'username',
         'password',
+        'tanggal_lahir',
+        'jenis_kelamin',
+        'pekerjaan',
+        'status',
+        'no_telepon',
+        'alamat',
+        'role',
     ];
 
     protected $hidden = [

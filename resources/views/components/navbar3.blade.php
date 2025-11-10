@@ -8,6 +8,8 @@
                         <x-nav-link href="/updateBeritaAdmin" :active="request()->is('updateBeritaAdmin')">Update Berita</x-nav-link>
                         <x-nav-link href="/daftarPeriksaAdmin" :active="request()->is('daftarPeriksaAdmin')">Daftar Periksa</x-nav-link>
                         <x-nav-link href="/akunPasienAdmin" :active="request()->is('akunPasienAdmin')">Akun Pasien</x-nav-link>
+                        <x-nav-link href="/obatAdmin" :active="request()->is('obatAdmin')">Obat</x-nav-link>
+                        <x-nav-link href="/dokterAdmin" :active="request()->is('dokterAdmin')">Dokter</x-nav-link>
                         <x-nav-link href="/keluarAdmin" :active="request()->is('keluarAdmin')">Keluar</x-nav-link>
                     </div>
                 </div>
@@ -50,6 +52,14 @@
             <a href="/akunPasienAdmin"
                 class="{{ request()->is('akunPasienAdmin') ? 'bg-blue-800 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium">
                 Akun Pasien
+            </a>
+            <a href="/obatAdmin"
+                class="{{ request()->is('obatAdmin') ? 'bg-blue-800 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium">
+                Obat
+            </a>
+            <a href="/dokterAdmin"
+                class="{{ request()->is('dokterAdmin') ? 'bg-blue-800 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium">
+                Dokter
             </a>
             <a href="/keluarAdmin"
                 class="{{ request()->is('keluarAdmin') ? 'bg-blue-800 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium">
