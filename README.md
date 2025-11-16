@@ -1,61 +1,205 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🌿 **OKMAS – Sistem Informasi Pelayanan Kesehatan**
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### *Aplikasi Pelayanan Kesehatan Modern Berbasis Web (Laravel + TailwindCSS)*
 
-## About Laravel
+OKMAS adalah aplikasi layanan kesehatan berbasis web yang dirancang untuk mempermudah administrasi klinik/puskesmas dalam pengelolaan **laporan pasien, daftar periksa, obat, dokter, berita, akun pasien**, dan sistem **janji temu**.
+Sistem ini mendukung **dua role** pengguna:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+* **Admin** – akses penuh untuk mengelola seluruh data
+* **Pasien** – melakukan login, membuat janji temu, dan melihat laporan medis
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🚀 **Fitur Utama**
 
-## Learning Laravel
+### 🔐 **1. Login Role-based (Admin & Pasien)**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+* Login menggunakan **NIK atau Username**
+* Password tersimpan aman (hashed)
+* Redirect otomatis:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+  * Admin → Dashboard Admin
+  * Pasien → Home Page
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 📄 **2. Manajemen Laporan Pasien**
 
-## Laravel Sponsors
+* Tambah laporan pemeriksaan
+* Edit laporan per ID pemeriksaan
+* Tampilkan detail seluruh riwayat pasien per NIK
+* Delete laporan
+* Pagination & tampilan rapi
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 🧾 **3. Modul Berita (Blog)**
 
-### Premium Partners
+* Admin bisa:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+  * Tambah berita
+  * Edit & Hapus berita
+  * Upload gambar berita
 
-## Contributing
+### 👨‍⚕️ **4. Modul Dokter**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+* Klaster dokter:
 
-## Code of Conduct
+  * Umum
+  * Gigi dan Mulut
+  * Bidan
+* CRUD lengkap: Tambah, Edit, Hapus dokter
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 💊 **5. Modul Obat**
 
-## Security Vulnerabilities
+* Data obat lengkap:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+  * Nama obat
+  * Kode obat
+  * Stok
+  * Tanggal masuk
+  * Tanggal expired
+* CRUD penuh
 
-## License
+### 📋 **6. Daftar Periksa**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+* Menampilkan pemeriksaan berdasarkan tanggal dan klaster
+* Toggle status pasien (Aktif / Tidak aktif)
+* AJAX tanpa reload
+* Pagination
+
+### 👤 **7. Manajemen Akun Pasien**
+
+* Admin dapat:
+
+  * Menambah akun pasien
+  * Edit akun pasien
+  * Hapus akun pasien
+* Validasi input lengkap dan jelas
+
+### 📅 **8. Janji Temu**
+
+* Pasien dapat membuat janji temu
+* Admin dapat edit & hapus
+
+---
+
+## 🛠️ **Tech Stack**
+
+| Teknologi             | Digunakan Untuk              |
+| --------------------- | ---------------------------- |
+| **Laravel 10+**       | Backend, Routing, Validation |
+| **Blade Template**    | View engine                  |
+| **TailwindCSS**       | Styling UI                   |
+| **SQLite**            | Database development         |
+| **JavaScript (AJAX)** | Interaksi dinamis            |
+| **Vite**              | Build assets                 |
+| **UI Avatars API**    | Auto profile image           |
+
+---
+
+## 🗂️ **Struktur Folder Penting**
+
+```
+/app
+  /Http/Controllers
+    LoginController.php
+    LaporanController.php
+    DokterController.php
+    ObatController.php
+    BeritaController.php
+    PeriksaController.php
+    AkunPasienController.php
+
+/resources/views
+  /components
+  /laporanAdmin
+  /dokterAdmin
+  /obatAdmin
+  /akunPasienAdmin
+  /updateBeritaAdmin
+  /janjiTemu
+  home.blade.php
+  login.blade.php
+
+/database
+  /migrations
+  /seeders
+    UserSeeder.php
+```
+
+---
+
+## 🧬 **Skema Database**
+
+### **Tabel `akun`**
+
+| Kolom         | Tipe               |
+| ------------- | ------------------ |
+| id            | bigint             |
+| nama          | string             |
+| nik           | string (unique)    |
+| username      | string (unique)    |
+| password      | string             |
+| tanggal_lahir | date               |
+| jenis_kelamin | enum               |
+| pekerjaan     | string             |
+| status        | string             |
+| no_telepon    | string             |
+| alamat        | text               |
+| role          | enum(admin/pasien) |
+
+### **Tabel `laporan`**
+
+Berisi data pemeriksaan pasien lengkap seperti:
+
+* tanggal
+* jenis_pemeriksaan
+* anamnesis
+* tekanan darah
+* riwayat penyakit
+* hasil pemeriksaan
+
+### **Tabel `dokters`, `obats`, dll**
+
+Semuanya sudah mengikuti struktur CRUD dan migration masing-masing.
+
+---
+
+## 📸 **Tampilan UI Singkat**
+
+> (Tambahkan screenshot di sini jika mau, nanti aku formatin biar keren)
+
+---
+
+## 🧪 **Cara Menjalankan Project**
+
+### **1. Install dependency**
+
+```sh
+composer install
+npm install
+```
+
+### **2. Copy file .env**
+
+```sh
+cp .env.example .env
+```
+
+### **3. Generate key**
+
+```sh
+php artisan key:generate
+```
+
+### **4. Migrasi & Seeder**
+
+```sh
+php artisan migrate --seed
+```
+
+### **5. Jalankan Development Server**
+
+```sh
+php artisan serve
+npm run dev
+```
+
+---
