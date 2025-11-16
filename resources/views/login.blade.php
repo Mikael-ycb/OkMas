@@ -1,4 +1,4 @@
-<x-layout3>
+<x-layout>
     <section class="relative bg-cover bg-center bg-no-repeat h-[350px] w-full"
         style="background-image: url('{{ asset('img/dokter1.jpg') }}');">
         <div class="absolute inset-0"></div>
@@ -77,4 +77,4 @@
             Lupa password?
         </a>
     </div>
-</x-layout3>
+</x-layout>

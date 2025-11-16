@@ -1,115 +1,164 @@
-        <nav class="fixed top-[80px] left-0 w-full z-40 bg-blue-900 shadow"">
-            <div class=" mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="flex h-16 items-center justify-between">
-                <div class="flex items-center">
-                    <div class="hidden md:block">
-                        <div class="ml-10 flex items-baseline space-x-4">
-                            <!-- Current: "bg-gray-950/50 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
-                            <x-nav-link href="/" :active="request()->is('/')">Beranda</x-nav-link>
-                            <x-nav-link href="/tentangKami" :active="request()->is('tentangKami')">Tentang Kami</x-nav-link>
-                            <x-nav-link href="/layanan" :active="request()->is('layanan')">Layanan</x-nav-link>
-                            <x-nav-link href="/dokter" :active="request()->is('dokter')">Dokter</x-nav-link>
-                            <x-nav-link href="/berita" :active="request()->is('berita')">Berita</x-nav-link>
-                            <x-nav-link href="/kontak" :active="request()->is('kontak')">Kontak</x-nav-link>
-                            <x-nav-link href="/laporan" :active="request()->is('laporan')">Laporan</x-nav-link>
+<nav class="fixed top-[80px] left-0 w-full z-40 bg-blue-900 shadow">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
 
-                        </div>
+            {{-- Left navbar links --}}
+            <div class="flex items-center">
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+
+                        <x-nav-link href="/" :active="request()->is('/')">Beranda</x-nav-link>
+                        <x-nav-link href="/tentangKami" :active="request()->is('tentangKami')">Tentang Kami</x-nav-link>
+                        <x-nav-link href="/layanan" :active="request()->is('layanan')">Layanan</x-nav-link>
+                        <x-nav-link href="/dokter" :active="request()->is('dokter')">Dokter</x-nav-link>
+                        <x-nav-link href="/berita" :active="request()->is('berita')">Berita</x-nav-link>
+                        <x-nav-link href="/kontak" :active="request()->is('kontak')">Kontak</x-nav-link>
+
+                        {{-- Jika pasien login munculkan menu Laporan --}}
+                        @if(session('akun_role') === 'pasien')
+                            <x-nav-link href="/laporan" :active="request()->is('laporan')">Laporan</x-nav-link>
+                        @endif
+
                     </div>
                 </div>
-                <div class="hidden md:block">
-                    <div class="ml-4 flex items-center md:ml-6">
-                        <a href="/notifikasi"
-                            class="relative rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
-                            <span class="absolute -inset-1.5"></span>
-                            <span class="sr-only">View notifications</span>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                                aria-hidden="true" class="size-6">
-                                <path d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
+            </div>
+
+            {{-- Right section (Notification + Profile / Login) --}}
+            <div class="hidden md:block">
+                <div class="ml-4 flex items-center md:ml-6">
+
+                    {{-- Notifikasi --}}
+                    <a href="/notifikasi"
+                        class="relative rounded-full p-1 text-gray-300 hover:text-white">
+                        <span class="absolute -inset-1.5"></span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            aria-hidden="true" class="size-6">
+                            <path d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0018 9.75V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
+
+                    {{-- PROFILE / LOGIN --}}
+                    @if(!session()->has('akun_id'))
+                        {{-- Belum Login --}}
+                        <a href="/login"
+                            class="bg-white text-blue-900 font-semibold px-4 py-2 rounded-lg shadow hover:bg-gray-100 ml-4 transition">
+                            Login
                         </a>
-
-
-
-                        <!-- Profile dropdown -->
-                        <el-dropdown class="relative ml-3">
-                            <button class="relative flex max-w-xs items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
+                    @else
+                        {{-- Sudah Login --}}
+                        <el-dropdown class="relative ml-4">
+                            <button
+                                class="relative flex max-w-xs items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
                                 <span class="absolute -inset-1.5"></span>
-                                <span class="sr-only">Open user menu</span>
-                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" class="size-8 rounded-full outline -outline-offset-1 outline-white/10" />
+                                <img
+                                    src="https://ui-avatars.com/api/?name={{ session('akun_username') }}&background=1e3a8a&color=fff"
+                                    class="size-8 rounded-full outline -outline-offset-1 outline-white/10">
                             </button>
 
-                            <el-menu anchor="bottom end" popover class="w-48 origin-top-right rounded-md bg-gray-800 py-1 outline-1 -outline-offset-1 outline-white/10 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-300 focus:bg-white/5 focus:outline-hidden">Your profile</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-300 focus:bg-white/5 focus:outline-hidden">Settings</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-300 focus:bg-white/5 focus:outline-hidden">Sign out</a>
+                            <el-menu anchor="bottom end" popover
+                                class="w-48 origin-top-right rounded-md bg-gray-800 py-1 outline outline-1 outline-white/10">
+
+                                <p class="px-4 py-2 text-sm text-gray-300">
+                                    {{ session('akun_username') }}
+                                </p>
+
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">
+                                    Profil
+                                </a>
+
+                                <a href="/logout" class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">
+                                    Keluar
+                                </a>
                             </el-menu>
                         </el-dropdown>
-                    </div>
-                </div>
-                <div class="-mr-2 flex md:hidden">
-                    <!-- Mobile menu button -->
-                    <button type="button" command="--toggle" commandfor="mobile-menu" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
-                        <span class="absolute -inset-0.5"></span>
-                        <span class="sr-only">Open main menu</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 in-aria-expanded:hidden">
-                            <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 not-in-aria-expanded:hidden">
-                            <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </button>
+                    @endif
+
                 </div>
             </div>
+
+            {{-- Mobile menu button --}}
+            <div class="-mr-2 flex md:hidden">
+                <button command="--toggle" commandfor="mobile-menu"
+                    class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-300 hover:bg-white/5 hover:text-white">
+                    <span class="absolute -inset-0.5"></span>
+                    <svg class="size-6 in-aria-expanded:hidden" fill="none" stroke="currentColor" stroke-width="1.5"
+                        viewBox="0 0 24 24">
+                        <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <svg class="size-6 not-in-aria-expanded:hidden" fill="none" stroke="currentColor"
+                        stroke-width="1.5" viewBox="0 0 24 24">
+                        <path d="M6 18 18 6M6 6l12 12"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
             </div>
 
-            <el-disclosure id="mobile-menu" hidden class="block md:hidden">
-                <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-                    <!-- Current: "bg-gray-950/50 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
-                    <a href="/" aria-current="page"
-                        class="{{ request()->is('/') ? 'bg-gray-950/50 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium text-white">
-                        Beranda
-                    </a>
-                    <a href="/tentangKami"
-                        class="{{ request()->is('tentangKami') ? 'bg-gray-950/50 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium text-white">
-                        Tentang Kami
-                    </a>
-                    <a href="/layanan"
-                        class="{{ request()->is('layanan') ? 'bg-gray-950/50 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium text-white">
-                        Layanan
-                    </a>
-                    <a href="/dokter"
-                        class="{{ request()->is('dokter') ? 'bg-gray-950/50 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium text-white">
-                        Dokter
-                    </a>
-                    <a href="/berita"
-                        class="{{ request()->is('berita') ? 'bg-gray-950/50 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium text-white">
-                        Berita
-                    </a>
-                    <a href="/kontak"
-                        class="{{ request()->is('kontak') ? 'bg-gray-950/50 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium text-white">
-                        Kontak
-                    </a>
+        </div>
+    </div>
 
+    {{-- MOBILE MENU --}}
+    <el-disclosure id="mobile-menu" hidden class="block md:hidden">
+
+        <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
+
+            <a href="/" class="nav-mobile {{ request()->is('/') ? 'active' : '' }}">Beranda</a>
+            <a href="/tentangKami" class="nav-mobile {{ request()->is('tentangKami') ? 'active' : '' }}">Tentang Kami</a>
+            <a href="/layanan" class="nav-mobile {{ request()->is('layanan') ? 'active' : '' }}">Layanan</a>
+            <a href="/dokter" class="nav-mobile {{ request()->is('dokter') ? 'active' : '' }}">Dokter</a>
+            <a href="/berita" class="nav-mobile {{ request()->is('berita') ? 'active' : '' }}">Berita</a>
+            <a href="/kontak" class="nav-mobile {{ request()->is('kontak') ? 'active' : '' }}">Kontak</a>
+
+            @if(session('akun_role') === 'pasien')
+                <a href="/laporan" class="nav-mobile {{ request()->is('laporan') ? 'active' : '' }}">Laporan</a>
+            @endif
+        </div>
+
+        <div class="border-t border-white/10 pt-4 pb-3">
+            @if(!session()->has('akun_id'))
+
+                {{-- Belum login --}}
+                <div class="px-5 pb-3">
+                    <a href="/login"
+                        class="block w-full px-3 py-2 text-center rounded-md text-white font-medium bg-blue-700 hover:bg-blue-600">
+                        Login
+                    </a>
                 </div>
-                <div class="border-t border-white/10 pt-4 pb-3">
-                    <div class="flex items-center px-5">
-                        <div class="shrink-0">
-                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" class="size-10 rounded-full outline -outline-offset-1 outline-white/10" />
-                        </div>
-                        <div class="ml-3">
-                            <div class="text-base/5 font-medium text-white">Tom Cook</div>
-                            <div class="text-sm font-medium text-gray-400">tom@example.com</div>
-                        </div>
 
-                    </div>
-                    <div class="mt-3 space-y-1 px-2">
-                        <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">Your profile</a>
-                        <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">Settings</a>
-                        <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">Sign out</a>
+            @else
+                {{-- Sudah login --}}
+                <div class="flex items-center px-5">
+                    <img
+                        src="https://ui-avatars.com/api/?name={{ session('akun_username') }}&background=1e3a8a&color=fff"
+                        class="size-10 rounded-full">
+
+                    <div class="ml-3">
+                        <div class="text-base font-medium text-white">{{ session('akun_username') }}</div>
+                        <div class="text-sm font-medium text-gray-400">{{ session('akun_role') }}</div>
                     </div>
                 </div>
-            </el-disclosure>
 
-            
-        </nav>
+                <div class="mt-3 space-y-1 px-2">
+                    <a href="#" class="nav-mobile text-gray-300">Profil</a>
+                    <a href="/logout" class="nav-mobile text-gray-300">Keluar</a>
+                </div>
+
+            @endif
+
+        </div>
+
+    </el-disclosure>
+
+</nav>
+
+{{-- Style tambahan --}}
+<style>
+    .nav-mobile {
+        @apply block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white;
+    }
+
+    .nav-mobile.active {
+        @apply bg-gray-950/50 text-white;
+    }
+</style>

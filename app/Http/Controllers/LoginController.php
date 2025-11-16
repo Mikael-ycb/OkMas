@@ -8,43 +8,54 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
-    // 🔹 Tampilkan halaman login
+    // 🔹 Halaman form login
     public function showLoginForm()
     {
-        // Kalau sudah login, langsung ke home
         if (session('akun_id')) {
-            return redirect('/');
+            // Kalau sudah login arahkan sesuai role
+            if (session('akun_role') === 'admin') {
+                return redirect()->route('laporanAdmin.index');
+            } else {
+                return redirect()->route('home');
+            }
         }
 
         return view('login', ['title' => 'Login']);
     }
 
-    // 🔹 Proses login (bisa pakai NIK atau Username)
+    // 🔹 Proses login (bisa NIK atau Username)
     public function login(Request $request)
     {
         $request->validate([
-            'login' => 'required', // bisa NIK atau Username
+            'login' => 'required', // bisa NIK / Username
             'password' => 'required',
         ]);
 
-        // Cek akun berdasarkan NIK atau username
+        // Cek data di tabel akun
         $akun = DB::table('akun')
             ->where('nik', $request->login)
             ->orWhere('username', $request->login)
             ->first();
 
+        // Jika akun ditemukan dan password cocok
         if ($akun && Hash::check($request->password, $akun->password)) {
-            // Simpan sesi login
+            // Simpan session
             $request->session()->put([
                 'akun_id' => $akun->id,
                 'akun_nik' => $akun->nik,
                 'akun_username' => $akun->username,
+                'akun_role' => $akun->role,
             ]);
 
-            return redirect('/')->with('success', 'Berhasil login!');
+            // Arahkan sesuai role
+            if ($akun->role === 'admin') {
+                return redirect()->route('laporanAdmin.index')->with('success', 'Selamat datang, Admin!');
+            } else {
+                return redirect()->route('home')->with('success', 'Selamat datang di OKMAS!');
+            }
         }
 
-        return back()->with('error', 'NIK/Username atau password salah!')->withInput();
+        return back()->with('error', 'NIK/Username atau Password salah!')->withInput();
     }
 
     // 🔹 Logout user
@@ -53,6 +64,4 @@ class LoginController extends Controller
         $request->session()->flush();
         return redirect('/login')->with('success', 'Berhasil logout!');
     }
-
-    
 }

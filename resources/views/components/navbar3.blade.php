@@ -10,7 +10,7 @@
                         <x-nav-link href="/akunPasienAdmin" :active="request()->is('akunPasienAdmin')">Akun Pasien</x-nav-link>
                         <x-nav-link href="/obatAdmin" :active="request()->is('obatAdmin')">Obat</x-nav-link>
                         <x-nav-link href="/dokterAdmin" :active="request()->is('dokterAdmin')">Dokter</x-nav-link>
-                        <x-nav-link href="/keluarAdmin" :active="request()->is('keluarAdmin')">Keluar</x-nav-link>
+                        <x-nav-link href="/logout" :active="request()->is('logout')">Keluar</x-nav-link>
                     </div>
                 </div>
             </div>
@@ -61,8 +61,8 @@
                 class="{{ request()->is('dokterAdmin') ? 'bg-blue-800 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium">
                 Dokter
             </a>
-            <a href="/keluarAdmin"
-                class="{{ request()->is('keluarAdmin') ? 'bg-blue-800 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium">
+            <a href="/logout"
+                class="{{ request()->is('logout') ? 'bg-blue-800 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium">
                 Keluar
             </a>
         </div>

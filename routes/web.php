@@ -13,7 +13,7 @@ use App\Http\Controllers\DokterController;
 
 Route::get('/', function () {
     return view('home', ['title' => 'Home Page']);
-});
+})->name('home');
 
 Route::get('/tentangKami', function () {
     return view('tentangKami' , ['title' => 'Tentang Kami']);

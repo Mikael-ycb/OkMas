@@ -16,6 +16,12 @@
             {{ $slot }}
         </main>
 
+        <a href="{{ route('logout') }}"
+        class="text-white hover:text-yellow-300 transition font-medium"
+        onclick="return confirm('Yakin ingin keluar?')">
+        Keluar
+        </a>
+
     </div>
 
 </body>
