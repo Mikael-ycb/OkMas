@@ -9,7 +9,7 @@ use App\Http\Controllers\PeriksaController;
 use App\Http\Controllers\AkunPasienController;
 use App\Http\Controllers\ObatController;
 use App\Http\Controllers\DokterController;
-
+use App\Http\Controllers\BeritaPasienController;
 
 Route::get('/', function () {
     return view('home', ['title' => 'Home Page']);
@@ -27,9 +27,13 @@ Route::get('/dokter', function () {
     return view('dokter', ['title' => 'Dokter']);
 });
 
-Route::get('/berita', function () {
-    return view('berita', ['title' => 'Berita']);
-});
+//Route::get('/berita', function () {
+  //  return view('berita', ['title' => 'Berita']);
+//});
+
+Route::get('/berita', [BeritaPasienController::class, 'index'])->name('berita');
+Route::get('/berita/{id}', [BeritaPasienController::class, 'show'])
+    ->name('beritaDetail');
 
 Route::get('/kontak', function () {
     return view('kontak', ['title' => 'Kontak']);

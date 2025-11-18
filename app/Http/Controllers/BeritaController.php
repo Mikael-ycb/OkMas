@@ -22,10 +22,10 @@ class BeritaController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'judul' => 'required|string|max:255',
-            'program' => 'nullable|string|max:255',
-            'isi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpg,jpeg|max:2048',
+            'judul' => 'required|max:255',
+            'program' => 'nullable|max:255',
+            'isi' => 'required',
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         if ($request->hasFile('gambar')) {
@@ -33,8 +33,8 @@ class BeritaController extends Controller
         }
 
         $validated['tanggal'] = now();
-
         Berita::create($validated);
+
         return redirect()->route('berita.index')->with('success', 'Berita berhasil ditambahkan!');
     }
 
@@ -47,10 +47,10 @@ class BeritaController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'judul' => 'required|string|max:255',
-            'program' => 'nullable|string|max:255',
-            'isi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpg,jpeg|max:2048',
+            'judul' => 'required|max:255',
+            'program' => 'nullable|max:255',
+            'isi' => 'required',
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $berita = Berita::findOrFail($id);
@@ -63,6 +63,7 @@ class BeritaController extends Controller
         }
 
         $berita->update($validated);
+
         return redirect()->route('berita.index')->with('success', 'Berita berhasil diperbarui!');
     }
 
@@ -81,6 +82,7 @@ class BeritaController extends Controller
         }
 
         $berita->delete();
+
         return redirect()->route('berita.index')->with('success', 'Berita berhasil dihapus!');
     }
 }
