@@ -6,7 +6,7 @@
 
     <div class="px-20 pb-20 bg-white min-h-screen flex flex-col items-center">
         @if($berita->gambar)
-            <img src="{{ asset('/' . $berita->gambar) }}" alt="{{ $berita->judul }}" class="rounded-xl w-[500px] shadow mb-6">
+            <img src="{{ asset('storage/' . $berita->gambar) }}" alt="{{ $berita->judul }}" class="rounded-xl w-[500px] shadow mb-6">
         @endif
 
         <div class="max-w-3xl text-gray-800 leading-relaxed">

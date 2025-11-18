@@ -4,7 +4,7 @@
     @foreach ($berita as $item)
         <div class="bg-white rounded-xl shadow-md overflow-hidden">
 
-            <img src="{{ asset('storage/berita/' . $item->gambar) }}"
+            <img src="{{ asset('storage/' . $item->gambar) }}"
                  class="w-full h-64 object-cover"
                  alt="{{ $item->judul }}">
 

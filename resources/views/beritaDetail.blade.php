@@ -5,7 +5,7 @@
 
             {{-- Gambar --}}
             @if ($berita->gambar)
-                <img src="{{ asset('storage/berita/' . $berita->gambar) }}"
+                <img src="{{ asset('storage/' . $berita->gambar) }}"
                      class="w-full h-64 object-cover"
                      alt="{{ $berita->judul }}">
             @endif
