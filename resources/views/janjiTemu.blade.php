@@ -40,12 +40,10 @@
                     @endforeach
                 </select>
 
-                <select name="dokter_id" class="w-full p-3 bg-blue-900 text-white focus:outline-none mb-2">
-                    <option selected disabled>Dokter</option>
-                    @foreach ($dokters as $dokter)
-                    <option value="{{ $dokter->id }}">{{ $dokter->nama }}</option>
-                    @endforeach
+                <select id="dokterSelect" name="dokter_id" class="w-full p-3 bg-blue-900 text-white focus:outline-none mb-2">
+                    <option selected disabled>Pilih Dokter</option>
                 </select>
+
 
                 <textarea name="keluhan" class="w-full p-3 bg-blue-900 text-white focus:outline-none mb-3" placeholder="Keluhan"></textarea>
 
@@ -86,7 +84,7 @@
             @foreach ($janjiTemus as $janji)
             <div class="bg-blue-200 p-6 rounded-md">
                 <p class="font-semibold">{{ $janji->klaster->nama }}</p>
-                <p class="text-lg font-bold">{{ $janji->dokter->nama }}</p>
+                <p class="text-lg font-bold">{{ $janji->dokter->nama_dokter }}</p>
                 <p>{{ \Carbon\Carbon::parse($janji->tanggal->tanggal)->format('d/m/Y') }}</p>
                 <p><em>Keluhan:</em> {{ $janji->keluhan }}</p>
 
@@ -96,7 +94,8 @@
                         Edit Jadwal
                     </a>
 
-                    <form action="{{ route('janjiTemu.destroy', $janji->id) }}" method="POST" onsubmit="return confirm('Yakin ingin membatalkan janji ini?')">
+                    <form action="{{ route('janjiTemu.destroy', $janji->id) }}" method="POST"
+                        onsubmit="return confirm('Yakin ingin membatalkan janji ini?')">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded-md hover:bg-red-700">
@@ -104,10 +103,33 @@
                         </button>
                     </form>
                 </div>
-
-                @endforeach
             </div>
+            @endforeach
+
+        </div>
     </section>
+
+    <script>
+        document.querySelector('select[name="klaster_id"]').addEventListener('change', function() {
+            let klaster = this.value;
+
+            // kosongkan dokter
+            let dokterSelect = document.getElementById('dokterSelect');
+            dokterSelect.innerHTML = '<option selected disabled>Memuat...</option>';
+
+            fetch(`/get-dokter-by-klaster/${klaster}`)
+                .then(response => response.json())
+                .then(data => {
+                    dokterSelect.innerHTML = '<option selected disabled>Pilih Dokter</option>';
+                    data.forEach(d => {
+                        dokterSelect.innerHTML += `<option value="${d.id}">${d.nama_dokter}</option>`;
+                    });
+                })
+                .catch(() => {
+                    dokterSelect.innerHTML = '<option disabled>Gagal memuat data</option>';
+                });
+        });
+    </script>
 
 
 

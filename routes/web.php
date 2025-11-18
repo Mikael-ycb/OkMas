@@ -16,7 +16,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/tentangKami', function () {
-    return view('tentangKami' , ['title' => 'Tentang Kami']);
+    return view('tentangKami', ['title' => 'Tentang Kami']);
 });
 
 Route::get('/layanan', function () {
@@ -28,7 +28,7 @@ Route::get('/dokter', function () {
 });
 
 //Route::get('/berita', function () {
-  //  return view('berita', ['title' => 'Berita']);
+//  return view('berita', ['title' => 'Berita']);
 //});
 
 Route::get('/berita', [BeritaPasienController::class, 'index'])->name('berita');
@@ -110,4 +110,11 @@ Route::prefix('dokterAdmin')->group(function () {
     Route::get('/edit/{id}', [DokterController::class, 'edit'])->name('dokterAdmin.edit');
     Route::post('/update/{id}', [DokterController::class, 'update'])->name('dokterAdmin.update');
     Route::delete('/{id}', [DokterController::class, 'destroy'])->name('dokterAdmin.destroy');
+});
+
+Route::get('/get-dokter-by-klaster/{klaster_id}', function ($klaster_id) {
+    // PERBAIKAN: Gunakan kolom 'klaster_id' (integer)
+    return \App\Models\Dokter::where('klaster_id', $klaster_id)->get();
+
+    // Catatan: Jika Anda telah menerapkan saran saya sebelumnya, ini bisa dipindahkan ke DokterController
 });

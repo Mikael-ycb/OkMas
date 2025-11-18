@@ -10,9 +10,9 @@ class KlasterSeeder extends Seeder
     public function run(): void
     {
         DB::table('klasters')->insert([
-            ['nama' => 'Bidan'],
-            ['nama' => 'Dokter Gigi dan Mulut'],
-            ['nama' => 'Dokter Umum'],
+            ['nama' => 'Umum', 'created_at' => now(), 'updated_at' => now()],
+            ['nama' => 'Gigi', 'created_at' => now(), 'updated_at' => now()],
+            ['nama' => 'Bidan', 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }

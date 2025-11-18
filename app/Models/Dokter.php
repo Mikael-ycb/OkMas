@@ -13,6 +13,11 @@ class Dokter extends Model
     protected $fillable = [
         'nama_dokter',
         'id_dokter',
-        'klaster',
+        'klaster_id',
     ];
+
+    public function klaster()
+    {
+        return $this->belongsTo(Klaster::class);
+    }
 }
