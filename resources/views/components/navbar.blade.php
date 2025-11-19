@@ -14,7 +14,7 @@
                         <x-nav-link href="/berita" :active="request()->is('berita')">Berita</x-nav-link>
                         <x-nav-link href="/kontak" :active="request()->is('kontak')">Kontak</x-nav-link>
                         
-
+                        
 
                         {{-- Jika pasien login munculkan menu Laporan --}}
                         @if(session('akun_role') === 'pasien')
