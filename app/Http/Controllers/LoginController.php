@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Akun;
 
 class LoginController extends Controller
 {
-    // 🔹 Halaman form login
     public function showLoginForm()
     {
-        if (session('akun_id')) {
-            // Kalau sudah login arahkan sesuai role
-            if (session('akun_role') === 'admin') {
+        if (Auth::check()) {
+
+            if (Auth::user()->role === 'admin') {
                 return redirect()->route('laporanAdmin.index');
             } else {
                 return redirect()->route('home');
@@ -23,45 +23,47 @@ class LoginController extends Controller
         return view('login', ['title' => 'Login']);
     }
 
-    // 🔹 Proses login (bisa NIK atau Username)
+
+
     public function login(Request $request)
     {
         $request->validate([
-            'login' => 'required', // bisa NIK / Username
+            'login' => 'required',
             'password' => 'required',
         ]);
 
-        // Cek data di tabel akun
-        $akun = DB::table('akun')
-            ->where('nik', $request->login)
+        // cari user di model Akun
+        $akun = Akun::where('nik', $request->login)
             ->orWhere('username', $request->login)
             ->first();
 
-        // Jika akun ditemukan dan password cocok
+        // cek user & password
         if ($akun && Hash::check($request->password, $akun->password)) {
-            // Simpan session
-            $request->session()->put([
-                'akun_id' => $akun->id,
-                'akun_nik' => $akun->nik,
-                'akun_username' => $akun->username,
-                'akun_role' => $akun->role,
-            ]);
 
-            // Arahkan sesuai role
+            Auth::loginUsingId($akun->id_akun);
+            $request->session()->regenerate();
+
+            // ✅ Cek role
             if ($akun->role === 'admin') {
-                return redirect()->route('laporanAdmin.index')->with('success', 'Selamat datang, Admin!');
+                return redirect()->route('laporanAdmin.index')
+                    ->with('success', 'Selamat datang, Admin!');
             } else {
-                return redirect()->route('home')->with('success', 'Selamat datang di OKMAS!');
+                return redirect()->route('home')
+                    ->with('success', 'Selamat datang di OKMAS!');
             }
         }
 
-        return back()->with('error', 'NIK/Username atau Password salah!')->withInput();
+        return back()->with('error', 'Login salah!')->withInput();
     }
 
-    // 🔹 Logout user
+
+
     public function logout(Request $request)
     {
-        $request->session()->flush();
-        return redirect('/login')->with('success', 'Berhasil logout!');
+        Auth::logout(); // ✅ logout beneran
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/login');
     }
 }

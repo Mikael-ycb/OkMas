@@ -39,11 +39,13 @@ Route::get('/kontak', function () {
     return view('kontak', ['title' => 'Kontak']);
 });
 
-Route::get('/janjiTemu', [JanjiTemuController::class, 'index'])->name('janjiTemu.index');
-Route::post('/janjiTemu', [JanjiTemuController::class, 'store'])->name('janjiTemu.store');
-Route::get('/janjiTemu/{id}/edit', [JanjiTemuController::class, 'edit'])->name('janjiTemu.edit');
-Route::put('/janjiTemu/{id}', [JanjiTemuController::class, 'update'])->name('janjiTemu.update');
-Route::delete('/janjiTemu/{id}', [JanjiTemuController::class, 'destroy'])->name('janjiTemu.destroy');
+Route::middleware('auth')->group(function () {
+    Route::get('/janjiTemu', [JanjiTemuController::class, 'index'])->name('janjiTemu.index');
+    Route::post('/janjiTemu', [JanjiTemuController::class, 'store'])->name('janjiTemu.store');
+    Route::get('/janjiTemu/{id}/edit', [JanjiTemuController::class, 'edit'])->name('janjiTemu.edit');
+    Route::put('/janjiTemu/{id}', [JanjiTemuController::class, 'update'])->name('janjiTemu.update');
+    Route::delete('/janjiTemu/{id}', [JanjiTemuController::class, 'destroy'])->name('janjiTemu.destroy');
+});
 
 Route::get('/notifikasi', function () {
     return view('notifikasi', ['title' => 'notifikasi']);

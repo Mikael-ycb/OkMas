@@ -13,12 +13,12 @@
                         <x-nav-link href="/dokter" :active="request()->is('dokter')">Dokter</x-nav-link>
                         <x-nav-link href="/berita" :active="request()->is('berita')">Berita</x-nav-link>
                         <x-nav-link href="/kontak" :active="request()->is('kontak')">Kontak</x-nav-link>
-                        
-                        
+
+
 
                         {{-- Jika pasien login munculkan menu Laporan --}}
-                        @if(session('akun_role') === 'pasien')
-                            <x-nav-link href="/laporan" :active="request()->is('laporan')">Laporan</x-nav-link>
+                        @if(Auth::check() && Auth::user()->role === 'pasien')
+                        <x-nav-link href="/laporan" :active="request()->is('laporan')">Laporan</x-nav-link>
                         @endif
 
                     </div>
@@ -41,39 +41,39 @@
                     </a>
 
                     {{-- PROFILE / LOGIN --}}
-                    @if(!session()->has('akun_id'))
-                        {{-- Belum Login --}}
-                        <a href="/login"
-                            class="bg-white text-blue-900 font-semibold px-4 py-2 rounded-lg shadow hover:bg-gray-100 ml-4 transition">
-                            Login
-                        </a>
+                    @if(!Auth::check())
+                    {{-- Belum Login --}}
+                    <a href="/login"
+                        class="bg-white text-blue-900 font-semibold px-4 py-2 rounded-lg shadow hover:bg-gray-100 ml-4 transition">
+                        Login
+                    </a>
                     @else
-                        {{-- Sudah Login --}}
-                        <el-dropdown class="relative ml-4">
-                            <button
-                                class="relative flex max-w-xs items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
-                                <span class="absolute -inset-1.5"></span>
-                                <img
-                                    src="https://ui-avatars.com/api/?name={{ session('akun_username') }}&background=1e3a8a&color=fff"
-                                    class="size-8 rounded-full outline -outline-offset-1 outline-white/10">
-                            </button>
+                    {{-- Sudah Login --}}
+                    <el-dropdown class="relative ml-4">
+                        <button
+                            class="relative flex max-w-xs items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
+                            <span class="absolute -inset-1.5"></span>
+                            <img
+                                src="https://ui-avatars.com/api/?name={{ Auth::user()->username }}&background=1e3a8a&color=fff"
+                                class="size-8 rounded-full outline -outline-offset-1 outline-white/10">
+                        </button>
 
-                            <el-menu anchor="bottom end" popover
-                                class="w-48 origin-top-right rounded-md bg-gray-800 py-1 outline outline-1 outline-white/10">
+                        <el-menu anchor="bottom end" popover
+                            class="w-48 origin-top-right rounded-md bg-gray-800 py-1 outline outline-1 outline-white/10">
 
-                                <p class="px-4 py-2 text-sm text-gray-300">
-                                    {{ session('akun_username') }}
-                                </p>
+                            <p class="px-4 py-2 text-sm text-gray-300">
+                                {{ Auth::user()->username }}
+                            </p>
 
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">
-                                    Profil
-                                </a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">
+                                Profil
+                            </a>
 
-                                <a href="/logout" class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">
-                                    Keluar
-                                </a>
-                            </el-menu>
-                        </el-dropdown>
+                            <a href="/logout" class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">
+                                Keluar
+                            </a>
+                        </el-menu>
+                    </el-dropdown>
                     @endif
 
                 </div>
@@ -112,41 +112,48 @@
             <a href="/berita" class="nav-mobile {{ request()->is('berita') ? 'active' : '' }}">Berita</a>
             <a href="/kontak" class="nav-mobile {{ request()->is('kontak') ? 'active' : '' }}">Kontak</a>
 
-            @if(session('akun_role') === 'pasien')
-                <a href="/laporan" class="nav-mobile {{ request()->is('laporan') ? 'active' : '' }}">Laporan</a>
+            @if(Auth::check() && Auth::user()->role === 'pasien')
+            <a href="/laporan" class="nav-mobile {{ request()->is('laporan') ? 'active' : '' }}">Laporan</a>
             @endif
         </div>
 
         <div class="border-t border-white/10 pt-4 pb-3">
-            @if(!session()->has('akun_id'))
-
-                {{-- Belum login --}}
-                <div class="px-5 pb-3">
-                    <a href="/login"
-                        class="block w-full px-3 py-2 text-center rounded-md text-white font-medium bg-blue-700 hover:bg-blue-600">
-                        Login
-                    </a>
-                </div>
-
+            {{-- PROFILE / LOGIN --}}
+            @if(!Auth::check())
+            {{-- Belum Login --}}
+            <a href="/login"
+                class="bg-white text-blue-900 font-semibold px-4 py-2 rounded-lg shadow hover:bg-gray-100 ml-4 transition">
+                Login
+            </a>
             @else
-                {{-- Sudah login --}}
-                <div class="flex items-center px-5">
+            {{-- Sudah Login --}}
+            <el-dropdown class="relative ml-4">
+                <button
+                    class="relative flex max-w-xs items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
+                    <span class="absolute -inset-1.5"></span>
                     <img
-                        src="https://ui-avatars.com/api/?name={{ session('akun_username') }}&background=1e3a8a&color=fff"
-                        class="size-10 rounded-full">
+                        src="https://ui-avatars.com/api/?name={{ Auth::user()->username }}&background=1e3a8a&color=fff"
+                        class="size-8 rounded-full outline -outline-offset-1 outline-white/10">
+                </button>
 
-                    <div class="ml-3">
-                        <div class="text-base font-medium text-white">{{ session('akun_username') }}</div>
-                        <div class="text-sm font-medium text-gray-400">{{ session('akun_role') }}</div>
-                    </div>
-                </div>
+                <el-menu anchor="bottom end" popover
+                    class="w-48 origin-top-right rounded-md bg-gray-800 py-1 outline outline-1 outline-white/10">
 
-                <div class="mt-3 space-y-1 px-2">
-                    <a href="#" class="nav-mobile text-gray-300">Profil</a>
-                    <a href="/logout" class="nav-mobile text-gray-300">Keluar</a>
-                </div>
+                    <p class="px-4 py-2 text-sm text-gray-300">
+                        {{ Auth::user()->username }}
+                    </p>
 
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">
+                        Profil
+                    </a>
+
+                    <a href="/logout" class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">
+                        Keluar
+                    </a>
+                </el-menu>
+            </el-dropdown>
             @endif
+
 
         </div>
 

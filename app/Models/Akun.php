@@ -10,6 +10,10 @@ class Akun extends Authenticatable
     use HasFactory;
 
     protected $table = 'akun';
+    protected $primaryKey = 'id_akun';
+    public $incrementing = true;
+    protected $keyType = 'int';
+    public $timestamps = true;
 
     protected $fillable = [
         'nama',
@@ -28,4 +32,9 @@ class Akun extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    public function janjiTemu()
+    {
+        return $this->hasMany(JanjiTemu::class, 'id_akun', 'id_akun');
+    }
 }

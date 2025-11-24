@@ -12,11 +12,18 @@ class JanjiTemu extends Model
     protected $table = 'janjiTemu';
 
     protected $fillable = [
+        'id_akun', 
         'tanggal_id',
         'klaster_id',
         'dokter_id',
         'keluhan',
+        'nomor_antrian',
     ];
+
+    public function akun()
+    {
+        return $this->belongsTo(Akun::class, 'id_akun', 'id_akun');
+    }
 
     public function tanggal()
     {

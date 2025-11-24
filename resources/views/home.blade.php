@@ -4,73 +4,73 @@
 
     {{-- ======================= HERO SECTION ======================= --}}
     <section class="relative bg-cover bg-center bg-no-repeat min-h-[700px] w-full pb-24"
-    style="background-image: url('{{ asset('img/hehe1.jpg') }}');">
+        style="background-image: url('{{ asset('img/hehe1.jpg') }}');">
 
-    {{-- Overlay warna biru --}}
-    <div class="absolute inset-0 bg-blue-900/70"></div>
+        {{-- Overlay warna biru --}}
+        <div class="absolute inset-0 bg-blue-900/70"></div>
 
-    {{-- CONTAINER HERO --}}
-    <div class="relative z-10 px-8 lg:px-24 pt-24">
+        {{-- CONTAINER HERO --}}
+        <div class="relative z-10 px-8 lg:px-24 pt-24">
 
-        {{-- ROW TULISAN KIRI & GAMBAR --}}
-        <div class="flex flex-col md:flex-row items-center justify-between">
+            {{-- ROW TULISAN KIRI & GAMBAR --}}
+            <div class="flex flex-col md:flex-row items-center justify-between">
 
-            {{-- TEKS KIRI --}}
-            <div class="max-w-xl text-white space-y-6">
-                <h5 class="uppercase tracking-widest font-semibold text-blue-200">Caring for Life</h5>
+                {{-- TEKS KIRI --}}
+                <div class="max-w-xl text-white space-y-6">
+                    <h5 class="uppercase tracking-widest font-semibold text-blue-200">Caring for Life</h5>
 
-                <h1 class="text-4xl sm:text-5xl font-bold leading-tight">
-                    Leading the Way in <br> Medical Excellence
-                </h1>
+                    <h1 class="text-4xl sm:text-5xl font-bold leading-tight">
+                        Leading the Way in <br> Medical Excellence
+                    </h1>
 
-                <p class="text-blue-100 text-lg">
-                    Kami berkomitmen memberikan pelayanan sunat dengan penuh kasih sayang terbaik
-                    dengan tenaga cantik dan fasilitas modern.
-                </p>
+                    <p class="text-blue-100 text-lg">
+                        Kami berkomitmen memberikan pelayanan sunat dengan penuh kasih sayang terbaik
+                        dengan tenaga cantik dan fasilitas modern.
+                    </p>
+                </div>
+
+                {{-- GAMBAR KANAN (DITINGGIKAN JARAKNYA) --}}
+                <div class="mt-10 md:mt-0 mb-24 flex justify-center md:justify-end">
+                    <img src="{{ asset('img/dokter.jpg') }}"
+                        alt="Doctor"
+                        class="w-[350px] md:w-[430px] rounded-xl shadow-xl object-cover">
+                </div>
             </div>
 
-            {{-- GAMBAR KANAN (DITINGGIKAN JARAKNYA) --}}
-            <div class="mt-10 md:mt-0 mb-24 flex justify-center md:justify-end">
-                <img src="{{ asset('img/dokter.jpg') }}"
-                    alt="Doctor"
-                    class="w-[350px] md:w-[430px] rounded-xl shadow-xl object-cover">
+            {{-- TOMBOL 3 BUAH — DITURUNKAN LAGI BIAR GAK NEPEL --}}
+            <div class="mt-10 flex justify-center flex-wrap gap-12">
+
+                {{-- Buat Janji --}}
+                <a href="/janjiTemu"
+                    class="flex flex-col items-center bg-white text-blue-900 px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition w-[190px]">
+                    <div class="flex items-center justify-center w-14 h-14 rounded-full bg-blue-100 mb-2">
+                        <span class="text-3xl">📅</span>
+                    </div>
+                    <span class="font-bold text-lg text-center">Buat Janji</span>
+                </a>
+
+                {{-- Klaster Dokter --}}
+                <a href="/dokter"
+                    class="flex flex-col items-center bg-white text-blue-900 px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition w-[190px]">
+                    <div class="flex items-center justify-center w-14 h-14 rounded-full bg-blue-100 mb-2">
+                        <span class="text-3xl">🩺</span>
+                    </div>
+                    <span class="font-bold text-lg text-center">Klaster Dokter</span>
+                </a>
+
+                {{-- Aduan Pelayanan --}}
+                <a href="#aduan"
+                    class="flex flex-col items-center bg-white text-blue-900 px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition w-[190px]">
+                    <div class="flex items-center justify-center w-14 h-14 rounded-full bg-blue-100 mb-2">
+                        <span class="text-3xl">💬</span>
+                    </div>
+                    <span class="font-bold text-lg text-center">Aduan Pelayanan</span>
+                </a>
+
             </div>
-        </div>
-
-        {{-- TOMBOL 3 BUAH — DITURUNKAN LAGI BIAR GAK NEPEL --}}
-        <div class="mt-10 flex justify-center flex-wrap gap-12">
-
-            {{-- Buat Janji --}}
-            <a href="/janjiTemu"
-                class="flex flex-col items-center bg-white text-blue-900 px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition w-[190px]">
-                <div class="flex items-center justify-center w-14 h-14 rounded-full bg-blue-100 mb-2">
-                    <span class="text-3xl">📅</span>
-                </div>
-                <span class="font-bold text-lg text-center">Buat Janji</span>
-            </a>
-
-            {{-- Klaster Dokter --}}
-            <a href="/dokter"
-                class="flex flex-col items-center bg-white text-blue-900 px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition w-[190px]">
-                <div class="flex items-center justify-center w-14 h-14 rounded-full bg-blue-100 mb-2">
-                    <span class="text-3xl">🩺</span>
-                </div>
-                <span class="font-bold text-lg text-center">Klaster Dokter</span>
-            </a>
-
-            {{-- Aduan Pelayanan --}}
-            <a href="#aduan"
-                class="flex flex-col items-center bg-white text-blue-900 px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition w-[190px]">
-                <div class="flex items-center justify-center w-14 h-14 rounded-full bg-blue-100 mb-2">
-                    <span class="text-3xl">💬</span>
-                </div>
-                <span class="font-bold text-lg text-center">Aduan Pelayanan</span>
-            </a>
 
         </div>
-
-    </div>
-</section>
+    </section>
 
     {{-- ======================= SECTION SELAMAT DATANG ======================= --}}
     <div class="relative z-10 flex flex-col items-center justify-center py-12 px-8 lg:px-20 text-center">
@@ -150,6 +150,18 @@
 
         </div>
     </div>
+
+    <p>Auth user: {{ Auth::check() ? 'YES' : 'NO' }}</p>
+    <p>User ID: {{ Auth::id() }}</p>
+
+    @auth
+    <p>STATUS: SUDAH LOGIN</p>
+    @endauth
+
+    @guest
+    <p>STATUS: BELUM LOGIN</p>
+    @endguest
+
 
 
 </x-layout>

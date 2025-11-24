@@ -82,11 +82,15 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             @foreach ($janjiTemus as $janji)
-            <div class="bg-blue-200 p-6 rounded-md">
+            <div class="bg-blue-200 p-6 rounded-md relative">
+
                 <p class="font-semibold">{{ $janji->klaster->nama }}</p>
                 <p class="text-lg font-bold">{{ $janji->dokter->nama_dokter }}</p>
                 <p>{{ \Carbon\Carbon::parse($janji->tanggal->tanggal)->format('d/m/Y') }}</p>
                 <p><em>Keluhan:</em> {{ $janji->keluhan }}</p>
+                <span class="absolute top-2 right-3 bg-blue-900 text-white px-2 py-1 rounded-md text-sm">
+                    No Antrian. {{ $janji->nomor_antrian }}
+                </span>
 
                 <div class="mt-3 flex gap-2">
                     <a href="{{ route('janjiTemu.edit', $janji->id) }}"
@@ -113,7 +117,7 @@
         document.querySelector('select[name="klaster_id"]').addEventListener('change', function() {
             let klaster = this.value;
 
-            // kosongkan dokter
+
             let dokterSelect = document.getElementById('dokterSelect');
             dokterSelect.innerHTML = '<option selected disabled>Memuat...</option>';
 

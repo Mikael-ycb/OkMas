@@ -7,11 +7,14 @@ use App\Models\Dokter;
 use App\Models\Tanggal;
 use App\Models\Klaster;
 use App\Models\JanjiTemu;
+use Illuminate\Support\Facades\Auth;
+
 
 class JanjiTemuController extends Controller
 {
     public function index()
     {
+        // dd('auth()->check() = ', auth()->check(), 'user = ', auth()->user());
         $dokters = Dokter::all();
         $tanggals = Tanggal::all();
         $klasters = Klaster::all();
@@ -22,17 +25,35 @@ class JanjiTemuController extends Controller
 
     public function store(Request $request)
     {
+
+
         $request->validate([
-            'tanggal_id' => 'required',
-            'klaster_id' => 'required',
-            'dokter_id' => 'required',
-            'keluhan' => 'required|string',
+            'tanggal_id' => 'required|exists:tanggals,id',
+            'klaster_id' => 'required|exists:klasters,id',
+            'dokter_id'  => 'required|exists:dokters,id',
+            'keluhan'    => 'required|string',
         ]);
 
-        JanjiTemu::create($request->all());
+        $lastQueue = JanjiTemu::where('tanggal_id', $request->tanggal_id)
+            ->where('dokter_id', $request->dokter_id)
+            ->orderBy('nomor_antrian', 'desc')
+            ->first();
+
+        $nomor_antrian = $lastQueue ? $lastQueue->nomor_antrian + 1 : 1;
+
+        JanjiTemu::create([
+            'id_akun' => Auth::id(),
+            'tanggal_id' => $request->tanggal_id,
+            'klaster_id' => $request->klaster_id,
+            'dokter_id'  => $request->dokter_id,
+            'keluhan'    => $request->keluhan,
+            'nomor_antrian' =>$nomor_antrian,
+        ]);
+
 
         return redirect()->route('janjiTemu.index')->with('success', 'Janji temu berhasil dibuat!');
     }
+
 
     public function edit($id)
     {
