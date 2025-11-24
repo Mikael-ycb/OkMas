@@ -151,16 +151,6 @@
         </div>
     </div>
 
-    <p>Auth user: {{ Auth::check() ? 'YES' : 'NO' }}</p>
-    <p>User ID: {{ Auth::id() }}</p>
-
-    @auth
-    <p>STATUS: SUDAH LOGIN</p>
-    @endauth
-
-    @guest
-    <p>STATUS: BELUM LOGIN</p>
-    @endguest
 
 
 
