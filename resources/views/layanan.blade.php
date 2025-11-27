@@ -35,7 +35,7 @@
                     <div class="pt-8 pb-6 px-6 text-center">
                         <h3 class="text-lg font-semibold text-gray-900">Bidan</h3>
                         <p class="text-gray-600 mb-4">Klaster Bidan</p>
-                        <a href="#" class="text-blue-600 font-medium inline-flex items-center hover:underline">
+                        <a href="/detailKlaster" class="text-blue-600 font-medium inline-flex items-center hover:underline">
                             Selengkapnya
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
@@ -63,7 +63,7 @@
                     <div class="pt-8 pb-6 px-6 text-center">
                         <h3 class="text-lg font-semibold text-gray-900">Umum</h3>
                         <p class="text-gray-600 mb-4">Klaster Umum</p>
-                        <a href="#" class="text-blue-600 font-medium inline-flex items-center hover:underline">
+                        <a href="/detailKlaster" class="text-blue-600 font-medium inline-flex items-center hover:underline">
                             Selengkapnya
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
@@ -91,7 +91,7 @@
                     <div class="pt-8 pb-6 px-6 text-center">
                         <h3 class="text-lg font-semibold text-gray-900">Gigi dan Mulut</h3>
                         <p class="text-gray-600 mb-4">Klaster Gigi dan Mulut</p>
-                        <a href="#" class="text-blue-600 font-medium inline-flex items-center hover:underline">
+                        <a href="/detailKlaster" class="text-blue-600 font-medium inline-flex items-center hover:underline">
                             Selengkapnya
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">

@@ -18,6 +18,9 @@ Route::get('/', function () {
 Route::get('/tentangKami', function () {
     return view('tentangKami', ['title' => 'Tentang Kami']);
 });
+Route::get('/detailKlaster', function () {
+    return view('detailKlaster', ['title' => 'detailKlaster']);
+});
 
 Route::get('/layanan', function () {
     return view('layanan', ['title' => 'Layanan']);
