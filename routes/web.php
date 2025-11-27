@@ -10,6 +10,7 @@ use App\Http\Controllers\AkunPasienController;
 use App\Http\Controllers\ObatController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\BeritaPasienController;
+use App\Http\Controllers\KlasterController;
 
 Route::get('/', function () {
     return view('home', ['title' => 'Home Page']);
@@ -18,9 +19,9 @@ Route::get('/', function () {
 Route::get('/tentangKami', function () {
     return view('tentangKami', ['title' => 'Tentang Kami']);
 });
-Route::get('/detailKlaster', function () {
-    return view('detailKlaster', ['title' => 'detailKlaster']);
-});
+
+Route::get('/detailKlaster/{jenis}', [KlasterController::class, 'detail'])->name('detailKlaster');
+
 
 Route::get('/layanan', function () {
     return view('layanan', ['title' => 'Layanan']);
