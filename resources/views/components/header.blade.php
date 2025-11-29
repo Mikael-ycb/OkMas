@@ -3,7 +3,7 @@
 
         <!-- Logo dan Nama -->
         <div class="flex items-center space-x-3">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+            <img src="{{ asset('img/logo.png') }}"
                 alt="Logo OKMAS"
                 class="h-12 w-12 object-contain">
             <h1 class="text-2xl font-bold">

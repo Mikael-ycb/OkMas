@@ -40,5 +40,20 @@ class UserSeeder extends Seeder
             'alamat' => 'Temanggung, Jawa Tengah',
             'role' => 'pasien',
         ]);
+
+        // Pasien 2
+        Akun::create([
+            'nama' => 'mikael',
+            'nik' => '1315611233118',
+            'username' => 'mik',
+            'password' => Hash::make('mik123'),
+            'tanggal_lahir' => '2005-09-26',
+            'jenis_kelamin' => 'Laki-laki',
+            'pekerjaan' => 'Mahasiswa',
+            'status' => 'Belum Menikah',
+            'no_telepon' => '082334556644',
+            'alamat' => 'Temanggung, Jawa Tengah',
+            'role' => 'pasien',
+        ]);
     }
 }
