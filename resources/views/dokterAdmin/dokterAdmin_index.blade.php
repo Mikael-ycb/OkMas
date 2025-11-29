@@ -26,7 +26,9 @@
                         <tr class="hover:bg-gray-50 transition">
                             <td class="px-6 py-3">{{ $item->nama_dokter }}</td>
                             <td class="px-6 py-3">{{ $item->id_dokter }}</td>
-                            <td class="px-6 py-3">{{ $item->klaster }}</td>
+                            <td class="px-6 py-3">
+                                {{ $item->klaster->nama ?? 'Tidak ada klaster' }}
+                            </td>
                             <td class="px-6 py-3 text-center flex justify-center gap-3">
                                 <a href="{{ route('dokterAdmin.edit', $item->id) }}" class="text-yellow-500 hover:text-yellow-600">✏️</a>
                                 <form action="{{ route('dokterAdmin.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin hapus dokter ini?')">

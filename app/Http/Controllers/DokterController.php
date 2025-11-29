@@ -23,7 +23,7 @@ class DokterController extends Controller
         $request->validate([
             'nama_dokter' => 'required',
             'id_dokter' => 'required|unique:dokter',
-            'klaster' => 'required',
+            'klaster_id' => 'required',
         ]);
 
         Dokter::create($request->all());
@@ -42,7 +42,7 @@ class DokterController extends Controller
         $request->validate([
             'nama_dokter' => 'required',
             'id_dokter' => 'required',
-            'klaster' => 'required',
+            'klaster_id' => 'required',
         ]);
 
         $dokter = Dokter::findOrFail($id);
