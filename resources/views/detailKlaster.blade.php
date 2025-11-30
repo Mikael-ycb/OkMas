@@ -121,7 +121,7 @@
                 <div id="tombol" class="opacity-0 mt-6">
                     <a href="/layanan"
                         class="inline-block bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition">
-                        Kembali ke Layanan
+                        Kembali
                     </a>
                 </div>
             </div>

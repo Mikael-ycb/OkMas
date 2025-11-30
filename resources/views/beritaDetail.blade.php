@@ -1,13 +1,27 @@
 <x-layout>
-    <div class="max-w-3xl mx-auto space-y-14 px-4">
+    <section class="relative bg-cover bg-center bg-no-repeat h-[350px] w-full"
+        style="background-image: url('{{ asset('img/oke.avif') }}');">
+
+        <div class="absolute inset-0"></div>
+
+        <div class="relative z-10 flex flex-col md:flex-row items-center justify-between h-full px-8 lg:px-20">
+            <div class="text-center md:text-left max-w-2xl text-white space-y-6">
+                <h5 class="uppercase tracking-widest font-semibold text-blue-900">Beranda / Berita</h5>
+                <h1 class="text-4xl sm:text-5xl font-bold leading-tight text-blue-900">
+                    Berita
+                </h1>
+
+            </div>
+    </section>
+    <div class="max-w-3xl mx-auto space-y-14 px-4 mt-10">
 
         <div class="bg-white rounded-xl shadow-md overflow-hidden">
 
             {{-- Gambar --}}
             @if ($berita->gambar)
-                <img src="{{ asset('storage/' . $berita->gambar) }}"
-                     class="w-full h-64 object-cover"
-                     alt="{{ $berita->judul }}">
+            <img src="{{ asset('storage/' . $berita->gambar) }}"
+                class="w-full h-64 object-cover"
+                alt="{{ $berita->judul }}">
             @endif
 
             <div class="p-6">
@@ -31,9 +45,9 @@
 
                 {{-- Program (kalau ada) --}}
                 @if ($berita->program)
-                    <p class="text-sm text-blue-700 font-semibold mb-3">
-                        {{ $berita->program }}
-                    </p>
+                <p class="text-sm text-blue-700 font-semibold mb-3">
+                    {{ $berita->program }}
+                </p>
                 @endif
 
                 {{-- Isi lengkap --}}
@@ -43,7 +57,7 @@
 
                 {{-- Tombol kembali --}}
                 <a href="{{ route('berita') }}"
-                   class="inline-flex items-center px-5 py-2 bg-blue-200 text-blue-900 
+                    class="inline-flex items-center px-5 py-2 bg-blue-200 text-blue-900 
                           font-semibold rounded-md hover:bg-blue-300 transition">
                     ← Kembali ke daftar berita
                 </a>

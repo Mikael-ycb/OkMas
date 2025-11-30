@@ -16,7 +16,7 @@
                 <label class="block font-semibold text-gray-700 mb-1">Klaster</label>
                 <select name="klaster" class="border rounded px-3 py-2">
                     <option value="Umum" {{ $klaster == 'Umum' ? 'selected' : '' }}>Umum</option>
-                    <option value="Gigi dan Mulut" {{ $klaster == 'Gigi dan Mulut' ? 'selected' : '' }}>Gigi dan Mulut</option>
+                    <option value="Gigi dan Mulut" {{ $klaster == 'Gigi' ? 'selected' : '' }}>Gigi dan Mulut</option>
                     <option value="Bidan" {{ $klaster == 'Bidan' ? 'selected' : '' }}>Bidan</option>
                 </select>
             </div>

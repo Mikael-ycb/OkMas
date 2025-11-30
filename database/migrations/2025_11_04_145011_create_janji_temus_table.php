@@ -8,8 +8,8 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('janjiTemu', function (Blueprint $table) {
-            $table->id();
+        Schema::create('janji_temus', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('nomor_antrian')->nullable();
             $table->unsignedBigInteger('id_akun')->after('id');
             $table->foreign('id_akun')->references('id_akun')->on('akun')->onDelete('cascade');
@@ -23,9 +23,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('janjiTemu');
-        Schema::table('janjiTemu', function (Blueprint $table) {
-            $table->dropColumn('nomor_antrian');
-        });
+        Schema::dropIfExists('janji_temus');
     }
 };

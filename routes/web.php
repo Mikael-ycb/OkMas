@@ -55,9 +55,10 @@ Route::get('/notifikasi', function () {
     return view('notifikasi', ['title' => 'notifikasi']);
 });
 
-Route::get('/laporan', function () {
-    return view('laporan', ['title' => 'laporan']);
-});
+Route::get('/laporan', [JanjiTemuController::class, 'riwayat'])
+    ->name('laporan')
+    ->middleware('auth');
+
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [LoginController::class, 'login'])->name('login');

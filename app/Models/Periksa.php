@@ -21,4 +21,9 @@ class Periksa extends Model
     protected $casts = [
         'tanggal_periksa' => 'date',
     ];
+
+    public function janjiTemu()
+    {
+        return $this->belongsTo(JanjiTemu::class);
+    }
 }

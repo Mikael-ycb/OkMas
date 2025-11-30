@@ -11,7 +11,7 @@ class KlasterSeeder extends Seeder
     {
         DB::table('klasters')->insert([
             ['nama' => 'Umum', 'created_at' => now(), 'updated_at' => now()],
-            ['nama' => 'Gigi', 'created_at' => now(), 'updated_at' => now()],
+            ['nama' => 'Gigi dan Mulut', 'created_at' => now(), 'updated_at' => now()],
             ['nama' => 'Bidan', 'created_at' => now(), 'updated_at' => now()],
         ]);
     }

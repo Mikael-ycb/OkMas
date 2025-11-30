@@ -9,7 +9,7 @@ class JanjiTemu extends Model
 {
     use HasFactory;
 
-    protected $table = 'janjiTemu';
+    protected $table = 'janji_temus';
 
     protected $fillable = [
         'id_akun', 
@@ -18,6 +18,7 @@ class JanjiTemu extends Model
         'dokter_id',
         'keluhan',
         'nomor_antrian',
+        'status'
     ];
 
     public function akun()
@@ -25,14 +26,14 @@ class JanjiTemu extends Model
         return $this->belongsTo(Akun::class, 'id_akun', 'id_akun');
     }
 
-    public function tanggal()
-    {
-        return $this->belongsTo(Tanggal::class);
-    }
-
     public function klaster()
     {
-        return $this->belongsTo(Klaster::class);
+        return $this->belongsTo(Klaster::class, 'klaster_id');
+    }
+
+    public function tanggal()
+    {
+        return $this->belongsTo(Tanggal::class, 'tanggal_id');
     }
 
     public function dokter()

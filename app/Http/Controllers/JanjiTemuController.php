@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Dokter;
+use App\Models\Periksa;
 use App\Models\Tanggal;
 use App\Models\Klaster;
 use App\Models\JanjiTemu;
@@ -14,14 +15,13 @@ class JanjiTemuController extends Controller
 {
     public function index()
     {
-        // dd('auth()->check() = ', auth()->check(), 'user = ', auth()->user());
         $dokters = Dokter::all();
         $tanggals = Tanggal::all();
         $klasters = Klaster::all();
         $janjiTemus = JanjiTemu::with(['dokter', 'tanggal', 'klaster'])
-        ->where('id_akun', Auth::id())
-        ->latest()
-        ->get();
+            ->where('id_akun', Auth::id())
+            ->latest()
+            ->get();
 
         return view('janjiTemu', compact('dokters', 'tanggals', 'klasters', 'janjiTemus'));
     }
@@ -44,13 +44,23 @@ class JanjiTemuController extends Controller
 
         $nomor_antrian = $lastQueue ? $lastQueue->nomor_antrian + 1 : 1;
 
-        JanjiTemu::create([
+        $janjiTemu = JanjiTemu::create([
             'id_akun' => Auth::id(),
             'tanggal_id' => $request->tanggal_id,
             'klaster_id' => $request->klaster_id,
             'dokter_id'  => $request->dokter_id,
             'keluhan'    => $request->keluhan,
-            'nomor_antrian' =>$nomor_antrian,
+            'nomor_antrian' => $nomor_antrian,
+        ]);
+
+        $janjiTemu->refresh();
+
+        Periksa::create([
+            'janji_temu_id' => $janjiTemu->id,
+            'nama_pasien' => Auth::user()->nama ?? 'Nama Tidak Ditemukan',
+            'klaster' => $janjiTemu->klaster->nama ?? 'Tidak diketahui',
+            'tanggal_periksa' => $janjiTemu->tanggal->tanggal ?? now(),
+            'status' => 'Aktif',
         ]);
 
 
@@ -89,5 +99,15 @@ class JanjiTemuController extends Controller
         $janji->delete();
 
         return redirect()->route('janjiTemu.index')->with('success', 'Janji temu berhasil dibatalkan.');
+    }
+
+    public function riwayat()
+    {
+        $riwayat = JanjiTemu::with(['dokter', 'tanggal', 'klaster'])
+            ->where('id_akun', Auth::id())
+            ->orderBy('tanggal_id', 'desc')
+            ->get();
+
+        return view('laporan', compact('riwayat'));
     }
 }
