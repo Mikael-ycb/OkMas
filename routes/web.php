@@ -11,6 +11,7 @@ use App\Http\Controllers\ObatController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\BeritaPasienController;
 use App\Http\Controllers\KlasterController;
+use App\Http\Controllers\ResepObatController;
 
 Route::get('/', function () {
     return view('home', ['title' => 'Home Page']);
@@ -125,3 +126,11 @@ Route::get('/get-dokter-by-klaster/{klaster_id}', function ($klaster_id) {
 
     // Catatan: Jika Anda telah menerapkan saran saya sebelumnya, ini bisa dipindahkan ke DokterController
 });
+
+Route::get('/resep', [ResepObatController::class, 'index'])->name('resep.index');
+Route::get('/resep/create', [ResepObatController::class, 'create'])->name('resep.create');
+Route::post('/resep', [ResepObatController::class, 'store'])->name('resep.store');
+Route::get('/resep/{id}/edit', [ResepObatController::class, 'edit'])->name('resep.edit');
+Route::put('/resep/{id}', [ResepObatController::class, 'update'])->name('resep.update');
+Route::delete('/resep/{id}', [ResepObatController::class, 'destroy'])->name('resep.destroy');
+
