@@ -12,7 +12,7 @@ class JanjiTemu extends Model
     protected $table = 'janji_temus';
 
     protected $fillable = [
-        'id_akun', 
+        'id_akun',
         'tanggal_id',
         'klaster_id',
         'dokter_id',
@@ -39,5 +39,10 @@ class JanjiTemu extends Model
     public function dokter()
     {
         return $this->belongsTo(Dokter::class);
+    }
+
+    public function periksa()
+    {
+        return $this->hasOne(Periksa::class, 'janji_temu_id');
     }
 }

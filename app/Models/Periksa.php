@@ -16,6 +16,7 @@ class Periksa extends Model
         'klaster',
         'tanggal_periksa',
         'status',
+        'janji_temu_id'
     ];
 
     protected $casts = [
@@ -25,5 +26,15 @@ class Periksa extends Model
     public function janjiTemu()
     {
         return $this->belongsTo(JanjiTemu::class);
+    }
+
+    public function scopeAktif($query)
+    {
+        return $query->where('status', 'Aktif');
+    }
+
+    public function scopeSelesai($query)
+    {
+        return $query->where('status', 'Tidak Aktif'); // atau Selesai
     }
 }

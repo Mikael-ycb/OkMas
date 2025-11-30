@@ -18,10 +18,14 @@ class JanjiTemuController extends Controller
         $dokters = Dokter::all();
         $tanggals = Tanggal::all();
         $klasters = Klaster::all();
-        $janjiTemus = JanjiTemu::with(['dokter', 'tanggal', 'klaster'])
+        $janjiTemus = JanjiTemu::with(['dokter', 'tanggal', 'klaster', 'periksa'])
             ->where('id_akun', Auth::id())
+            ->whereHas('periksa', function ($q) {
+                $q->where('status', 'Aktif');
+            })
             ->latest()
             ->get();
+
 
         return view('janjiTemu', compact('dokters', 'tanggals', 'klasters', 'janjiTemus'));
     }
@@ -48,20 +52,19 @@ class JanjiTemuController extends Controller
             'id_akun' => Auth::id(),
             'tanggal_id' => $request->tanggal_id,
             'klaster_id' => $request->klaster_id,
-            'dokter_id'  => $request->dokter_id,
-            'keluhan'    => $request->keluhan,
+            'dokter_id' => $request->dokter_id,
+            'keluhan' => $request->keluhan,
             'nomor_antrian' => $nomor_antrian,
         ]);
 
-        $janjiTemu->refresh();
-
         Periksa::create([
-            'janji_temu_id' => $janjiTemu->id,
+            'janji_temu_id' => $janjiTemu->id, // HARUS terisi
             'nama_pasien' => Auth::user()->nama ?? 'Nama Tidak Ditemukan',
             'klaster' => $janjiTemu->klaster->nama ?? 'Tidak diketahui',
             'tanggal_periksa' => $janjiTemu->tanggal->tanggal ?? now(),
             'status' => 'Aktif',
         ]);
+
 
 
         return redirect()->route('janjiTemu.index')->with('success', 'Janji temu berhasil dibuat!');
@@ -103,9 +106,9 @@ class JanjiTemuController extends Controller
 
     public function riwayat()
     {
-        $riwayat = JanjiTemu::with(['dokter', 'tanggal', 'klaster'])
-            ->where('id_akun', Auth::id())
-            ->orderBy('tanggal_id', 'desc')
+        $riwayat = Periksa::with(['janjiTemu.dokter', 'janjiTemu.klaster', 'janjiTemu.tanggal'])
+            ->where('status', 'Tidak Aktif')
+            ->orderBy('tanggal_periksa', 'desc')
             ->get();
 
         return view('laporan', compact('riwayat'));

@@ -14,10 +14,11 @@ class PeriksaController extends Controller
         $tanggal = $request->get('tanggal', now()->format('Y-m-d'));
         $klaster = $request->get('klaster', 'Umum');
 
-        $data = Periksa::where('tanggal_periksa', 'LIKE', $tanggal . '%')
+        $data = Periksa::where('status', 'Aktif')
             ->when($klaster != 'Semua', function ($query) use ($klaster) {
                 $query->where('klaster', $klaster);
             })
+            ->where('tanggal_periksa', 'LIKE', $tanggal . '%')
             ->orderBy('id', 'asc')
             ->paginate(8);
 
@@ -31,13 +32,17 @@ class PeriksaController extends Controller
 
     public function toggleStatus($id)
     {
-        $janji = JanjiTemu::findOrFail($id);
+        $periksa = Periksa::findOrFail($id);
 
-        $janji->status = $janji->status == 'Aktif' ? 'Tidak Aktif' : 'Aktif';
-        $janji->save();
+        if ($periksa->status == 'Aktif') {
+            $periksa->status = 'Tidak Aktif'; // pasien selesai
+            $periksa->save();
+            
+        }
 
-        return response()->json(['success' => true, 'status' => $janji->status]);
+        return response()->json(['success' => true, 'status' => $periksa->status]);
     }
+
 
     public function edit($id)
     {
@@ -49,12 +54,20 @@ class PeriksaController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'keluhan' => 'required|string',
+            'nama_pasien' => 'required|string|max:255',
+            'klaster' => 'required|string|max:255',
+            'tanggal_periksa' => 'required|date',
             'status' => 'required|string'
         ]);
 
-        $janji = JanjiTemu::findOrFail($id);
-        $janji->update($request->all());
+        $periksa = Periksa::findOrFail($id);
+
+        $periksa->update([
+            'nama_pasien' => $request->nama_pasien,
+            'klaster' => $request->klaster,
+            'tanggal_periksa' => $request->tanggal_periksa,
+            'status' => $request->status,
+        ]);
 
         return redirect()->route('periksa.index')->with('success', 'Data berhasil diperbarui.');
     }

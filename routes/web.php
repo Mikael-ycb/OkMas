@@ -93,6 +93,7 @@ Route::prefix('daftarPeriksaAdmin')->group(function () {
     Route::put('/{id}', [PeriksaController::class, 'update'])->name('periksa.update');
 });
 
+
 Route::prefix('akunPasienAdmin')->group(function () {
     Route::get('/', [AkunPasienController::class, 'index'])->name('akunPasienAdmin.index');
     Route::get('/create', [AkunPasienController::class, 'create'])->name('akunPasienAdmin.create');
@@ -133,4 +134,3 @@ Route::post('/resep', [ResepObatController::class, 'store'])->name('resep.store'
 Route::get('/resep/{id}/edit', [ResepObatController::class, 'edit'])->name('resep.edit');
 Route::put('/resep/{id}', [ResepObatController::class, 'update'])->name('resep.update');
 Route::delete('/resep/{id}', [ResepObatController::class, 'destroy'])->name('resep.destroy');
-

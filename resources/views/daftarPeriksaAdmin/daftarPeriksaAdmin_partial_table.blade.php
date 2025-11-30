@@ -36,6 +36,7 @@
                 <a href="{{ route('periksa.edit', $item->id) }}"
                     class="text-yellow-500 hover:text-yellow-600">✏️</a>
             </td>
+            
 
         </tr>
         @endforeach
