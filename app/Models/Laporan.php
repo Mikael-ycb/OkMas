@@ -9,9 +9,10 @@ class Laporan extends Model
     protected $table = 'laporan';
 
     protected $fillable = [
-        'nama_pasien',
-        'nik',
+        'id_akun',
         'tanggal',
+        'nama_pasien', 
+        'nik',
         'jenis_pemeriksaan',
         'hasil_pemeriksaan',
         'anamnesis',
@@ -24,10 +25,13 @@ class Laporan extends Model
     ];
 
     protected $dates = ['tanggal'];
-    protected $casts = [
-    'tanggal' => 'datetime',
-    'created_at' => 'datetime',
-    'updated_at' => 'datetime',
-];
+    public $timestamps = true;
 
+    public function akun()
+    {
+        return $this->belongsTo(\App\Models\Akun::class, 'id_akun', 'id_akun');
+    }
 }
+
+
+

@@ -69,10 +69,10 @@ Route::prefix('laporanAdmin')->group(function () {
     Route::get('/', [LaporanController::class, 'index'])->name('laporanAdmin.index');
     Route::get('/create', [LaporanController::class, 'create'])->name('laporanAdmin.create');
     Route::post('/store', [LaporanController::class, 'store'])->name('laporanAdmin.store');
-    Route::get('/{nik}', [LaporanController::class, 'show'])->name('laporanAdmin.show');
-    Route::get('/edit/{id}', [LaporanController::class, 'edit'])->name('laporanAdmin.edit');
-    Route::put('/update/{id}', [LaporanController::class, 'update'])->name('laporanAdmin.update');
-    Route::delete('/delete/{id}', [LaporanController::class, 'destroy'])->name('laporanAdmin.destroy');
+    Route::get('/{id_akun}', [LaporanController::class, 'show'])->name('laporanAdmin.show');
+    Route::get('/edit/{id_akun}', [LaporanController::class, 'edit'])->name('laporanAdmin.edit');
+    Route::put('/update/{id_akun}', [LaporanController::class, 'update'])->name('laporanAdmin.update');
+    Route::delete('/delete/{id_akun}', [LaporanController::class, 'destroy'])->name('laporanAdmin.destroy');
 });
 
 Route::prefix('updateBeritaAdmin')->group(function () {

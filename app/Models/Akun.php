@@ -37,4 +37,10 @@ class Akun extends Authenticatable
     {
         return $this->hasMany(JanjiTemu::class, 'id_akun', 'id_akun');
     }
+
+    public function laporan()
+    {
+        return $this->hasMany(\App\Models\Laporan::class, 'id_akun', 'id_akun');
+    }
+
 }
