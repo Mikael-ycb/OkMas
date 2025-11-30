@@ -53,7 +53,7 @@
 
             <a href="/laporanAdmin" 
                class="flex items-center gap-3 px-4 py-3 font-medium hover:bg-blue-100 rounded-lg">
-                📄 Laporan
+                📄 Rekam Medis Pasien
             </a>
 
             <a href="/updateBeritaAdmin" 
