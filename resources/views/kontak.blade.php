@@ -21,22 +21,31 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
 
+
                 <!-- Formulir -->
-                <form class="bg-blue-900 rounded-md overflow-hidden text-white">
+                <form action="{{ route('kontak.store') }}" method="POST" class="bg-blue-900 rounded-md overflow-hidden text-white">
+                    @csrf
+
                     <div class="grid grid-cols-2 border-b border-blue-700">
-                        <input type="text" placeholder="Nama" class="bg-transparent px-4 py-3 w-full focus:outline-none border-r border-blue-700">
-                        <input type="email" placeholder="Email" class="bg-transparent px-4 py-3 w-full focus:outline-none">
+                        <input type="hidden" name="nama" value="{{ auth()->user()->nama }}">
+                        <input type="email" name="email" placeholder="Email" class="bg-transparent px-4 py-3 w-full focus:outline-none">
                     </div>
+
                     <div class="border-b border-blue-700">
-                        <input type="text" placeholder="Subjek" class="bg-transparent px-4 py-3 w-full focus:outline-none">
+                        <input type="text" name="subjek" placeholder="Subjek" class="bg-transparent px-4 py-3 w-full focus:outline-none">
                     </div>
+
                     <div class="border-b border-blue-700">
-                        <textarea placeholder="Pesan" rows="4" class="bg-transparent px-4 py-3 w-full focus:outline-none"></textarea>
+                        <textarea name="pesan" placeholder="Pesan" rows="4" class="bg-transparent px-4 py-3 w-full focus:outline-none"></textarea>
                     </div>
+
                     <button type="submit" class="bg-blue-200 text-blue-900 w-full py-3 font-semibold hover:bg-blue-300 transition">
                         SUBMIT
                     </button>
                 </form>
+
+
+
 
                 <!-- Info Kontak -->
                 <div class="grid grid-cols-2 gap-4">
@@ -80,7 +89,16 @@
                         </div>
                     </div>
 
+
+
+
+
                 </div>
+                @if (session('success'))
+                <div class="mb-4 p-4 bg-green-200 text-green-900 rounded">
+                    {{ session('success') }}
+                </div>
+                @endif
             </div>
         </div>
     </section>
