@@ -2,177 +2,190 @@
     <x-slot:title>{{ $title }}</x-slot:title>
 
     {{-- ======================= HERO SECTION ======================= --}}
-    <section class="relative bg-cover bg-center bg-no-repeat min-h-[700px] w-full pb-24"
+    <section class="relative min-h-[750px] w-full flex items-center bg-cover bg-center bg-no-repeat"
         style="background-image: url('{{ asset('img/hehe1.jpg') }}');">
 
-        {{-- Overlay warna biru --}}
-        <div class="absolute inset-0 bg-blue-900/70"></div>
+        {{-- Overlay + Gradient --}}
+        <div class="absolute inset-0 bg-gradient-to-b from-blue-900/80 to-blue-800/70 backdrop-blur-sm"></div>
 
-        {{-- CONTAINER HERO --}}
-        <div class="relative z-10 px-8 lg:px-24 pt-24">
+        {{-- CONTENT --}}
+        <div class="relative z-10 w-full px-8 lg:px-24 flex flex-col md:flex-row items-center justify-between">
 
-            <div class="flex flex-col md:flex-row items-center justify-between">
+            {{-- Text --}}
+            <div class="max-w-xl text-white space-y-6 animate-fade-up">
+                <h5 class="uppercase tracking-wider font-semibold text-blue-200">Caring for Life</h5>
 
-                {{-- TEKS KIRI --}}
-                <div class="max-w-xl text-white space-y-6"
-                    style="animation: fadeInUp 1s ease forwards;">
-                    <h5 class="uppercase tracking-widest font-semibold text-blue-200">Caring for Life</h5>
+                <h1 class="text-5xl md:text-6xl font-bold leading-tight drop-shadow-md">
+                    Pelayanan Kesehatan<br>Profesional & Terpercaya
+                </h1>
 
-                    <h1 class="text-4xl sm:text-5xl font-bold leading-tight"
-                        style="animation: fadeInUp 1s ease forwards 0.2s;">
-                        Leading the Way in <br> Medical Excellence
-                    </h1>
-
-                    <p class="text-blue-100 text-lg"
-                        style="animation: fadeInUp 1s ease forwards 0.4s;">
-                        Kami berkomitmen memberikan pelayanan sunat dengan penuh kasih sayang terbaik
-                        dengan tenaga cantik dan fasilitas modern.
-                    </p>
-                </div>
-
-                {{-- GAMBAR KANAN --}}
-                <div class="mt-10 md:mt-0 mb-24 flex justify-center md:justify-end"
-                    style="animation: float 3s ease-in-out infinite;">
-                    <img src="{{ asset('img/dokter.jpg') }}"
-                        alt="Doctor"
-                        class="w-[350px] md:w-[430px] rounded-xl shadow-xl object-cover transform transition-transform duration-500 hover:scale-105">
-                </div>
+                <p class="text-blue-100 text-lg leading-relaxed">
+                    Kami memberikan pelayanan medis terbaik dengan tenaga profesional, fasilitas lengkap,
+                    serta komitmen terhadap keselamatan dan kenyamanan pasien.
+                </p>
             </div>
 
-            {{-- TOMBOL 3 BUAH --}}
-            <div class="mt-10 flex justify-center flex-wrap gap-12"
-                style="animation: fadeInUp 1s ease forwards 0.6s;">
-                {{-- Buat Janji --}}
-                <a href="/janjiTemu"
-                    class="flex flex-col items-center bg-white text-blue-900 px-8 py-6 rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl w-[190px]">
-                    <div class="flex items-center justify-center w-14 h-14 rounded-full bg-blue-100 mb-2">
-                        <span class="text-3xl">📅</span>
-                    </div>
-                    <span class="font-bold text-lg text-center">Buat Janji</span>
-                </a>
-
-                {{-- Klaster Dokter --}}
-                <a href="/dokter"
-                    class="flex flex-col items-center bg-white text-blue-900 px-8 py-6 rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl w-[190px]">
-                    <div class="flex items-center justify-center w-14 h-14 rounded-full bg-blue-100 mb-2">
-                        <span class="text-3xl">🩺</span>
-                    </div>
-                    <span class="font-bold text-lg text-center">Klaster Dokter</span>
-                </a>
-
-                {{-- Aduan Pelayanan --}}
-                <a href="#aduan"
-                    class="flex flex-col items-center bg-white text-blue-900 px-8 py-6 rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl w-[190px]">
-                    <div class="flex items-center justify-center w-14 h-14 rounded-full bg-blue-100 mb-2">
-                        <span class="text-3xl">💬</span>
-                    </div>
-                    <span class="font-bold text-lg text-center">Aduan Pelayanan</span>
-                </a>
+            {{-- Doctor Image --}}
+            <div class="mt-12 md:mt-0 animate-float">
+                <img src="{{ asset('img/dokter.jpg') }}"
+                    alt="Doctor"
+                    class="w-[360px] md:w-[450px] rounded-2xl shadow-2xl object-cover border border-white/20">
             </div>
 
         </div>
     </section>
 
-    {{-- ======================= SECTION SELAMAT DATANG ======================= --}}
-    <div class="relative z-10 flex flex-col items-center justify-center py-12 px-8 lg:px-20 text-center"
-        style="animation: fadeInUp 1s ease forwards 0.8s;">
-        <div class="max-w-3xl space-y-6">
+    {{-- ======================= FITUR UTAMA ======================= --}}
+    <section class="py-20 px-8 lg:px-24 bg-white">
 
-            <h5 class="uppercase tracking-widest font-semibold text-blue-500">
-                <b>Selamat Datang di Okemas</b>
+        <div class="text-center mb-14">
+            <h5 class="uppercase tracking-widest font-semibold text-blue-600">Pelayanan Utama</h5>
+            <h2 class="text-4xl sm:text-5xl font-bold text-blue-900 mt-2">Solusi Untuk Kesehatan Anda</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+            {{-- Card 1 --}}
+            <a href="/janjiTemu"
+                class="group bg-white shadow-md hover:shadow-xl border border-gray-100 p-10 rounded-2xl transition transform hover:-translate-y-1">
+                <div class="flex justify-center">
+                    <div class="p-4 bg-blue-100 rounded-full mb-4">
+                        <span class="text-4xl">📅</span>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold text-blue-900 text-center">Buat Janji Temu</h3>
+                <p class="text-gray-600 text-center mt-2">Atur jadwal pemeriksaan dengan cepat dan mudah.</p>
+            </a>
+
+            {{-- Card 2 --}}
+            <a href="/dokter"
+                class="group bg-white shadow-md hover:shadow-xl border border-gray-100 p-10 rounded-2xl transition transform hover:-translate-y-1">
+                <div class="flex justify-center">
+                    <div class="p-4 bg-blue-100 rounded-full mb-4">
+                        <span class="text-4xl">🩺</span>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold text-blue-900 text-center">Klaster Dokter</h3>
+                <p class="text-gray-600 text-center mt-2">Temukan dokter terbaik sesuai kebutuhan Anda.</p>
+            </a>
+
+            {{-- Card 3 --}}
+            <a href="#aduan"
+                class="group bg-white shadow-md hover:shadow-xl border border-gray-100 p-10 rounded-2xl transition transform hover:-translate-y-1">
+                <div class="flex justify-center">
+                    <div class="p-4 bg-blue-100 rounded-full mb-4">
+                        <span class="text-4xl">💬</span>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold text-blue-900 text-center">Aduan Pelayanan</h3>
+                <p class="text-gray-600 text-center mt-2">Sampaikan masukan untuk peningkatan layanan.</p>
+            </a>
+
+        </div>
+    </section>
+
+    {{-- ======================= SECTION TENTANG ======================= --}}
+    <section class="bg-gray-50 py-20 px-8 lg:px-24">
+
+        <div class="max-w-4xl mx-auto text-center space-y-6 animate-fade-up">
+            <h5 class="uppercase tracking-widest font-semibold text-blue-600">
+                Selamat Datang di Okemas
             </h5>
 
-            <h1 class="text-4xl sm:text-5xl font-bold leading-tight text-blue-900">
-                Untuk Kesehatan Anda <br>
-                Mengutamakan Pelayanan, Menjaga Kehidupan
-            </h1>
+            <h2 class="text-4xl sm:text-5xl font-bold text-blue-900">
+                Pelayanan Kesehatan Terintegrasi & Profesional
+            </h2>
 
-            <p class="text-black text-lg leading-relaxed">
+            <p class="text-gray-700 text-lg leading-relaxed">
                 Puskesmas kami berkomitmen memberikan layanan kesehatan yang ramah, cepat, dan terjangkau.
-                Dengan tenaga medis profesional serta fasilitas yang memadai, kami siap melayani mulai dari
-                pemeriksaan rutin, layanan gizi, imunisasi, hingga penanganan darurat.
-                Tidak hanya mengobati, kami juga mendampingi masyarakat untuk hidup lebih sehat dan sejahtera.
+                Dengan tenaga medis profesional serta fasilitas modern, kami menyediakan layanan dari pemeriksaan
+                umum, imunisasi, gizi, hingga penanganan darurat.
             </p>
 
-            <a href="#" class="text-blue-500 font-medium hover:underline">Pelajari Lebih Lanjut →</a>
+            <a href="#" class="text-blue-600 font-semibold hover:underline">Pelajari Lebih Lanjut →</a>
         </div>
+
+    </section>
+
+    {{-- ======================= GAMBAR ILUSTRASI ======================= --}}
+    <div class="w-full flex justify-center py-16">
+        <img src="{{ asset('img/oke.avif') }}" class="rounded-xl shadow-xl w-[850px] animate-float">
     </div>
 
-    {{-- ======================= GAMBAR SECTION ======================= --}}
-    <div class="mt-6 flex justify-center items-center w-full"
-        style="animation: float 3s ease-in-out infinite;">
-        <img src="{{ asset('img/oke.avif') }}"
-            alt="Doctor"
-            class="w-[400px] md:w-[800px] rounded-lg shadow-lg object-cover">
-    </div>
+    {{-- ======================= LAYANAN DETAIL ======================= --}}
+    <section class="py-20 px-8 lg:px-24">
 
-    {{-- ======================= SECTION LAYANAN ======================= --}}
-    <div class="relative z-10 flex flex-col items-center justify-center py-16 px-8 lg:px-20 text-center"
-        style="animation: fadeInUp 1s ease forwards 1s;">
+        <div class="text-center mb-14 animate-fade-up">
+            <h5 class="uppercase tracking-widest font-semibold text-blue-600">
+                Pelayanan Kesehatan Terpercaya
+            </h5>
 
-        <h5 class="uppercase tracking-widest font-semibold text-blue-500">
-            <b>Pelayanan Kesehatan Terpercaya</b>
-        </h5>
+            <h2 class="text-4xl sm:text-5xl font-bold text-blue-900 mt-3">
+                Layanan Kami
+            </h2>
+        </div>
 
-        <h1 class="text-4xl sm:text-5xl font-bold leading-tight text-black mt-3">
-            Layanan Kami
-        </h1>
+        <div class="flex flex-col md:flex-row items-start justify-between gap-10">
 
-        <div class="mt-12 flex flex-col md:flex-row items-center justify-between h-full w-full">
-
-            <div class="text-center md:text-left max-w-2xl text-black space-y-4"
-                style="animation: fadeInUp 1s ease forwards 1.2s;">
-                <h3 class="text-3xl sm:text-4xl font-bold leading-tight text-blue-900">
+            {{-- Text --}}
+            <div class="max-w-xl animate-fade-up">
+                <h3 class="text-3xl font-bold text-blue-900 mb-4">
                     Kami Selalu Mengutamakan Pasien
                 </h3>
 
-                <ul class="text-lg space-y-2">
-                    <li>• Dedikasi Untuk Penyembuhan</li>
-                    <li>• Pelayanan Terbaik Kami</li>
-                    <li>• Melayani Dengan Sepenuh Hati</li>
-                    <li>• Pelayanan Berkualitas</li>
-                    <li>• Percayakan Pada Kami</li>
-                    <li>• Selalu Peduli</li>
+                <ul class="text-lg space-y-2 text-gray-700">
+                    <li>• Dedikasi untuk kesembuhan pasien</li>
+                    <li>• Pelayanan profesional & manusiawi</li>
+                    <li>• Fasilitas modern & terstandarisasi</li>
+                    <li>• Tim medis berpengalaman</li>
+                    <li>• Respons cepat & terukur</li>
+                    <li>• Komitmen dalam setiap pelayanan</li>
                 </ul>
 
-                <p class="text-black text-lg leading-relaxed">
-                    Puskesmas kami berkomitmen memberikan layanan kesehatan yang ramah, cepat,
-                    dan terjangkau. Dengan tenaga medis profesional serta fasilitas yang memadai,
-                    kami siap melayani mulai dari pemeriksaan rutin, layanan gizi, imunisasi,
-                    hingga penanganan darurat.
+                <p class="text-gray-700 mt-4 leading-relaxed">
+                    Kami selalu memastikan setiap pasien mendapatkan perhatian optimal
+                    melalui pelayanan yang cepat, ramah, serta prosedur yang aman.
                 </p>
             </div>
 
-            <div class="mt-10 md:mt-0 flex flex-col items-center md:items-end w-full md:w-1/2"
-                style="animation: float 3s ease-in-out infinite;">
+            {{-- Images --}}
+            <div class="flex flex-col gap-6 animate-float">
                 <img src="{{ asset('img/dokter.jpg') }}"
-                    class="w-[400px] md:w-[480px] rounded-lg shadow-lg object-cover transform transition-transform duration-500 hover:scale-105 mb-4">
+                    class="w-[430px] rounded-xl shadow-lg object-cover hover:scale-105 transition-transform duration-500">
                 <img src="{{ asset('img/dokter.jpg') }}"
-                    class="w-[400px] md:w-[480px] rounded-lg shadow-lg object-cover transform transition-transform duration-500 hover:scale-105">
+                    class="w-[430px] rounded-xl shadow-lg object-cover hover:scale-105 transition-transform duration-500">
             </div>
 
         </div>
-    </div>
+    </section>
 
-    {{-- ======================= Animations ======================= --}}
+    {{-- ======================= ANIMASI STYLE ======================= --}}
     <style>
-        @keyframes fadeInUp {
-            0% {
+        .animate-fade-up {
+            animation: fadeUp 1s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            from {
                 opacity: 0;
                 transform: translateY(20px);
             }
 
-            100% {
+            to {
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
         }
 
         @keyframes float {
 
             0%,
             100% {
-                transform: translateY(0px);
+                transform: translateY(0);
             }
 
             50% {
@@ -180,4 +193,5 @@
             }
         }
     </style>
+
 </x-layout>

@@ -13,6 +13,7 @@ use App\Http\Controllers\BeritaPasienController;
 use App\Http\Controllers\KlasterController;
 use App\Http\Controllers\ResepObatController;
 use App\Http\Controllers\KontakController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('home', ['title' => 'Home Page']);
@@ -28,6 +29,11 @@ Route::get('/detailKlaster/{jenis}', [KlasterController::class, 'detail'])->name
 Route::get('/layanan', function () {
     return view('layanan', ['title' => 'Layanan']);
 });
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+});
+
 
 Route::get('/dokter', function () {
     return view('dokter', ['title' => 'Dokter']);

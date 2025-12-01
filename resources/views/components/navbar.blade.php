@@ -65,7 +65,7 @@
                                 {{ Auth::user()->username }}
                             </p>
 
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">
+                            <a href="/profile" class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/5">
                                 Profil
                             </a>
 

@@ -1,18 +1,18 @@
 <x-layout>
 
-    <section class="relative bg-cover bg-center bg-no-repeat h-[350px] w-full"
-        style="background-image: url('{{ asset('img/oke.avif') }}');">
-
-        <div class="absolute inset-0"></div>
-
-        <div class="relative z-10 flex flex-col md:flex-row items-center justify-between h-full px-8 lg:px-20">
-            <div class="text-center md:text-left max-w-2xl text-white space-y-6">
-                <h5 class="uppercase tracking-widest font-semibold text-blue-900">Beranda / Kontak</h5>
-                <h1 class="text-4xl sm:text-5xl font-bold leading-tight text-blue-900">
-                    Kontak
-                </h1>
-
-            </div>
+    <section class="relative bg-cover bg-center h-[400px] w-full" style="background-image: url('{{ asset('img/oke.avif') }}');">
+        <div class="absolute inset-0 bg-black/50"></div>
+        <div class="relative z-10 flex flex-col justify-center h-full max-w-7xl mx-auto px-6 lg:px-20 text-center md:text-left">
+            <h5 class="uppercase tracking-widest font-semibold text-white mb-2" data-aos="fade-down" data-aos-delay="200">
+                Beranda / Kontak
+            </h5>
+            <h1 class="text-4xl sm:text-5xl font-bold text-white leading-tight" data-aos="fade-up" data-aos-delay="400">
+                Kontak
+            </h1>
+            <p class="text-white mt-4 max-w-2xl" data-aos="fade-up" data-aos-delay="600">
+                Temukan berbagai layanan kesehatan unggulan dari rumah sakit kami, didukung oleh tenaga medis profesional dan fasilitas modern.
+            </p>
+        </div>
     </section>
 
     <section class="bg-gray-50 py-16">
@@ -23,25 +23,49 @@
 
 
                 <!-- Formulir -->
-                <form action="{{ route('kontak.store') }}" method="POST" class="bg-blue-900 rounded-md overflow-hidden text-white">
+                <form action="{{ route('kontak.store') }}" method="POST"
+                    class="bg-white rounded-xl shadow-xl border border-gray-200 p-8">
                     @csrf
 
-                    <div class="grid grid-cols-2 border-b border-blue-700">
-                        <input type="hidden" name="nama" value="{{ auth()->user()->nama }}">
-                        <input type="email" name="email" placeholder="Email" class="bg-transparent px-4 py-3 w-full focus:outline-none">
+                    <h2 class="text-2xl font-bold text-blue-900 mb-6">Kirim Pesan</h2>
+
+                    <input type="hidden" name="nama" value="{{ auth()->user()->nama }}">
+
+                    {{-- Input Email --}}
+                    <div class="mb-5">
+                        <label class="block text-blue-900 font-semibold mb-2">Email</label>
+                        <input type="email" name="email"
+                            class="w-full border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Masukkan email Anda" required>
                     </div>
 
-                    <div class="border-b border-blue-700">
-                        <input type="text" name="subjek" placeholder="Subjek" class="bg-transparent px-4 py-3 w-full focus:outline-none">
+                    {{-- Subjek --}}
+                    <div class="mb-5">
+                        <label class="block text-blue-900 font-semibold mb-2">Subjek</label>
+                        <input type="text" name="subjek"
+                            class="w-full border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Judul pesan Anda" required>
                     </div>
 
-                    <div class="border-b border-blue-700">
-                        <textarea name="pesan" placeholder="Pesan" rows="4" class="bg-transparent px-4 py-3 w-full focus:outline-none"></textarea>
+                    {{-- Pesan --}}
+                    <div class="mb-6">
+                        <label class="block text-blue-900 font-semibold mb-2">Pesan</label>
+                        <textarea name="pesan" rows="5"
+                            class="w-full border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Tuliskan pesan Anda..." required></textarea>
                     </div>
 
-                    <button type="submit" class="bg-blue-200 text-blue-900 w-full py-3 font-semibold hover:bg-blue-300 transition">
-                        SUBMIT
+                    <button type="submit"
+                        class="w-full bg-blue-900 text-white font-semibold py-3 rounded-lg hover:bg-blue-800 transition">
+                        Kirim Pesan
                     </button>
+
+                    @if (session('success'))
+                    <div class="mt-4 p-4 bg-green-100 border border-green-300 text-green-900 rounded-lg">
+                        {{ session('success') }}
+                    </div>
+                    @endif
+
                 </form>
 
 
@@ -93,14 +117,9 @@
 
 
 
+
                 </div>
-                @if (session('success'))
-                <div class="mb-4 p-4 bg-green-200 text-green-900 rounded">
-                    {{ session('success') }}
-                </div>
-                @endif
             </div>
-        </div>
     </section>
 
 

@@ -1,17 +1,17 @@
 <x-layout>
-    <section class="relative bg-cover bg-center bg-no-repeat h-[350px] w-full"
-        style="background-image: url('{{ asset('img/oke.avif') }}');">
-
-        <div class="absolute inset-0"></div>
-
-        <div class="relative z-10 flex flex-col md:flex-row items-center justify-between h-full px-8 lg:px-20">
-            <div class="text-center md:text-left max-w-2xl text-white space-y-6">
-                <h5 class="uppercase tracking-widest font-semibold text-blue-900">Beranda / Dokter</h5>
-                <h1 class="text-4xl sm:text-5xl font-bold leading-tight text-blue-900">
-                    Dokter
-                </h1>
-
-            </div>
+    <section class="relative bg-cover bg-center h-[400px] w-full" style="background-image: url('{{ asset('img/oke.avif') }}');">
+        <div class="absolute inset-0 bg-black/50"></div>
+        <div class="relative z-10 flex flex-col justify-center h-full max-w-7xl mx-auto px-6 lg:px-20 text-center md:text-left">
+            <h5 class="uppercase tracking-widest font-semibold text-white mb-2" data-aos="fade-down" data-aos-delay="200">
+                Beranda / Dokter
+            </h5>
+            <h1 class="text-4xl sm:text-5xl font-bold text-white leading-tight" data-aos="fade-up" data-aos-delay="400">
+                Dokter
+            </h1>
+            <p class="text-white mt-4 max-w-2xl" data-aos="fade-up" data-aos-delay="600">
+                Temukan berbagai layanan kesehatan unggulan dari rumah sakit kami, didukung oleh tenaga medis profesional dan fasilitas modern.
+            </p>
+        </div>
     </section>
     <section class="bg-gray-50 py-12">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">

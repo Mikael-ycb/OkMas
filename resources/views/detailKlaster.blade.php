@@ -61,16 +61,14 @@
 
         /* === BORDER GLOW PULSE === */
         @keyframes glowPulse {
-            0% {
+
+            0%,
+            100% {
                 box-shadow: 0 0 0px rgba(59, 130, 246, 0.0);
             }
 
             50% {
                 box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
-            }
-
-            100% {
-                box-shadow: 0 0 0px rgba(59, 130, 246, 0.0);
             }
         }
 
@@ -79,45 +77,34 @@
         }
     </style>
 
-
-
-
     {{-- HERO SECTION --}}
-    <section class="relative bg-cover bg-center bg-no-repeat h-[350px] w-full"
-        style="background-image: url('{{ asset('img/oke.avif') }}');">
-
-        <div class="absolute inset-0 bg-black/10"></div>
-
-        <div class="relative z-10 flex flex-col md:flex-row items-center justify-between h-full px-8 lg:px-20">
-            <div class="text-center md:text-left max-w-2xl text-white space-y-6">
-                <h5 class="uppercase tracking-widest font-semibold text-blue-900">
-                    Beranda / Layanan / Detail Klaster
-                </h5>
-
-                <h1 class="text-4xl sm:text-5xl font-bold leading-tight text-blue-900">
-                    {{ $data['judul'] }}
-                </h1>
-            </div>
+    <section class="relative bg-cover bg-center h-[400px] w-full" style="background-image: url('{{ asset('img/oke.avif') }}');">
+        <div class="absolute inset-0 bg-black/50"></div>
+        <div class="relative z-10 flex flex-col justify-center h-full max-w-7xl mx-auto px-6 lg:px-20 text-center md:text-left">
+            <h5 class="uppercase tracking-widest font-semibold text-white mb-2" data-aos="fade-down" data-aos-delay="200">
+                Beranda / Detail Klaster
+            </h5>
+            <h1 class="text-4xl sm:text-5xl font-bold text-white leading-tight" data-aos="fade-up" data-aos-delay="400">
+                {{ $data['judul'] }}
+            </h1>
+            <p class="text-white mt-4 max-w-2xl" data-aos="fade-up" data-aos-delay="600">
+                Temukan berbagai layanan kesehatan unggulan dari rumah sakit kami, didukung oleh tenaga medis profesional dan fasilitas modern.
+            </p>
         </div>
     </section>
-
 
     {{-- DETAIL SECTION --}}
     <section class="py-16 bg-gray-50">
         <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
             {{-- LEFT CONTENT / GLASS CARD --}}
-            <div id="leftBox"
-                class="opacity-0 glass glow p-10 rounded-2xl shadow-xl">
-
+            <div id="leftBox" class="opacity-0 glass glow p-10 rounded-2xl shadow-xl">
                 <h2 id="judul" class="text-3xl font-extrabold text-blue-900 mb-4 opacity-0">
                     {{ $data['judul'] }}
                 </h2>
-
                 <p id="deskripsi" class="text-gray-700 text-lg leading-relaxed opacity-0">
                     {{ $data['deskripsi'] }}
                 </p>
-
                 <div id="tombol" class="opacity-0 mt-6">
                     <a href="/layanan"
                         class="inline-block bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition">
@@ -132,28 +119,25 @@
                     alt="Dokter"
                     class="tilt w-[85%] max-w-md object-cover rounded-2xl shadow-xl">
             </div>
-
         </div>
     </section>
 
-
+    {{-- ANIMATIONS --}}
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-
             const left = document.getElementById("leftBox");
             const right = document.getElementById("rightBox");
-
             const judul = document.getElementById("judul");
             const desk = document.getElementById("deskripsi");
             const tombol = document.getElementById("tombol");
 
-            // SPLIT REVEAL
+            // SPLIT REVEAL ANIMATION
             setTimeout(() => {
                 left.style.animation = "splitLeftReveal 0.9s ease-out forwards";
                 right.style.animation = "splitRightReveal 0.9s ease-out forwards";
             }, 200);
 
-            // OPACITY STAGGER
+            // STAGGER FADE ANIMATION
             setTimeout(() => {
                 judul.style.animation = "staggerFade .7s forwards";
             }, 500);
@@ -165,8 +149,5 @@
             }, 900);
         });
     </script>
-
-
-
 
 </x-layout>
