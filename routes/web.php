@@ -13,6 +13,7 @@ use App\Http\Controllers\DokterController;
 use App\Http\Controllers\BeritaPasienController;
 use App\Http\Controllers\KlasterController;
 use App\Http\Controllers\ResepObatController;
+use App\Http\Controllers\KontakController;
 
 Route::get('/', function () {
     return view('home', ['title' => 'Home Page']);
@@ -41,9 +42,10 @@ Route::get('/berita', [BeritaPasienController::class, 'index'])->name('berita');
 Route::get('/berita/{id}', [BeritaPasienController::class, 'show'])
     ->name('beritaDetail');
 
-Route::get('/kontak', function () {
-    return view('kontak', ['title' => 'Kontak']);
+Route::middleware('auth')->group(function () {
+    Route::resource('kontak', KontakController::class);
 });
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/janjiTemu', [JanjiTemuController::class, 'index'])->name('janjiTemu.index');
