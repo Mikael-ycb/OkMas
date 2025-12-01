@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Laporan;
 use App\Models\Akun;
+use App\Models\Periksa;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class LaporanController extends Controller
 {
@@ -77,22 +78,33 @@ class LaporanController extends Controller
     ]);
 
     $akun = Akun::findOrFail($validated['id_akun']);
+    $periksa = Periksa::findOrFail($validated['periksa_id']);
 
-    Laporan::create([
-        'id_akun' => $akun->id_akun,
-        'nama_pasien' => $akun->nama,
-        'nik' => $akun->nik,
-        'tanggal' => $validated['tanggal'] ?? now(),
-        'jenis_pemeriksaan' => $validated['jenis_pemeriksaan'],
-        'hasil_pemeriksaan' => $validated['hasil_pemeriksaan'],
-        'anamnesis' => $validated['anamnesis'],
-        'tekanan_darah' => $validated['tekanan_darah'],
-        'riwayat_penyakit_sekarang' => $validated['riwayat_penyakit_sekarang'],
-        'riwayat_penyakit_dahulu' => $validated['riwayat_penyakit_dahulu'],
-        'riwayat_penyakit_keluarga' => $validated['riwayat_penyakit_keluarga'],
-        'riwayat_kebiasaan' => $validated['riwayat_kebiasaan'],
-        'anamnesis_organ' => $validated['anamnesis_organ'],
-    ]);
+    $laporan = \App\Models\Laporan::firstOrNew([
+    'periksa_id' => $periksa->id,   // kalau sudah ada dari toggleStatus, dipakai ulang
+]);
+
+$laporan->fill([
+    'id_akun' => $akun->id_akun,
+    'nama_pasien' => $akun->nama,
+    'nik' => $akun->nik,
+    'tanggal' => $validated['tanggal'] ?? $periksa->tanggal_periksa,
+    'jenis_pemeriksaan' => $validated['jenis_pemeriksaan'],
+    'hasil_pemeriksaan' => $validated['hasil_pemeriksaan'],
+    'anamnesis' => $validated['anamnesis'],
+    'tekanan_darah' => $validated['tekanan_darah'],
+    'riwayat_penyakit_sekarang' => $validated['riwayat_penyakit_sekarang'],
+    'riwayat_penyakit_dahulu' => $validated['riwayat_penyakit_dahulu'],
+    'riwayat_penyakit_keluarga' => $validated['riwayat_penyakit_keluarga'],
+    'riwayat_kebiasaan' => $validated['riwayat_kebiasaan'],
+    'anamnesis_organ' => $validated['anamnesis_organ'],
+]);
+
+$laporan->periksa_id = $periksa->id;
+$laporan->save();
+
+
+    $periksa->update(['status' => 'Tidak Aktif']);
 
     return redirect()
         ->route('laporanAdmin.show', $akun->id_akun)

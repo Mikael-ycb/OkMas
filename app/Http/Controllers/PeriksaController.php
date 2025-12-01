@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\JanjiTemu;
 use App\Models\Periksa;
+use App\Models\Laporan;
 use Carbon\Carbon;
 
 class PeriksaController extends Controller
@@ -31,17 +32,21 @@ class PeriksaController extends Controller
 
 
     public function toggleStatus($id)
-    {
-        $periksa = Periksa::findOrFail($id);
+{
+    $periksa = Periksa::findOrFail($id);
 
-        if ($periksa->status == 'Aktif') {
-            $periksa->status = 'Tidak Aktif'; // pasien selesai
-            $periksa->save();
-            
-        }
+    // Toggle status
+    $periksa->status = $periksa->status === 'Aktif' ? 'Tidak Aktif' : 'Aktif';
+    $periksa->save();
 
-        return response()->json(['success' => true, 'status' => $periksa->status]);
-    }
+    
+
+    return response()->json([
+        'success' => true,
+        'status' => $periksa->status
+    ]);
+}
+
 
 
     public function edit($id)
@@ -71,4 +76,46 @@ class PeriksaController extends Controller
 
         return redirect()->route('periksa.index')->with('success', 'Data berhasil diperbarui.');
     }
+
+    public function formLaporan($id)
+{
+    $periksa = Periksa::with(['janjiTemu.dokter','janjiTemu.akun'])
+        ->findOrFail($id);
+
+    return view('daftarPeriksaAdmin.form_laporan', compact('periksa'));
+}
+
+public function simpanLaporan(Request $request, $id)
+{
+    $periksa = Periksa::with('janjiTemu.akun')->findOrFail($id);
+
+    $request->validate([
+        'hasil' => 'required',
+        'diagnosa' => 'nullable',
+        'tekanan_darah' => 'nullable',
+        'saran' => 'nullable'
+    ]);
+
+    // Ubah status periksa → selesai
+    $periksa->update(['status' => 'Tidak Aktif']);
+
+    // Buat laporan (PASTI TERHUBUNG DENGAN PERIKSA)
+    Laporan::create([
+        'id_akun' => $periksa->id_akun,
+        'periksa_id' => $periksa->id,               // PENTING !!!
+        'nama_pasien' => $periksa->nama_pasien,
+        'nik' => $periksa->janjiTemu->akun->nik,
+        'tanggal' => $periksa->tanggal_periksa,     // tanggal periksa asli
+        'jenis_pemeriksaan' => $periksa->klaster,
+        'hasil_pemeriksaan' => $request->hasil,
+        'anamnesis' => $periksa->janjiTemu->keluhan,
+        'tekanan_darah' => $request->tekanan_darah,
+        'riwayat_penyakit_sekarang' => $request->diagnosa,
+        'riwayat_kebiasaan' => $request->saran,
+    ]);
+
+    return redirect()->route('periksa.index')
+        ->with('success', 'Laporan berhasil dibuat!');
+}
+
 }

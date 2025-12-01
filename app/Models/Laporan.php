@@ -10,6 +10,7 @@ class Laporan extends Model
 
     protected $fillable = [
         'id_akun',
+        'periksa_id',
         'tanggal',
         'nama_pasien', 
         'nik',
@@ -31,6 +32,12 @@ class Laporan extends Model
     {
         return $this->belongsTo(\App\Models\Akun::class, 'id_akun', 'id_akun');
     }
+
+    public function periksa()
+{
+    return $this->belongsTo(Periksa::class, 'periksa_id');
+}
+
 }
 
 

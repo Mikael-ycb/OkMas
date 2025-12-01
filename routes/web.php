@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\JanjiTemuController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\LaporanPasienController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\PeriksaController;
 use App\Http\Controllers\AkunPasienController;
@@ -142,3 +143,16 @@ Route::post('/resep', [ResepObatController::class, 'store'])->name('resep.store'
 Route::get('/resep/{id}/edit', [ResepObatController::class, 'edit'])->name('resep.edit');
 Route::put('/resep/{id}', [ResepObatController::class, 'update'])->name('resep.update');
 Route::delete('/resep/{id}', [ResepObatController::class, 'destroy'])->name('resep.destroy');
+
+Route::get('/periksa/{id}/laporan', [PeriksaController::class, 'formLaporan'])
+    ->name('periksa.formLaporan');
+
+Route::post('/periksa/{id}/laporan', [PeriksaController::class, 'simpanLaporan'])
+    ->name('periksa.simpanLaporan');
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/laporan', [LaporanPasienController::class, 'index'])->name('laporan');
+    Route::get('/laporan/{id}', [LaporanPasienController::class, 'show'])->name('laporan_detail');
+    Route::get('/laporan/{id}/pdf', [LaporanPasienController::class, 'downloadPdf'])->name('laporan_pdf');
+});

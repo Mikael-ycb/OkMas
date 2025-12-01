@@ -37,9 +37,9 @@ class JanjiTemu extends Model
     }
 
     public function dokter()
-    {
-        return $this->belongsTo(Dokter::class);
-    }
+{
+    return $this->belongsTo(Dokter::class, 'dokter_id');
+}
 
     public function periksa()
     {

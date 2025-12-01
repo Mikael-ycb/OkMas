@@ -23,14 +23,24 @@
 
             <td>{{ \Carbon\Carbon::parse($item->tanggal_periksa)->format('d/m/Y') }}</td>
 
-            <td class="px-6 py-3 text-center">
-                <button
-                    data-id="{{ $item->id }}"
-                    class="toggle-status px-4 py-1 rounded-full text-sm font-semibold 
-                    {{ $item->status == 'Aktif' ? 'bg-blue-900 text-white' : 'bg-gray-400 text-white' }}">
-                    {{ $item->status }}
-                </button>
-            </td>
+            <td class="px-6 py-3 text-center" style="color: black;">
+
+    @if($item->status === 'Aktif')
+        <a href="{{ route('periksa.formLaporan', $item->id) }}"
+           class="inline-block bg-green-600 text-white px-5 py-2 rounded-full text-sm font-semibold 
+                  shadow-md border border-green-800 relative z-50 hover:bg-green-700 transition">
+            Selesaikan
+        </a>
+    @else
+        <span class="inline-block bg-gray-400 text-white px-5 py-2 rounded-full text-sm font-semibold 
+                     shadow-md border border-gray-600">
+            Selesai
+        </span>
+    @endif
+
+</td>
+
+
 
             <td class="px-6 py-3 text-center">
                 <a href="{{ route('periksa.edit', $item->id) }}"
