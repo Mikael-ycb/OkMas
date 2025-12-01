@@ -24,7 +24,8 @@ return new class extends Migration
     $table->text('riwayat_kebiasaan')->nullable();
     $table->text('anamnesis_organ')->nullable();
     $table->timestamps();
-
+    $table->unsignedBigInteger('periksa_id')->nullable()->after('id_akun');
+    $table->foreign('periksa_id')->references('id')->on('periksa')->onDelete('cascade');
     $table->foreign('id_akun')
               ->references('id_akun')
               ->on('akun')

@@ -35,8 +35,8 @@
                             <td class="px-6 py-3 text-gray-700">{{ $item->no_telepon ?? '-' }}</td>
                             <td class="px-6 py-3 text-gray-700 capitalize">{{ $item->role }}</td>
                             <td class="px-6 py-3 flex justify-center gap-4 text-lg">
-                                <a href="{{ route('akunPasienAdmin.edit', $item->id) }}" class="text-yellow-500 hover:text-yellow-600">✏️</a>
-                                <form action="{{ route('akunPasienAdmin.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin hapus akun ini?')">
+                                <a href="{{ route('akunPasienAdmin.edit', $item->id_akun) }}" class="text-yellow-500 hover:text-yellow-600">✏️</a>
+                                <form action="{{ route('akunPasienAdmin.destroy', $item->id_akun) }}" method="POST" onsubmit="return confirm('Yakin hapus akun ini?')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="text-red-500 hover:text-red-700">🗑️</button>

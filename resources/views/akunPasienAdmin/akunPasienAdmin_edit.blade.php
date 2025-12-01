@@ -4,7 +4,7 @@
         <h2 class="text-2xl font-semibold text-blue-900 mt-1">Edit Akun Pasien</h2>
     </section>
 
-    <form action="{{ route('akunPasienAdmin.update', $akun->id) }}" method="POST" class="px-20 pb-20 bg-white">
+    <form action="{{ route('akunPasienAdmin.update', $akun->id_akun) }}" method="POST" class="px-20 pb-20 bg-white">
         @csrf
         <div class="grid grid-cols-2 gap-6 bg-white p-6 rounded-lg shadow border">
             <div>
