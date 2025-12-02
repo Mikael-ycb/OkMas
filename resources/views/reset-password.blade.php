@@ -69,7 +69,7 @@
             <div class="flex justify-center gap-6 mt-4">
                 <a
                     href="/login"
-                    class="bg-gray-500 hover:bg-gray-600 text-white px-8 py-2 rounded-lg shadow-md transition">
+                    class="bg-blue-900 hover:bg-blue-800 text-white px-8 py-2 rounded-lg shadow-md transition">
                     KEMBALI
                 </a>
 
