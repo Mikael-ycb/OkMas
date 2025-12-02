@@ -12,17 +12,36 @@
             <div>
                 <label class="font-semibold mb-1">Tanggal</label>
                 <input type="date" name="tanggal"
-                       value="{{ optional($laporan->tanggal)->format('Y-m-d') }}"
+                       value="{{ old('tanggal', $laporan->tanggal ? \Carbon\Carbon::parse($laporan->tanggal)->format('Y-m-d') : '') }}"
                        class="w-full border rounded p-2">
 
-                <label class="font-semibold mt-3 mb-1">Jenis Pemeriksaan</label>
-                <input type="text" class="w-full border rounded p-2"
-                       name="jenis_pemeriksaan" value="{{ $laporan->jenis_pemeriksaan }}" required>
+                <label class="font-semibold mt-3 mb-1">Klaster Pemeriksaan</label>
+                <select name="jenis_pemeriksaan" class="w-full border rounded p-2" required>
+                    <option value="">-- Pilih Klaster --</option>
+                    @php
+                        $klaster = \App\Models\Klaster::all();
+                    @endphp
+                    @foreach($klaster as $k)
+                        <option value="{{ $k->nama }}" {{ old('jenis_pemeriksaan', $laporan->jenis_pemeriksaan) == $k->nama ? 'selected' : '' }}>
+                            {{ $k->nama }}
+                        </option>
+                    @endforeach
+                </select>
 
                 <label class="font-semibold mt-3 mb-1">Hasil Pemeriksaan</label>
                 <textarea name="hasil_pemeriksaan" class="w-full border rounded p-2" rows="4">
-                    {{ $laporan->hasil_pemeriksaan }}
+                    {{ old('hasil_pemeriksaan', $laporan->hasil_pemeriksaan) }}
                 </textarea>
+            </div>
+
+            <div>
+                @if($laporan->janji_temu_id && $laporan->janjiTemu && $laporan->janjiTemu->dokter)
+                    <div class="bg-blue-50 border border-blue-200 p-4 rounded">
+                        <p class="text-xs text-gray-500 font-semibold mb-2">Info Pemeriksaan</p>
+                        <p class="text-sm mb-2"><strong>Dokter:</strong> {{ $laporan->janjiTemu->dokter->nama_dokter }}</p>
+                        <p class="text-sm"><strong>Tanggal Janji:</strong> {{ $laporan->janjiTemu->tanggal->tanggal ?? '-' }}</p>
+                    </div>
+                @endif
             </div>
         </div>
 

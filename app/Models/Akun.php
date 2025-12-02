@@ -43,4 +43,8 @@ class Akun extends Authenticatable
         return $this->hasMany(\App\Models\Laporan::class, 'id_akun', 'id_akun');
     }
 
+     public function resepObat()
+    {
+        return $this->hasMany(ResepObat::class, 'id_pasien', 'id_akun');
+    }
 }

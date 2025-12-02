@@ -14,10 +14,15 @@ class LaporanPasienController extends Controller
             'periksa.janjiTemu',
             'periksa.janjiTemu.dokter',
             'periksa.janjiTemu.klaster',
-            'periksa.janjiTemu.tanggal'
+            'periksa.janjiTemu.tanggal',
+            'janjiTemu',
+            'janjiTemu.dokter',
+            'janjiTemu.klaster',
+            'janjiTemu.tanggal',
+            'resepObat.detail.obat',
+            'akun'
         ])
         ->where('id_akun', Auth::user()->id_akun)
-        ->whereNotNull('periksa_id')        // 👈 TAMBAHAN
         ->orderBy('tanggal', 'desc')
         ->get();
 
@@ -32,7 +37,11 @@ class LaporanPasienController extends Controller
                 'periksa.janjiTemu',
                 'periksa.janjiTemu.dokter',
                 'periksa.janjiTemu.klaster',
-                'periksa.janjiTemu.tanggal'
+                'periksa.janjiTemu.tanggal',
+                'janjiTemu',
+                'janjiTemu.dokter',
+                'janjiTemu.klaster',
+                'janjiTemu.tanggal'
             ])
             ->findOrFail($id);
 

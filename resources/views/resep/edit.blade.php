@@ -1,60 +1,58 @@
 <x-layout4>
-<div class="max-w-3xl mx-auto mt-10 bg-white p-6 rounded-xl shadow">
+    <section class="px-20 pt-12 pb-6">
+        <h1 class="text-3xl font-extrabold text-blue-900">Buat Resep Obat</h1>
+    </section>
 
-    <h2 class="text-2xl font-bold text-blue-900 mb-6">Edit Resep Obat</h2>
-
-    <form action="{{ route('resep.update', $resep->id) }}" method="POST">
+    <form action="{{ route('resep.store') }}" method="POST" class="px-20">
         @csrf
-        @method('PUT')
 
-        <!-- PASIEN -->
-        <label class="font-semibold">Pilih Pasien</label>
-        <select name="id_pasien" class="w-full p-3 border rounded mb-4">
-            @foreach ($pasien as $p)
-                <option value="{{ $p->id_akun }}" 
-                        {{ $resep->id_pasien == $p->id_akun ? 'selected' : '' }}>
-                    {{ $p->nama }}
+        {{-- PILIH LAPORAN --}}
+        <label class="block font-semibold mt-4">Pilih Laporan Pemeriksaan</label>
+        <select name="laporan_id" class="border rounded px-3 py-2 w-full" required>
+            <option value="">-- Pilih Laporan --</option>
+            @foreach($laporan as $l)
+                <option value="{{ $l->id }}">
+                    {{ $l->akun->nama }} — {{ $l->jenis_pemeriksaan }} ({{ $l->tanggal->format('d/m/Y') }})
                 </option>
             @endforeach
         </select>
 
-        <!-- OBAT -->
-        <label class="font-semibold">Pilih Obat</label>
-        <select name="id_obat" class="w-full p-3 border rounded mb-4">
-            @foreach ($obat as $o)
-                <option value="{{ $o->id }}" 
-                        {{ $resep->id_obat == $o->id ? 'selected' : '' }}>
-                    {{ $o->nama_obat }} (stok: {{ $o->stok }})
-                </option>
+        {{-- PILIH PASIEN --}}
+        <label class="block font-semibold mt-4">Pilih Pasien</label>
+        <select name="id_akun" class="border rounded px-3 py-2 w-full" required>
+            @foreach($akun as $a)
+                <option value="{{ $a->id_akun }}">{{ $a->nama }} — {{ $a->nik }}</option>
             @endforeach
         </select>
 
-        <!-- JUMLAH -->
-        <label class="font-semibold">Jumlah</label>
-        <input type="number" name="jumlah" 
-               value="{{ $resep->jumlah }}"
-               class="w-full p-3 border rounded mb-4">
+        {{-- INPUT DOKTER --}}
+        <label class="block font-semibold mt-4">Dokter</label>
+        <input type="text" name="dokter" class="w-full border rounded px-3 py-2" required>
 
-        <!-- ATURAN PAKAI -->
-        <label class="font-semibold">Aturan Pakai</label>
-        <input type="text" name="aturan_pakai"
-               value="{{ $resep->aturan_pakai }}"
-               class="w-full p-3 border rounded mb-4"
-               placeholder="Contoh: 3x sehari">
+        {{-- TANGGAL --}}
+        <label class="block font-semibold mt-4">Tanggal</label>
+        <input type="date" name="tanggal" class="w-full border rounded px-3 py-2" required>
 
-        <!-- BUTTON -->
-        <div class="flex gap-4 mt-6">
-            <button class="w-full py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700">
-                Simpan Perubahan
-            </button>
+        {{-- DETAIL OBAT --}}
+        <div id="obat-container" class="mt-6">
+            <div class="grid grid-cols-3 gap-4 border p-4 rounded mb-4">
 
-            <a href="{{ route('resep.index') }}"
-               class="w-full py-3 text-center bg-gray-300 rounded-xl hover:bg-gray-400">
-                Batal
-            </a>
+                <select name="obat_id[]" class="border rounded px-2 py-1">
+                    @foreach($obat as $o)
+                        <option value="{{ $o->id }}">{{ $o->nama_obat }} (Stok: {{ $o->stok }})</option>
+                    @endforeach
+                </select>
+
+                <input type="number" name="jumlah[]" placeholder="Jumlah"
+                    class="border rounded px-2 py-1" required>
+
+                <input type="text" name="aturan_pakai[]" placeholder="Aturan pakai"
+                    class="border rounded px-2 py-1">
+            </div>
         </div>
 
+        <button type="submit" class="mt-6 bg-blue-900 text-white px-6 py-2 rounded">
+            Simpan Resep
+        </button>
     </form>
-
-</div>
 </x-layout4>
