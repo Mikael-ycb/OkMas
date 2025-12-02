@@ -42,7 +42,7 @@
                 </svg>
                 <div>
                     <p class="font-semibold text-xs uppercase tracking-wide">Alamat</p>
-                    <a href="" class="text-sky-500 font-medium">Jln. Pesanggrahan No 2, Ds. Candiroto <br>
+                    <a href="https://maps.app.goo.gl/ewMqirQ5ZMeay7TD7" class="text-sky-500 font-medium">Jln. Pesanggrahan No 2, Ds. Candiroto <br>
                         Kec. Candiroto, Kab. Temanggung</a>
                     </p>
                 </div>
