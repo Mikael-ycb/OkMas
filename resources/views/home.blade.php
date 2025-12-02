@@ -150,9 +150,9 @@
 
             {{-- Images --}}
             <div class="flex flex-col gap-6 animate-float">
-                <img src="{{ asset('img/dokter1.jpeg') }}"
+                <img src="{{ asset('img/dokterSatu.jpeg') }}"
                     class="w-[430px] rounded-xl shadow-lg object-cover hover:scale-105 transition-transform duration-500">
-                <img src="{{ asset('img/dokter2.jpg') }}"
+                <img src="{{ asset('img/dokterDua.jpg') }}"
                     class="w-[430px] rounded-xl shadow-lg object-cover hover:scale-105 transition-transform duration-500">
             </div>
 
