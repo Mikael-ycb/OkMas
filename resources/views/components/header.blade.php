@@ -3,7 +3,7 @@
 
         <!-- Logo dan Nama -->
         <div class="flex items-center space-x-3">
-            <img src="{{ asset('img/logo.png') }}"
+            <img src="{{ asset('img/logoOKMas.png') }}"
                 alt="Logo OKMAS"
                 class="h-12 w-12 object-contain">
             <h1 class="text-2xl font-bold">

@@ -4,6 +4,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
 </head>
 
 <body class="h-full overflow-x-hidden">
@@ -21,6 +22,9 @@
         <x-footer></x-footer>
 
     </div>
+
+
+
 
 </body>
 

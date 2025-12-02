@@ -15,6 +15,7 @@ use App\Http\Controllers\KlasterController;
 use App\Http\Controllers\ResepObatController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\NotifikasiController;
 
 Route::get('/', function () {
     return view('home', ['title' => 'Home Page']);
@@ -47,6 +48,12 @@ Route::get('/dokter', function () {
 Route::get('/berita', [BeritaPasienController::class, 'index'])->name('berita');
 Route::get('/berita/{id}', [BeritaPasienController::class, 'show'])
     ->name('beritaDetail');
+Route::delete('/notifikasi/{id}', [NotifikasiController::class, 'destroy'])
+    ->name('notifikasi.destroy');
+Route::get('/notifikasi', [NotifikasiController::class, 'index'])
+    ->name('notifikasi.index');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::resource('kontak', KontakController::class);
@@ -61,9 +68,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/janjiTemu/{id}', [JanjiTemuController::class, 'destroy'])->name('janjiTemu.destroy');
 });
 
-Route::get('/notifikasi', function () {
-    return view('notifikasi', ['title' => 'notifikasi']);
-});
+Route::get('/pasien/notifikasi', [NotifikasiController::class, 'index'])->name('pasien.notifikasi');
+
 
 Route::get('/laporan', [JanjiTemuController::class, 'riwayat'])
     ->name('laporan')
@@ -74,7 +80,7 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.for
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::prefix('laporanAdmin')->group(function () {
+Route::middleware(['auth', 'admin'])->prefix('laporanAdmin')->group(function () {
     Route::get('/', [LaporanController::class, 'index'])->name('laporanAdmin.index');
     Route::get('/create', [LaporanController::class, 'create'])->name('laporanAdmin.create');
     Route::post('/store', [LaporanController::class, 'store'])->name('laporanAdmin.store');
@@ -84,7 +90,7 @@ Route::prefix('laporanAdmin')->group(function () {
     Route::delete('/delete/{id_akun}', [LaporanController::class, 'destroy'])->name('laporanAdmin.destroy');
 });
 
-Route::prefix('updateBeritaAdmin')->group(function () {
+Route::middleware(['auth', 'admin'])->prefix('updateBeritaAdmin')->group(function () {
     Route::get('/', [BeritaController::class, 'index'])->name('berita.index');
     Route::get('/create', [BeritaController::class, 'create'])->name('berita.create');
     Route::post('/store', [BeritaController::class, 'store'])->name('berita.store');
@@ -94,7 +100,7 @@ Route::prefix('updateBeritaAdmin')->group(function () {
     Route::delete('/delete/{id}', [BeritaController::class, 'destroy'])->name('berita.destroy');
 });
 
-Route::prefix('daftarPeriksaAdmin')->group(function () {
+Route::middleware(['auth', 'admin'])->prefix('daftarPeriksaAdmin')->group(function () {
     Route::get('/', [PeriksaController::class, 'index'])->name('periksa.index');
     Route::post('/toggle-status/{id}', [PeriksaController::class, 'toggleStatus'])->name('periksa.toggle');
 
@@ -103,7 +109,7 @@ Route::prefix('daftarPeriksaAdmin')->group(function () {
 });
 
 
-Route::prefix('akunPasienAdmin')->group(function () {
+Route::middleware(['auth', 'admin'])->prefix('akunPasienAdmin')->group(function () {
     Route::get('/', [AkunPasienController::class, 'index'])->name('akunPasienAdmin.index');
     Route::get('/create', [AkunPasienController::class, 'create'])->name('akunPasienAdmin.create');
     Route::post('/store', [AkunPasienController::class, 'store'])->name('akunPasienAdmin.store');
@@ -112,7 +118,7 @@ Route::prefix('akunPasienAdmin')->group(function () {
     Route::delete('/{id}', [AkunPasienController::class, 'destroy'])->name('akunPasienAdmin.destroy');
 });
 
-Route::prefix('obatAdmin')->group(function () {
+Route::middleware(['auth', 'admin'])->prefix('obatAdmin')->group(function () {
     Route::get('/', [ObatController::class, 'index'])->name('obatAdmin.index');
     Route::get('/create', [ObatController::class, 'create'])->name('obatAdmin.create');
     Route::post('/store', [ObatController::class, 'store'])->name('obatAdmin.store');
@@ -121,7 +127,7 @@ Route::prefix('obatAdmin')->group(function () {
     Route::delete('/{id}', [ObatController::class, 'destroy'])->name('obatAdmin.destroy');
 });
 
-Route::prefix('dokterAdmin')->group(function () {
+Route::middleware(['auth', 'admin'])->prefix('dokterAdmin')->group(function () {
     Route::get('/', [DokterController::class, 'index'])->name('dokterAdmin.index');
     Route::get('/create', [DokterController::class, 'create'])->name('dokterAdmin.create');
     Route::post('/store', [DokterController::class, 'store'])->name('dokterAdmin.store');
@@ -156,3 +162,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/laporan/{id}', [LaporanPasienController::class, 'show'])->name('laporan_detail');
     Route::get('/laporan/{id}/pdf', [LaporanPasienController::class, 'downloadPdf'])->name('laporan_pdf');
 });
+// REGISTER
+Route::get('/register', [LoginController::class, 'registerForm'])->name('register.form');
+Route::post('/register', [LoginController::class, 'register'])->name('register');
+
+// LUPA PASSWORD
+Route::get('/lupa-password', [LoginController::class, 'forgotPasswordForm'])->name('password.request');
+Route::post('/lupa-password', [LoginController::class, 'sendResetToken'])->name('password.email');
+
+Route::get('/reset-password/{token}', [LoginController::class, 'resetPasswordForm'])->name('password.reset');
+Route::post('/reset-password', [LoginController::class, 'resetPassword'])->name('password.update');
