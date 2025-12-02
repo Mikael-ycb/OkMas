@@ -19,10 +19,9 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                @forelse($dokters as $dokter)
+                
                 <!-- Kartu Dokter -->
                 <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
-<<<<<<< HEAD
                     <img src="{{ asset('img/BedahVaskular.jpg') }}" alt="Dokter" class="w-full h-80 object-cover">
                     <div class="bg-blue-200 py-6 text-center">
                         <h3 class="text-gray-800 font-medium text-lg">Suprianto</h3>
@@ -132,12 +131,6 @@
                     <div class="bg-blue-200 py-6 text-center">
                         <h3 class="text-gray-800 font-medium text-lg">Darto</h3>
                         <p class="text-blue-900 font-extrabold tracking-widest">Kardiologi Interfensi</p>
-=======
-                    <img src="{{ asset($dokter->photo) }}" alt="{{ $dokter->nama_dokter }}" class="w-full h-80 object-cover">
-                    <div class="bg-blue-200 py-6 text-center">
-                        <h3 class="text-gray-800 font-medium text-lg">{{ $dokter->nama_dokter }}</h3>
-                        <p class="text-blue-900 font-extrabold tracking-widest">{{ $dokter->klaster->nama ?? 'N/A' }}</p>
->>>>>>> 645f702e1bf1664e6925c3810da7aee39592c424
 
                         <div class="flex justify-center space-x-4 mt-4">
                             <a href="#" class="text-blue-900 hover:text-blue-600">
@@ -152,10 +145,6 @@
                         </div>
                     </div>
                 </div>
-                @empty
-                <p class="text-center text-gray-500 col-span-3">Tidak ada dokter ditemukan</p>
-                @endforelse
-
             </div>
         </div>
     </section>
