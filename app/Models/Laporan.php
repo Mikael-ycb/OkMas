@@ -10,19 +10,22 @@ class Laporan extends Model
 
     protected $fillable = [
         'id_akun',
-        'periksa_id',
-        'tanggal',
-        'nama_pasien', 
+        'nama_pasien',
         'nik',
+        'tanggal',
         'jenis_pemeriksaan',
         'hasil_pemeriksaan',
         'anamnesis',
         'tekanan_darah',
+        'diagnosa',
+        'saran',
         'riwayat_penyakit_sekarang',
         'riwayat_penyakit_dahulu',
         'riwayat_penyakit_keluarga',
         'riwayat_kebiasaan',
         'anamnesis_organ',
+        'periksa_id',
+        'janji_temu_id'
     ];
 
     protected $dates = ['tanggal'];
@@ -34,10 +37,19 @@ class Laporan extends Model
     }
 
     public function periksa()
-{
-    return $this->belongsTo(Periksa::class, 'periksa_id');
-}
+    {
+        return $this->belongsTo(Periksa::class, 'periksa_id');
+    }
 
+    public function janjiTemu()
+    {
+        return $this->belongsTo(JanjiTemu::class, 'janji_temu_id');
+    }
+
+    public function resepObat()
+    {
+        return $this->hasMany(ResepObat::class, 'laporan_id');
+    }
 }
 
 

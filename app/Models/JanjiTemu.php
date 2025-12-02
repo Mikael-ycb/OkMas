@@ -45,4 +45,9 @@ class JanjiTemu extends Model
     {
         return $this->hasOne(Periksa::class, 'janji_temu_id');
     }
+
+    public function laporan()
+    {
+        return $this->hasOne(Laporan::class, 'janji_temu_id');
+    }
 }

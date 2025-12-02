@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Klaster extends Model
 {
-    protected $fillable = ['nama'];
+    protected $fillable = ['nama', 'jenis', 'deskripsi'];
 
     public function dokters()
     {

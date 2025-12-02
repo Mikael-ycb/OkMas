@@ -2,10 +2,58 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Klaster;
 use Illuminate\Http\Request;
 
 class KlasterController extends Controller
 {
+    public function index()
+    {
+        $klasters = Klaster::with('dokters')->get();
+        return view('klaster.index', ['klasters' => $klasters]);
+    }
+
+    public function create()
+    {
+        return view('klaster.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'jenis' => 'required|string|unique:klasters',
+            'deskripsi' => 'required|string',
+        ]);
+
+        Klaster::create($request->all());
+        return redirect()->route('klaster.index')->with('success', 'Klaster berhasil ditambahkan');
+    }
+
+    public function edit($id)
+    {
+        $klaster = Klaster::findOrFail($id);
+        return view('klaster.edit', ['klaster' => $klaster]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'jenis' => 'required|string|unique:klasters,jenis,' . $id,
+            'deskripsi' => 'required|string',
+        ]);
+
+        $klaster = Klaster::findOrFail($id);
+        $klaster->update($request->all());
+        return redirect()->route('klaster.index')->with('success', 'Klaster berhasil diperbarui');
+    }
+
+    public function destroy($id)
+    {
+        $klaster = Klaster::findOrFail($id);
+        $klaster->delete();
+        return redirect()->route('klaster.index')->with('success', 'Klaster berhasil dihapus');
+    }
+
     public function detail($jenis)
     {
         $data = [

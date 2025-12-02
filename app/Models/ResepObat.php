@@ -9,20 +9,29 @@ class ResepObat extends Model
     protected $table = 'resep_obat';
 
     protected $fillable = [
-        'id_pasien',
-        'id_obat',
-        'jumlah',
-        'aturan_pakai',
-        'tanggal_resep'
+        'laporan_id',
+        'id_akun',
+        'dokter',
+        'tanggal'
     ];
 
     public function pasien()
     {
-        return $this->belongsTo(Akun::class, 'id_pasien');
+        return $this->belongsTo(Akun::class, 'id_akun', 'id_akun');
     }
 
     public function obat()
     {
         return $this->belongsTo(Obat::class, 'id_obat');
+    }
+
+    public function laporan()
+    {
+        return $this->belongsTo(Laporan::class, 'laporan_id');
+    }
+
+    public function detail()
+    {
+        return $this->hasMany(ResepDetail::class, 'resep_id');
     }
 }

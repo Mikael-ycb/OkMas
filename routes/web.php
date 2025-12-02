@@ -15,6 +15,7 @@ use App\Http\Controllers\KlasterController;
 use App\Http\Controllers\ResepObatController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminDashboardController;
 
 Route::get('/', function () {
     return view('home', ['title' => 'Home Page']);
@@ -84,6 +85,11 @@ Route::prefix('laporanAdmin')->group(function () {
     Route::delete('/delete/{id_akun}', [LaporanController::class, 'destroy'])->name('laporanAdmin.destroy');
 });
 
+// Admin Dashboard Route
+Route::get('/admin-dashboard', [AdminDashboardController::class, 'index'])
+    ->name('adminDashboard.index')
+    ->middleware('auth');
+
 Route::prefix('updateBeritaAdmin')->group(function () {
     Route::get('/', [BeritaController::class, 'index'])->name('berita.index');
     Route::get('/create', [BeritaController::class, 'create'])->name('berita.create');
@@ -130,6 +136,15 @@ Route::prefix('dokterAdmin')->group(function () {
     Route::delete('/{id}', [DokterController::class, 'destroy'])->name('dokterAdmin.destroy');
 });
 
+Route::prefix('klaster')->group(function () {
+    Route::get('/', [KlasterController::class, 'index'])->name('klaster.index');
+    Route::get('/create', [KlasterController::class, 'create'])->name('klaster.create');
+    Route::post('/store', [KlasterController::class, 'store'])->name('klaster.store');
+    Route::get('/edit/{id}', [KlasterController::class, 'edit'])->name('klaster.edit');
+    Route::post('/update/{id}', [KlasterController::class, 'update'])->name('klaster.update');
+    Route::delete('/{id}', [KlasterController::class, 'destroy'])->name('klaster.destroy');
+});
+
 Route::get('/get-dokter-by-klaster/{klaster_id}', function ($klaster_id) {
     // PERBAIKAN: Gunakan kolom 'klaster_id' (integer)
     return \App\Models\Dokter::where('klaster_id', $klaster_id)->get();
@@ -137,12 +152,14 @@ Route::get('/get-dokter-by-klaster/{klaster_id}', function ($klaster_id) {
     // Catatan: Jika Anda telah menerapkan saran saya sebelumnya, ini bisa dipindahkan ke DokterController
 });
 
-Route::get('/resep', [ResepObatController::class, 'index'])->name('resep.index');
-Route::get('/resep/create', [ResepObatController::class, 'create'])->name('resep.create');
-Route::post('/resep', [ResepObatController::class, 'store'])->name('resep.store');
-Route::get('/resep/{id}/edit', [ResepObatController::class, 'edit'])->name('resep.edit');
-Route::put('/resep/{id}', [ResepObatController::class, 'update'])->name('resep.update');
-Route::delete('/resep/{id}', [ResepObatController::class, 'destroy'])->name('resep.destroy');
+Route::prefix('resep')->group(function () {
+    Route::get('/', [ResepObatController::class, 'index'])->name('resep.index');
+    Route::get('/create', [ResepObatController::class, 'create'])->name('resep.create');
+    Route::post('/store', [ResepObatController::class, 'store'])->name('resep.store');
+    Route::get('/{id}', [ResepObatController::class, 'show'])->name('resep.show');
+    Route::delete('/{id}', [ResepObatController::class, 'destroy'])->name('resep.destroy');
+});
+
 
 Route::get('/periksa/{id}/laporan', [PeriksaController::class, 'formLaporan'])
     ->name('periksa.formLaporan');
@@ -155,4 +172,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/laporan', [LaporanPasienController::class, 'index'])->name('laporan');
     Route::get('/laporan/{id}', [LaporanPasienController::class, 'show'])->name('laporan_detail');
     Route::get('/laporan/{id}/pdf', [LaporanPasienController::class, 'downloadPdf'])->name('laporan_pdf');
+});
+
+Route::prefix('admin')->group(function () {
+    Route::resource('resep', \App\Http\Controllers\ResepObatController::class);
 });

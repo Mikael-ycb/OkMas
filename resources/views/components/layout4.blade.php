@@ -51,6 +51,11 @@
         <!-- Menu Items -->
         <nav class="p-4 space-y-1 overflow-y-auto h-[calc(100%-64px)]">
 
+            <a href="{{ route('adminDashboard.index') }}" 
+               class="flex items-center gap-3 px-4 py-3 font-medium hover:bg-blue-100 rounded-lg">
+                📊 Dashboard
+            </a>
+
             <a href="/laporanAdmin" 
                class="flex items-center gap-3 px-4 py-3 font-medium hover:bg-blue-100 rounded-lg">
                 📄 Rekam Medis Pasien
@@ -84,6 +89,11 @@
             <a href="/dokterAdmin" 
                class="flex items-center gap-3 px-4 py-3 font-medium hover:bg-blue-100 rounded-lg">
                 🩺 Dokter
+            </a>
+
+            <a href="{{ route('klaster.index') }}" 
+               class="flex items-center gap-3 px-4 py-3 font-medium hover:bg-blue-100 rounded-lg">
+                🏥 Klaster
             </a>
 
             <a href="{{ route('logout') }}"

@@ -17,4 +17,10 @@ class Obat extends Model
         'exp',
         'stok',
     ];
+
+    public static function saran($penyakit)
+{
+    return self::where('penyakit', 'LIKE', "%$penyakit%")->get();
+}
+
 }

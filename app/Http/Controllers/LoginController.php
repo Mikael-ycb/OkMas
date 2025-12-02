@@ -14,7 +14,7 @@ class LoginController extends Controller
         if (Auth::check()) {
 
             if (Auth::user()->role === 'admin') {
-                return redirect()->route('laporanAdmin.index');
+                return redirect()->route('adminDashboard.index');
             } else {
                 return redirect()->route('home');
             }
@@ -45,7 +45,7 @@ class LoginController extends Controller
 
             // ✅ Cek role
             if ($akun->role === 'admin') {
-                return redirect()->route('laporanAdmin.index')
+                return redirect()->route('adminDashboard.index')
                     ->with('success', 'Selamat datang, Admin!');
             } else {
                 return redirect()->route('home')

@@ -10,15 +10,17 @@ return new class extends Migration
     {
         Schema::create('resep_obat', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_pasien'); // relasi ke akun
-            $table->unsignedBigInteger('id_obat');   // relasi ke obat
-            $table->integer('jumlah');               // berapa butir / tablet / ml
-            $table->string('aturan_pakai');          // contoh: 3x sehari
-            $table->date('tanggal_resep');
-            $table->timestamps();
 
-            $table->foreign('id_pasien')->references('id_akun')->on('akun')->onDelete('cascade');
-            $table->foreign('id_obat')->references('id')->on('obat')->onDelete('cascade');
+            $table->unsignedBigInteger('laporan_id'); // terhubung ke rekam medis
+            $table->unsignedBigInteger('id_akun');    // pasien
+
+            $table->string('dokter')->nullable();  // kalau mau catat nama dokter
+            $table->date('tanggal')->nullable();
+
+            $table->foreign('laporan_id')->references('id')->on('laporan')->onDelete('cascade');
+            $table->foreign('id_akun')->references('id_akun')->on('akun')->onDelete('cascade');
+
+            $table->timestamps();
         });
     }
 
