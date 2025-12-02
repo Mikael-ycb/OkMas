@@ -16,10 +16,10 @@
                  }
              })
          }
-         const onLoad = function() {
+         const onLoad = function() {    
              const script = document.createElement("script");
              script.src = "https://www.chatbase.co/embed.min.js";
-             script.id = "FDFDmJXQtks_HlinjxAWZ";
+             script.id = "GAhkYJR_HnPcw5lOTkcMW";
              script.domain = "www.chatbase.co";
              document.body.appendChild(script)
          };
