@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\NotifikasiPasien;
 use Illuminate\Http\Request;
 use App\Models\Berita;
 use Illuminate\Support\Facades\Storage;
@@ -33,7 +34,13 @@ class BeritaController extends Controller
         }
 
         $validated['tanggal'] = now();
-        Berita::create($validated);
+        $berita = Berita::create($validated);
+
+        NotifikasiPasien::create([
+        'pasien_id' => null,              // null = tampil untuk semua pasien
+        'berita_id' => $berita->id,
+        'judul' => "Berita baru: " . $berita->judul,
+    ]);
 
         return redirect()->route('berita.index')->with('success', 'Berita berhasil ditambahkan!');
     }

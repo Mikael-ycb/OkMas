@@ -19,12 +19,13 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
+                
                 <!-- Kartu Dokter -->
                 <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
-                    <img src="{{ asset('img/dokter1.jpg') }}" alt="Dokter" class="w-full h-80 object-cover">
+                    <img src="{{ asset('img/BedahVaskular.jpg') }}" alt="Dokter" class="w-full h-80 object-cover">
                     <div class="bg-blue-200 py-6 text-center">
                         <h3 class="text-gray-800 font-medium text-lg">Suprianto</h3>
-                        <p class="text-blue-900 font-extrabold tracking-widest">Ahli Otak</p>
+                        <p class="text-blue-900 font-extrabold tracking-widest">Bedah Vaskular</p>
 
                         <div class="flex justify-center space-x-4 mt-4">
                             <a href="#" class="text-blue-900 hover:text-blue-600">
@@ -42,10 +43,10 @@
 
                 <!-- Kartu Dokter 2 -->
                 <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
-                    <img src="{{ asset('img/dokter2.jpg') }}" alt="Dokter" class="w-full h-80 object-cover">
+                    <img src="{{ asset('img/PediatricCardiology.jpg') }}" alt="Dokter" class="w-full h-80 object-cover">
                     <div class="bg-blue-200 py-6 text-center">
                         <h3 class="text-gray-800 font-medium text-lg">Hartono</h3>
-                        <p class="text-blue-900 font-extrabold tracking-widest">Ahli Silit</p>
+                        <p class="text-blue-900 font-extrabold tracking-widest">Pediatric Cardiology</p>
 
                         <div class="flex justify-center space-x-4 mt-4">
                             <a href="#" class="text-blue-900 hover:text-blue-600">
@@ -63,10 +64,10 @@
 
                 <!-- Kartu Dokter 3 -->
                 <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
-                    <img src="{{ asset('img/dokter3.jpg') }}" alt="Dokter" class="w-full h-80 object-cover">
+                    <img src="{{ asset('img/Neonatologi.jpg') }}" alt="Dokter" class="w-full h-80 object-cover">
                     <div class="bg-blue-200 py-6 text-center">
                         <h3 class="text-gray-800 font-medium text-lg">Darto</h3>
-                        <p class="text-blue-900 font-extrabold tracking-widest">Ahli Sikil</p>
+                        <p class="text-blue-900 font-extrabold tracking-widest">Neonatologi</p>
 
                         <div class="flex justify-center space-x-4 mt-4">
                             <a href="#" class="text-blue-900 hover:text-blue-600">
@@ -84,10 +85,10 @@
 
                 <!-- Kartu Dokter -->
                 <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
-                    <img src="{{ asset('img/dokter1.jpg') }}" alt="Dokter" class="w-full h-80 object-cover">
+                    <img src="{{ asset('img/Neuroitervensi.jpeg') }}" alt="Dokter" class="w-full h-80 object-cover">
                     <div class="bg-blue-200 py-6 text-center">
                         <h3 class="text-gray-800 font-medium text-lg">Suprianto</h3>
-                        <p class="text-blue-900 font-extrabold tracking-widest">Ahli Otak</p>
+                        <p class="text-blue-900 font-extrabold tracking-widest">Neuroitervensi</p>
 
                         <div class="flex justify-center space-x-4 mt-4">
                             <a href="#" class="text-blue-900 hover:text-blue-600">
@@ -105,10 +106,10 @@
 
                 <!-- Kartu Dokter 2 -->
                 <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
-                    <img src="{{ asset('img/dokter2.jpg') }}" alt="Dokter" class="w-full h-80 object-cover">
+                    <img src="{{ asset('img/GastroHepatologi.webp') }}" alt="Dokter" class="w-full h-80 object-cover">
                     <div class="bg-blue-200 py-6 text-center">
                         <h3 class="text-gray-800 font-medium text-lg">Hartono</h3>
-                        <p class="text-blue-900 font-extrabold tracking-widest">Ahli Silit</p>
+                        <p class="text-blue-900 font-extrabold tracking-widest">Gastro-Hepatologi</p>
 
                         <div class="flex justify-center space-x-4 mt-4">
                             <a href="#" class="text-blue-900 hover:text-blue-600">
@@ -126,10 +127,10 @@
 
                 <!-- Kartu Dokter 3 -->
                 <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
-                    <img src="{{ asset('img/dokter3.jpg') }}" alt="Dokter" class="w-full h-80 object-cover">
+                    <img src="{{ asset('img/KardiologiInterfensi.webp') }}" alt="Dokter" class="w-full h-80 object-cover">
                     <div class="bg-blue-200 py-6 text-center">
                         <h3 class="text-gray-800 font-medium text-lg">Darto</h3>
-                        <p class="text-blue-900 font-extrabold tracking-widest">Ahli Sikil</p>
+                        <p class="text-blue-900 font-extrabold tracking-widest">Kardiologi Interfensi</p>
 
                         <div class="flex justify-center space-x-4 mt-4">
                             <a href="#" class="text-blue-900 hover:text-blue-600">
@@ -144,7 +145,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>

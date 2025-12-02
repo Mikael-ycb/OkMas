@@ -3,7 +3,7 @@
 
         <!-- Logo dan Nama -->
         <div class="flex items-center space-x-3">
-            <img src="{{ asset('img/logo.png') }}"
+            <img src="{{ asset('img/logoOKMas.png') }}"
                 alt="Logo OKMAS"
                 class="h-12 w-12 object-contain">
             <h1 class="text-2xl font-bold">
@@ -42,7 +42,7 @@
                 </svg>
                 <div>
                     <p class="font-semibold text-xs uppercase tracking-wide">Alamat</p>
-                    <a href="" class="text-sky-500 font-medium">Jln. Pesanggrahan No 2, Ds. Candiroto <br>
+                    <a href="https://maps.app.goo.gl/ewMqirQ5ZMeay7TD7" class="text-sky-500 font-medium">Jln. Pesanggrahan No 2, Ds. Candiroto <br>
                         Kec. Candiroto, Kab. Temanggung</a>
                     </p>
                 </div>

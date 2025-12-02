@@ -30,15 +30,34 @@
                 <div class="ml-4 flex items-center md:ml-6">
 
                     {{-- Notifikasi --}}
-                    <a href="/notifikasi"
-                        class="relative rounded-full p-1 text-gray-300 hover:text-white">
+                    @php
+                    // Hanya hitung notifikasi untuk pasien yang sedang login
+                    $notifCount = 0;
+                    if(Auth::check() && Auth::user()->role === 'pasien') {
+                    $notifCount = \App\Models\NotifikasiPasien::where('user_id', Auth::id())
+                    ->where('is_read', false)
+                    ->count();
+                    }
+                    @endphp
+
+                    <a href="{{ route('pasien.notifikasi') }}" class="relative rounded-full p-1 text-gray-300 hover:text-white">
                         <span class="absolute -inset-1.5"></span>
+
+                        {{-- ICON BEL --}}
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
                             aria-hidden="true" class="size-6">
                             <path d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0018 9.75V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
                                 stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
+
+                        {{-- BADGE JUMLAH NOTIFIKASI --}}
+                        @if($notifCount > 0)
+                        <span class="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] px-1.5 py-0.5 rounded-full">
+                            {{ $notifCount }}
+                        </span>
+                        @endif
                     </a>
+
 
                     {{-- PROFILE / LOGIN --}}
                     @if(!Auth::check())

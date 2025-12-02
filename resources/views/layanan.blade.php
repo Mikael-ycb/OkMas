@@ -25,9 +25,9 @@
                 <!-- Card Template -->
                 @php
                 $services = [
-                ['title' => 'Bidan', 'desc' => 'Klaster Bidan', 'img' => 'bidan.jpg', 'link' => 'bidan'],
-                ['title' => 'Umum', 'desc' => 'Klaster Umum', 'img' => 'umum.jpg', 'link' => 'umum'],
-                ['title' => 'Gigi dan Mulut', 'desc' => 'Klaster Gigi dan Mulut', 'img' => 'gigi.jpg', 'link' => 'gigi'],
+                ['title' => 'Bidan', 'desc' => 'Klaster Bidan', 'img' => 'dokterBidan.jpg', 'link' => 'bidan'],
+                ['title' => 'Umum', 'desc' => 'Klaster Umum', 'img' => 'dokterUmum.jpg', 'link' => 'umum'],
+                ['title' => 'Gigi dan Mulut', 'desc' => 'Klaster Gigi dan Mulut', 'img' => 'doktergigi.jpg', 'link' => 'gigi'],
                 ];
                 @endphp
 

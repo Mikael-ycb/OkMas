@@ -13,6 +13,7 @@ class Dokter extends Model
     protected $fillable = [
         'nama_dokter',
         'id_dokter',
+        'photo',
         'klaster_id',
     ];
 
