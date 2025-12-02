@@ -70,7 +70,7 @@
             </a>
 
             {{-- Card 3 --}}
-            <a href="#aduan"
+            <a href="/kontak"
                 class="group bg-white shadow-md hover:shadow-xl border border-gray-100 p-10 rounded-2xl transition transform hover:-translate-y-1">
                 <div class="flex justify-center">
                     <div class="p-4 bg-blue-100 rounded-full mb-4">
