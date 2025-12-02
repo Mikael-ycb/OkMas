@@ -1,6 +1,6 @@
 <x-layout>
     <section class="relative bg-cover bg-center bg-no-repeat h-[350px] w-full"
-        style="background-image: url('{{ asset('img/dokter1.jpg') }}');">
+        style="background-image: url('{{ asset('img/oke.avif') }}');">
         <div class="absolute inset-0"></div>
 
         <div class="relative z-10 flex flex-col md:flex-row items-center justify-between h-full px-8 lg:px-20">
