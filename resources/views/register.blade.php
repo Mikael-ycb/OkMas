@@ -71,9 +71,14 @@
                 required />
 
             <!-- Tombol Sign In dan Daftar -->
-            <div class="flex justify-center gap-6 mt-4">
+           <div class="flex justify-center gap-6 mt-4">
+                <a
+                    href="/login"
+                    class="bg-blue-900 hover:bg-blue-800 text-white px-8 py-2 rounded-lg shadow-md transition">
+                    KEMBALI
+                </a>
 
-                <!-- Tombol DAFTAR -->
+                <!-- Tombol RESET PASSWORD -->
                 <button
                     type="submit"
                     class="bg-blue-900 hover:bg-blue-800 text-white px-8 py-2 rounded-lg shadow-md transition">
