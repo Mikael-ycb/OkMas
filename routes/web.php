@@ -156,3 +156,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/laporan/{id}', [LaporanPasienController::class, 'show'])->name('laporan_detail');
     Route::get('/laporan/{id}/pdf', [LaporanPasienController::class, 'downloadPdf'])->name('laporan_pdf');
 });
+// REGISTER
+Route::get('/register', [LoginController::class, 'registerForm'])->name('register.form');
+Route::post('/register', [LoginController::class, 'register'])->name('register');
+
+// LUPA PASSWORD
+Route::get('/lupa-password', [LoginController::class, 'forgotPasswordForm'])->name('password.request');
+Route::post('/lupa-password', [LoginController::class, 'sendResetToken'])->name('password.email');
+
+Route::get('/reset-password/{token}', [LoginController::class, 'resetPasswordForm'])->name('password.reset');
+Route::post('/reset-password', [LoginController::class, 'resetPassword'])->name('password.update');

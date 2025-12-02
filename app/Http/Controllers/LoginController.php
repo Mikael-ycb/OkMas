@@ -66,4 +66,28 @@ class LoginController extends Controller
 
         return redirect('/login');
     }
+    public function registerForm()
+{
+    return view('register');
+}
+public function register(Request $request)
+{
+    $request->validate([
+        'nik' => 'required|unique:akun,nik',
+        'username' => 'required|unique:akun,username',
+        'password' => 'required|min:5',
+        'nama' => 'required',
+    ]);
+
+    Akun::create([
+        'nik' => $request->nik,
+        'username' => $request->username,
+        'password' => Hash::make($request->password),
+        'nama' => $request->nama,
+        'role' => 'pasien',
+    ]);
+
+    return redirect()->route('login')->with('success', 'Akun berhasil dibuat! Silakan login.');
+}
+
 }
