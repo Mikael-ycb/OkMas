@@ -37,7 +37,8 @@ Route::middleware(['auth'])->group(function () {
 
 
 Route::get('/dokter', function () {
-    return view('dokter', ['title' => 'Dokter']);
+    $dokters = \App\Models\Dokter::all();
+    return view('dokter', ['title' => 'Dokter', 'dokters' => $dokters]);
 });
 
 //Route::get('/berita', function () {
