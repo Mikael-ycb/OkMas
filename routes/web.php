@@ -15,6 +15,7 @@ use App\Http\Controllers\KlasterController;
 use App\Http\Controllers\ResepObatController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\NotifikasiController;
 
 Route::get('/', function () {
     return view('home', ['title' => 'Home Page']);
@@ -47,6 +48,12 @@ Route::get('/dokter', function () {
 Route::get('/berita', [BeritaPasienController::class, 'index'])->name('berita');
 Route::get('/berita/{id}', [BeritaPasienController::class, 'show'])
     ->name('beritaDetail');
+Route::delete('/notifikasi/{id}', [NotifikasiController::class, 'destroy'])
+    ->name('notifikasi.destroy');
+Route::get('/notifikasi', [NotifikasiController::class, 'index'])
+    ->name('notifikasi.index');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::resource('kontak', KontakController::class);
@@ -61,9 +68,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/janjiTemu/{id}', [JanjiTemuController::class, 'destroy'])->name('janjiTemu.destroy');
 });
 
-Route::get('/notifikasi', function () {
-    return view('notifikasi', ['title' => 'notifikasi']);
-});
+Route::get('/pasien/notifikasi', [NotifikasiController::class, 'index'])->name('pasien.notifikasi');
+
 
 Route::get('/laporan', [JanjiTemuController::class, 'riwayat'])
     ->name('laporan')

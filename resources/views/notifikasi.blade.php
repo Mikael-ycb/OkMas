@@ -1,66 +1,113 @@
 <x-layout>
-    <section class="relative bg-cover bg-center bg-no-repeat h-[350px] w-full"
-        style="background-image: url('{{ asset('img/oke.avif') }}');">
 
-        <div class="absolute inset-0"></div>
+    <style>
+        /* Animasi masuk (fade + slide up) */
+        .notif-card {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeSlide .4s ease-out forwards;
+        }
 
-        <div class="relative z-10 flex flex-col md:flex-row items-center justify-between h-full px-8 lg:px-20">
-            <div class="text-center md:text-left max-w-2xl text-white space-y-6">
-                <h5 class="uppercase tracking-widest font-semibold text-blue-900">Beranda / Notifikasi</h5>
-                <h1 class="text-4xl sm:text-5xl font-bold leading-tight text-blue-900">
-                    Notifikasi
-                </h1>
+        @keyframes fadeSlide {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-            </div>
+        /* Animasi hover */
+        .notif-card:hover {
+            transform: translateY(0) scale(1.01);
+            transition: 0.2s ease;
+        }
+
+        /* Animasi saat dihapus */
+        .fade-out {
+            animation: fadeOut .3s forwards ease-out;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+        }
+    </style>
+
+    <section class="px-20 pt-12 pb-6 bg-white">
+        <h1 class="text-3xl font-extrabold text-blue-900 uppercase tracking-wide">NOTIFIKASI</h1>
+        <p class="text-gray-600 mt-1">Informasi terbaru untuk Anda</p>
     </section>
 
-    <div class="grid md:grid-cols-2 gap-6 p-6">
-        <div class="flex items-start space-x-4 border-b pb-4">
-            <img src="{{ asset('img/logo-puskesmas.png') }}" class="w-10 h-10 rounded-full" alt="logo">
-            <div>
-                <p class="text-gray-800 text-sm">
-                    Jangan lupa untuk mengonsumsi obat sesuai resep dari dokter ya. Jika obat hampir habis,
-                    Anda bisa mengajukan permintaan ulang melalui aplikasi OKMAS.
-                </p>
-                <p class="text-xs text-gray-500 mt-1">February 26, 2023</p>
-            </div>
-        </div>
+    <div class="px-20 pb-20 bg-gray-50 min-h-screen">
 
-        <div class="flex items-start space-x-4 border-b pb-4">
-            <img src="{{ asset('img/logo-puskesmas.png') }}" class="w-10 h-10 rounded-full" alt="logo">
-            <div>
-                <p class="text-gray-800 text-sm">
-                    Hasil pemeriksaan laboratorium Anda sudah tersedia. Silakan login ke aplikasi OKMAS
-                    atau datang ke Puskesmas untuk informasi lebih lengkap.
-                </p>
-                <p class="text-xs text-gray-500 mt-1">February 26, 2023</p>
+        @if($notif->count() === 0)
+            <div class="text-center mt-10 text-gray-600">
+                <p>Tidak ada notifikasi baru</p>
             </div>
-        </div>
+        @endif
 
-        <div class="flex items-start space-x-4 border-b pb-4">
-            <img src="{{ asset('img/logo-puskesmas.png') }}" class="w-10 h-10 rounded-full" alt="logo">
-            <div>
-                <p class="text-gray-800 text-sm font-medium">
-                    Halo Bunda, jadwal imunisasi anak Anda <span class="font-semibold">[Nama Anak]</span> adalah pada
-                    <span class="font-semibold">5 Oktober 2025 pukul 08.00 WIB</span>.
-                    Silakan datang ke Puskesmas Candiroto sesuai jadwal.
-                </p>
-                <p class="text-xs text-gray-500 mt-1">March 6, 2022</p>
-            </div>
-        </div>
+        @foreach($notif as $n)
+            <div class="notif-card p-4 bg-white border rounded-xl mb-3 shadow-sm transition">
 
-        <div class="flex items-start space-x-4 border-b pb-4">
-            <img src="{{ asset('img/logo-puskesmas.png') }}" class="w-10 h-10 rounded-full" alt="logo">
-            <div>
-                <p class="text-gray-800 text-sm font-medium">
-                    Halo <span class="font-semibold">[Nama Pasien]</span>, Anda memiliki janji temu dengan
-                    <span class="font-semibold">dr. [Nama Dokter]</span> pada Senin,
-                    <span class="font-semibold">2 Oktober 2025 pukul 09.00 WIB</span> di Puskesmas Candiroto.
-                    Mohon hadir 15 menit lebih awal.
-                </p>
-                <p class="text-xs text-gray-500 mt-1">March 1, 2023</p>
+                <div class="flex justify-between items-start">
+
+                    {{-- Judul & waktu --}}
+                    <div class="max-w-3xl">
+                        <a href="{{ route('beritaDetail', $n->berita_id) }}"
+                            class="font-semibold text-blue-900 text-lg">
+                            {{ $n->judul }}
+                        </a>
+
+                        <p class="text-sm text-gray-600 mt-2">
+                            {{ $n->created_at->diffForHumans() }}
+                        </p>
+
+                        @unless($n->is_read)
+                            <span class="text-red-600 text-xs font-semibold bg-red-100 px-2 py-1 rounded-lg inline-block mt-2">
+                                Baru
+                            </span>
+                        @endunless
+                    </div>
+
+                    {{-- Tombol Hapus --}}
+                    <div class="ml-4 flex items-start">
+                        <form action="{{ route('notifikasi.destroy', $n->id) }}"
+                              method="POST"
+                              class="delete-form">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit" class="text-red-500 hover:text-red-700 text-xl leading-none">
+                                🗑️
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+
             </div>
-        </div>
+        @endforeach
+
     </div>
+
+    <!-- Script animasi delete -->
+    <script>
+        document.querySelectorAll(".delete-form").forEach(form => {
+            form.addEventListener("submit", function(e) {
+                e.preventDefault();
+
+                if (confirm("Hapus notifikasi ini?")) {
+                    let card = this.closest(".notif-card");
+
+                    // Tambahkan efek fade-out
+                    card.classList.add("fade-out");
+
+                    // Submit setelah animasi selesai
+                    setTimeout(() => form.submit(), 300);
+                }
+            });
+        });
+    </script>
 
 </x-layout>
