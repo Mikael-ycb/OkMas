@@ -12,7 +12,15 @@ class BeritaController extends Controller
     public function index()
     {
         $berita = Berita::latest()->paginate(8);
-        return view('updateBeritaAdmin.updateBeritaAdmin_index', compact('berita'));
+        
+        // Pre-calculate statistics for statistics cards
+        $totalBerita = Berita::count();
+        $beritaBulanIni = Berita::whereMonth('tanggal', \Carbon\Carbon::now()->month)
+                                 ->whereYear('tanggal', \Carbon\Carbon::now()->year)
+                                 ->count();
+        $programUnik = Berita::distinct('program')->count('program');
+        
+        return view('updateBeritaAdmin.updateBeritaAdmin_index', compact('berita', 'totalBerita', 'beritaBulanIni', 'programUnik'));
     }
 
     public function create()

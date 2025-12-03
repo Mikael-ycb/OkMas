@@ -40,7 +40,7 @@
                     }
                     @endphp
 
-                    <a href="{{ route('pasien.notifikasi') }}" class="relative rounded-full p-1 text-gray-300 hover:text-white">
+                    <a href="{{ route('notifikasi.index') }}" class="relative rounded-full p-1 text-gray-300 hover:text-white">
                         <span class="absolute -inset-1.5"></span>
 
                         {{-- ICON BEL --}}

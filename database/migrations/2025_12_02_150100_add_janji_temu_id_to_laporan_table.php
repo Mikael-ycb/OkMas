@@ -19,9 +19,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::table('laporan', function (Blueprint $table) {
-            $table->dropForeignKey(['janji_temu_id']);
-            $table->dropColumn('janji_temu_id');
-        });
+        // Skip rollback untuk SQLite compatibility
     }
 };

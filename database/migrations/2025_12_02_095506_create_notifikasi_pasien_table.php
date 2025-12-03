@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('notifikasi_pasien', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('pasien_id')->nullable();
-            $table->unsignedBigInteger('berita_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('judul');
+            $table->text('pesan')->nullable();
             $table->boolean('is_read')->default(false);
             $table->timestamps();
+            
+            // Foreign key
+            $table->foreign('user_id')->references('id_akun')->on('akun')->onDelete('cascade');
         });
     }
 

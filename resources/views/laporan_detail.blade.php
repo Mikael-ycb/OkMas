@@ -17,15 +17,15 @@
             </div>
 
             {{-- Info Pasien (Card Header) --}}
-            <div class="bg-gradient-to-r from-blue-900 to-blue-800 rounded-2xl p-8 text-white mb-6 shadow-lg">
+            <div class="bg-gradient-to-r from-blue-900 to-blue-800 rounded-2xl p-8 text-black mb-6 shadow-lg">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                        <p class="text-sm opacity-80 mb-1">👤 Nama Pasien</p>
-                        <p class="text-3xl font-bold">{{ $laporan->nama_pasien }}</p>
+                        <p class="text-sm opacity-80 mb-1 text-black">👤 Nama Pasien</p>
+                        <p class="text-3xl font-bold text-black">{{ $laporan->nama_pasien }}</p>
                     </div>
                     <div>
-                        <p class="text-sm opacity-80 mb-1">🆔 NIK</p>
-                        <p class="text-2xl font-bold font-mono">{{ $laporan->nik }}</p>
+                        <p class="text-sm opacity-80 mb-1 text-black">🆔 NIK</p>
+                        <p class="text-2xl font-bold font-mono text-black">{{ $laporan->nik }}</p>
                     </div>
                 </div>
             </div>

@@ -44,8 +44,8 @@
                     <div class="bg-gradient-to-r from-blue-900 to-blue-800 px-6 py-4 text-white">
                         <div class="flex justify-between items-start">
                             <div>
-                                <p class="text-sm opacity-90">📅 Tanggal Periksa</p>
-                                <p class="text-2xl font-bold">
+                                <p class="text-sm text-black">📅 Tanggal Periksa</p>
+                                <p class="text-2xl font-bold text-black">
                                     {{ $item->tanggal ? \Carbon\Carbon::parse($item->tanggal)->format('d M Y') : '-' }}
                                 </p>
                             </div>
@@ -131,7 +131,7 @@
                         @if ($item->resepObat && $item->resepObat->isNotEmpty())
                         <div class="mb-4 bg-gradient-to-r from-orange-50 to-red-50 p-4 rounded-xl border-2 border-orange-200">
                             <p class="text-sm font-bold text-orange-900 mb-3 flex items-center">
-                                <span class="text-2xl mr-2">💊</span> RESEP OBAT DIBERIKAN
+                                <span class="text-2xl mr-2 text-black">💊</span> RESEP OBAT DIBERIKAN
                             </p>
                             
                             @foreach ($item->resepObat as $resep)
@@ -181,13 +181,13 @@
                     <div class="px-6 pb-6 space-y-3 border-t pt-4">
                         @if (!$item->resepObat || $item->resepObat->isEmpty())
                         <a href="{{ route('resep.create', ['laporan_id' => $item->id]) }}"
-                            class="block text-center bg-gradient-to-r from-orange-600 to-red-600 text-white py-3 rounded-lg hover:from-orange-700 hover:to-red-700 font-semibold transition-all duration-300 shadow-md hover:shadow-lg">
-                            💊 BUAT RESEP OBAT
+                            class="block text-center bg-gradient-to-r from-orange-600 to-red-600 text-black py-3 rounded-lg hover:from-orange-700 hover:to-red-700 font-semibold transition-all duration-300 shadow-md hover:shadow-lg">
+                            💊 LIHAT RESEP OBAT
                         </a>
                         @endif
 
                         <a href="{{ route('laporan_detail', $item->id) }}"
-                            class="block text-center bg-gradient-to-r from-green-600 to-emerald-600 text-white py-3 rounded-lg hover:from-green-700 hover:to-emerald-700 font-semibold transition-all duration-300 shadow-md hover:shadow-lg">
+                            class="block text-center bg-gradient-to-r from-green-600 to-emerald-600 text-black py-3 rounded-lg hover:from-green-700 hover:to-emerald-700 font-semibold transition-all duration-300 shadow-md hover:shadow-lg">
                             📄 LIHAT LAPORAN LENGKAP
                         </a>
                     </div>
