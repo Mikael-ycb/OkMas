@@ -11,12 +11,20 @@ use Illuminate\Support\Facades\DB;
 class LaporanController extends Controller
 {
     // ====================== INDEX ======================
-    public function index()
+    public function index(Request $request)
     {
-        $laporan = Laporan::with('akun')
+        $query = Laporan::with('akun')
             ->select('id_akun', DB::raw('MAX(id) as id'), DB::raw('MAX(updated_at) as updated_at'))
-            ->groupBy('id_akun')
-            ->paginate(7);
+            ->groupBy('id_akun');
+        
+        // Filter by klaster if provided
+        if ($request->has('klaster') && $request->klaster != '') {
+            $query->whereHas('akun.klaster', function($q) use ($request) {
+                $q->where('nama', 'like', '%' . $request->klaster . '%');
+            });
+        }
+        
+        $laporan = $query->paginate(7);
 
         return view('laporanAdmin.index', compact('laporan'));
     }

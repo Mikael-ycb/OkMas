@@ -5,6 +5,27 @@
     </section>
 
     <div class="px-6 md:px-20 pb-12 bg-gradient-to-b from-gray-50 to-white min-h-screen">
+        {{-- FILTER KLASTER --}}
+        <div class="mt-8 mb-8 flex flex-wrap gap-3 items-center">
+            <span class="text-gray-700 font-bold text-lg">🏥 Filter Klaster:</span>
+            <a href="{{ request()->url() }}" 
+               class="px-6 py-2 rounded-full font-semibold transition-all {{ request('klaster') == '' ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg' : 'bg-white text-gray-700 border-2 border-gray-200 hover:border-purple-400' }}">
+                📊 Semua Dokter
+            </a>
+            <a href="?klaster=Umum" 
+               class="px-6 py-2 rounded-full font-semibold transition-all {{ request('klaster') == 'Umum' ? 'bg-blue-600 text-white shadow-lg' : 'bg-white text-blue-700 border-2 border-blue-200 hover:border-blue-400' }}">
+                🩺 Umum
+            </a>
+            <a href="?klaster=Gigi%20dan%20Mulut" 
+               class="px-6 py-2 rounded-full font-semibold transition-all {{ request('klaster') == 'Gigi dan Mulut' ? 'bg-pink-600 text-white shadow-lg' : 'bg-white text-pink-700 border-2 border-pink-200 hover:border-pink-400' }}">
+                🦷 Gigi & Mulut
+            </a>
+            <a href="?klaster=Bidan" 
+               class="px-6 py-2 rounded-full font-semibold transition-all {{ request('klaster') == 'Bidan' ? 'bg-rose-600 text-white shadow-lg' : 'bg-white text-rose-700 border-2 border-rose-200 hover:border-rose-400' }}">
+                👶 Bidan
+            </a>
+        </div>
+
         {{-- STATISTIK --}}
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 mb-8">
             {{-- Total Dokter --}}
@@ -52,6 +73,24 @@
                 Tambah Dokter Baru
             </a>
         </div>
+
+        {{-- KLASTER HEADER DINAMIS --}}
+        @php
+            $selectedKlaster = request('klaster');
+            $klasterInfo = [
+                'Umum' => ['icon' => '🩺', 'color' => 'blue', 'gradient' => 'from-blue-50 to-blue-100', 'text' => 'text-blue-900'],
+                'Gigi dan Mulut' => ['icon' => '🦷', 'color' => 'pink', 'gradient' => 'from-pink-50 to-pink-100', 'text' => 'text-pink-900'],
+                'Bidan' => ['icon' => '👶', 'color' => 'rose', 'gradient' => 'from-rose-50 to-rose-100', 'text' => 'text-rose-900'],
+            ];
+            $info = $klasterInfo[$selectedKlaster] ?? ['icon' => '👨‍⚕️', 'color' => 'purple', 'gradient' => 'from-purple-50 to-purple-100', 'text' => 'text-purple-900'];
+        @endphp
+
+        @if($selectedKlaster)
+        <div class="mb-8 bg-gradient-to-r {{ $info['gradient'] }} border-2 border-{{ $info['color'] }}-200 rounded-2xl p-6 shadow-md">
+            <h3 class="text-3xl font-black {{ $info['text'] }}">{{ $info['icon'] }} Daftar Dokter {{ $selectedKlaster }}</h3>
+            <p class="text-gray-600 mt-2">Menampilkan semua dokter yang melayani di klaster {{ $selectedKlaster }}</p>
+        </div>
+        @endif
 
         {{-- DAFTAR DOKTER - CARDS VIEW --}}
         @if($dokter->isNotEmpty())

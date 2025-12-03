@@ -81,15 +81,31 @@
     <section class="relative bg-cover bg-center h-[400px] w-full" style="background-image: url('{{ asset('img/oke.avif') }}');">
         <div class="absolute inset-0 bg-black/50"></div>
         <div class="relative z-10 flex flex-col justify-center h-full max-w-7xl mx-auto px-6 lg:px-20 text-center md:text-left">
-            <h5 class="uppercase tracking-widest font-semibold text-white mb-2" data-aos="fade-down" data-aos-delay="200">
-                Beranda / Detail Klaster
-            </h5>
-            <h1 class="text-4xl sm:text-5xl font-bold text-white leading-tight" data-aos="fade-up" data-aos-delay="400">
-                {{ $data['judul'] }}
-            </h1>
-            <p class="text-white mt-4 max-w-2xl" data-aos="fade-up" data-aos-delay="600">
-                Temukan berbagai layanan kesehatan unggulan dari rumah sakit kami, didukung oleh tenaga medis profesional dan fasilitas modern.
-            </p>
+            <div class="flex justify-between items-start">
+                <div class="flex-1">
+                    <h5 class="uppercase tracking-widest font-semibold text-white mb-2" data-aos="fade-down" data-aos-delay="200">
+                        Beranda / Detail Klaster
+                    </h5>
+                    <h1 class="text-4xl sm:text-5xl font-bold text-white leading-tight" data-aos="fade-up" data-aos-delay="400">
+                        {{ $data['judul'] }}
+                    </h1>
+                    <p class="text-white mt-4 max-w-2xl" data-aos="fade-up" data-aos-delay="600">
+                        Temukan berbagai layanan kesehatan unggulan dari rumah sakit kami, didukung oleh tenaga medis profesional dan fasilitas modern.
+                    </p>
+                </div>
+                {{-- KLASTER BADGE --}}
+                <div data-aos="fade-up" data-aos-delay="500" class="ml-4">
+                    @if($data['judul'] == 'Umum' || $data['judul'] == 'Layanan Umum')
+                        <span class="inline-block bg-blue-500 text-white px-6 py-3 rounded-xl font-bold text-lg shadow-lg">🩺 Umum</span>
+                    @elseif($data['judul'] == 'Gigi' || $data['judul'] == 'Gigi dan Mulut' || $data['judul'] == 'Layanan Gigi')
+                        <span class="inline-block bg-pink-500 text-white px-6 py-3 rounded-xl font-bold text-lg shadow-lg">🦷 Gigi & Mulut</span>
+                    @elseif($data['judul'] == 'Bidan' || $data['judul'] == 'Layanan Bidan')
+                        <span class="inline-block bg-rose-500 text-white px-6 py-3 rounded-xl font-bold text-lg shadow-lg">👶 Bidan</span>
+                    @else
+                        <span class="inline-block bg-gray-600 text-white px-6 py-3 rounded-xl font-bold text-lg shadow-lg">📋 {{ $data['judul'] }}</span>
+                    @endif
+                </div>
+            </div>
         </div>
     </section>
 

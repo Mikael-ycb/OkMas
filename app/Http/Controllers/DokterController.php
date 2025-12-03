@@ -7,9 +7,18 @@ use App\Models\Dokter;
 
 class DokterController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $dokter = Dokter::paginate(10);
+        $query = Dokter::with('klaster');
+        
+        // Filter by klaster if provided
+        if ($request->has('klaster') && $request->klaster != '') {
+            $query->whereHas('klaster', function($q) use ($request) {
+                $q->where('nama', $request->klaster);
+            });
+        }
+        
+        $dokter = $query->paginate(10);
         return view('dokterAdmin.dokterAdmin_index', compact('dokter'));
     }
 
