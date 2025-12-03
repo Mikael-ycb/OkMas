@@ -4,7 +4,7 @@
         <p class="text-gray-600 mt-1">{{ $laporan->akun->nama }} — NIK: {{ $laporan->akun->nik }}</p>
     </section>
 
-    <form action="{{ route('laporanAdmin.update', $laporan->id) }}" method="POST" class="px-20 pb-20 bg-white">
+    <form action="{{ route('laporanAdmin.update', $laporan->id_akun) }}" method="POST" class="px-20 pb-20 bg-white">
         @csrf @method('PUT')
 
         <div class="grid grid-cols-2 gap-6 bg-white p-6 rounded-lg shadow border">

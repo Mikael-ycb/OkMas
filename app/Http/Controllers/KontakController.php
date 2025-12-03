@@ -34,8 +34,9 @@ class KontakController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'subjek' => 'required',
-            'pesan' => 'required',
+            'email' => 'required|email',
+            'subjek' => 'required|string|max:255',
+            'pesan' => 'required|string',
         ]);
 
         Kontak::create([

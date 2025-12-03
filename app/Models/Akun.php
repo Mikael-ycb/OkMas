@@ -45,6 +45,6 @@ class Akun extends Authenticatable
 
      public function resepObat()
     {
-        return $this->hasMany(ResepObat::class, 'id_pasien', 'id_akun');
+        return $this->hasMany(ResepObat::class, 'id_akun', 'id_akun');
     }
 }

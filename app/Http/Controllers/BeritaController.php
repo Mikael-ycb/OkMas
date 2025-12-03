@@ -18,7 +18,7 @@ class BeritaController extends Controller
         $beritaBulanIni = Berita::whereMonth('tanggal', \Carbon\Carbon::now()->month)
                                  ->whereYear('tanggal', \Carbon\Carbon::now()->year)
                                  ->count();
-        $programUnik = Berita::distinct('program')->count('program');
+        $programUnik = Berita::distinct()->count('program');
         
         return view('updateBeritaAdmin.updateBeritaAdmin_index', compact('berita', 'totalBerita', 'beritaBulanIni', 'programUnik'));
     }

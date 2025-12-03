@@ -63,11 +63,12 @@ public function update(Request $request, $id)
 
     $request->validate([
         'nama' => 'required',
-        'nik' => 'required|unique:akun,nik,' . $akun->id,
-        'username' => 'required|unique:akun,username,' . $akun->id,
+        'nik' => 'required|unique:akun,nik,' . $akun->id_akun . ',id_akun',
+        'username' => 'required|unique:akun,username,' . $akun->id_akun . ',id_akun',
+        'password' => 'nullable|min:6',
     ]);
 
-    $akun->update([
+    $data = [
         'nama' => $request->nama,
         'nik' => $request->nik,
         'username' => $request->username,
@@ -77,7 +78,14 @@ public function update(Request $request, $id)
         'status' => $request->status,
         'no_telepon' => $request->no_telepon,
         'alamat' => $request->alamat,
-    ]);
+    ];
+
+    // Update password only if provided
+    if ($request->filled('password')) {
+        $data['password'] = Hash::make($request->password);
+    }
+
+    $akun->update($data);
 
     return redirect()->route('akunPasienAdmin.index')->with('success', 'Akun berhasil diperbarui.');
 }

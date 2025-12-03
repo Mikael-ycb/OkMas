@@ -245,13 +245,13 @@
 
                         {{-- Action Buttons --}}
                         <div class="flex gap-2 mt-5">
-                            <a href="{{ route('laporanAdmin.create', ['id_akun' => $jt?->id_akun]) }}"
-                                class="flex-1 text-center bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg text-sm font-semibold transition">
-                                ✗ Decline
+                            <a href="{{ route('periksa.index') }}"
+                                class="flex-1 text-center bg-gray-500 hover:bg-gray-600 text-white px-3 py-2 rounded-lg text-sm font-semibold transition">
+                                👁️ Lihat
                             </a>
-                            <a href="{{ route('laporanAdmin.create', ['id_akun' => $jt?->id_akun]) }}"
-                                class="flex-1 text-center bg-orange-500 hover:bg-orange-600 text-white px-3 py-2 rounded-lg text-sm font-semibold transition">
-                                ✓ Approve
+                            <a href="{{ route('periksa.formLaporan', $jt?->periksa?->id ?? 0) }}"
+                                class="flex-1 text-center bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg text-sm font-semibold transition">
+                                📝 Laporan
                             </a>
                         </div>
 

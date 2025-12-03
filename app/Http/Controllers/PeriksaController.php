@@ -85,37 +85,35 @@ class PeriksaController extends Controller
     return view('daftarPeriksaAdmin.form_laporan', compact('periksa'));
 }
 
-public function simpanLaporan(Request $request, $id)
-{
-    $periksa = Periksa::with('janjiTemu.akun')->findOrFail($id);
+    public function simpanLaporan(Request $request, $id)
+    {
+        $periksa = Periksa::with('janjiTemu.akun')->findOrFail($id);
 
-    $request->validate([
-        'hasil' => 'required',
-        'diagnosa' => 'nullable',
-        'tekanan_darah' => 'nullable',
-        'saran' => 'nullable'
-    ]);
+        $request->validate([
+            'hasil' => 'required',
+            'diagnosa' => 'nullable',
+            'tekanan_darah' => 'nullable',
+            'saran' => 'nullable'
+        ]);
 
-    // Ubah status periksa → selesai
-    $periksa->update(['status' => 'Tidak Aktif']);
+        // Ubah status periksa → selesai
+        $periksa->update(['status' => 'Tidak Aktif']);
 
-    // Buat laporan (PASTI TERHUBUNG DENGAN PERIKSA)
-    Laporan::create([
-        'id_akun' => $periksa->id_akun,
-        'periksa_id' => $periksa->id,               // PENTING !!!
-        'nama_pasien' => $periksa->nama_pasien,
-        'nik' => $periksa->janjiTemu->akun->nik,
-        'tanggal' => $periksa->tanggal_periksa,     // tanggal periksa asli
-        'jenis_pemeriksaan' => $periksa->klaster,
-        'hasil_pemeriksaan' => $request->hasil,
-        'anamnesis' => $periksa->janjiTemu->keluhan,
-        'tekanan_darah' => $request->tekanan_darah,
-        'riwayat_penyakit_sekarang' => $request->diagnosa,
-        'riwayat_kebiasaan' => $request->saran,
-    ]);
+        // Buat laporan (PASTI TERHUBUNG DENGAN PERIKSA)
+        Laporan::create([
+            'id_akun' => $periksa->id_akun,
+            'periksa_id' => $periksa->id,               // PENTING !!!
+            'nama_pasien' => $periksa->nama_pasien,
+            'nik' => optional($periksa->janjiTemu)->akun->nik ?? '-',
+            'tanggal' => $periksa->tanggal_periksa,     // tanggal periksa asli
+            'jenis_pemeriksaan' => $periksa->klaster,
+            'hasil_pemeriksaan' => $request->hasil,
+            'anamnesis' => optional($periksa->janjiTemu)->keluhan ?? '-',
+            'tekanan_darah' => $request->tekanan_darah,
+            'riwayat_penyakit_sekarang' => $request->diagnosa,
+            'riwayat_kebiasaan' => $request->saran,
+        ]);
 
-    return redirect()->route('periksa.index')
-        ->with('success', 'Laporan berhasil dibuat!');
-}
-
-}
+        return redirect()->route('periksa.index')
+            ->with('success', 'Laporan berhasil dibuat!');
+    }}
