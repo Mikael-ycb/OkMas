@@ -45,10 +45,10 @@ class BeritaController extends Controller
         $berita = Berita::create($validated);
 
         NotifikasiPasien::create([
-        'pasien_id' => null,              // null = tampil untuk semua pasien
-        'berita_id' => $berita->id,
-        'judul' => "Berita baru: " . $berita->judul,
-    ]);
+            'user_id' => null,              // null = tampil untuk semua pasien
+            'judul' => "Berita baru: " . $berita->judul,
+            'pesan' => $berita->isi,
+        ]);
 
         return redirect()->route('berita.index')->with('success', 'Berita berhasil ditambahkan!');
     }

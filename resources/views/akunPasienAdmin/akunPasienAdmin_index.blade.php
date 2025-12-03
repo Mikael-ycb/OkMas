@@ -8,7 +8,7 @@
         {{-- STATISTIK --}}
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 mb-8">
             {{-- Total Pasien --}}
-            <div class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-6 text-white shadow-lg">
+            <div class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-6 text-black shadow-lg">
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="text-sm uppercase tracking-wide opacity-90">Total Pasien</p>
@@ -19,7 +19,7 @@
             </div>
 
             {{-- Total dengan Role Pasien --}}
-            <div class="bg-gradient-to-br from-purple-600 to-purple-700 rounded-2xl p-6 text-white shadow-lg">
+            <div class="bg-gradient-to-br from-purple-600 to-purple-700 rounded-2xl p-6 text-black shadow-lg">
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="text-sm uppercase tracking-wide opacity-90">Role Pasien</p>
@@ -30,7 +30,7 @@
             </div>
 
             {{-- Total Admin/Staff --}}
-            <div class="bg-gradient-to-br from-amber-600 to-amber-700 rounded-2xl p-6 text-white shadow-lg">
+            <div class="bg-gradient-to-br from-amber-600 to-amber-700 rounded-2xl p-6 text-black shadow-lg">
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="text-sm uppercase tracking-wide opacity-90">Admin & Staff</p>
@@ -44,7 +44,7 @@
         {{-- TOMBOL TAMBAH --}}
         <div class="mb-8">
             <a href="{{ route('akunPasienAdmin.create') }}" 
-               class="inline-flex items-center bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white px-8 py-4 rounded-xl shadow-lg font-semibold transition-all duration-300 hover:shadow-xl">
+               class="inline-flex items-center bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-black px-8 py-4 rounded-xl shadow-lg font-semibold transition-all duration-300 hover:shadow-xl">
                 <span class="text-2xl mr-3">➕</span>
                 Tambah Akun Baru
             </a>
@@ -54,7 +54,7 @@
         @if($akun->isNotEmpty())
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             @forelse($akun as $item)
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden border-l-4 border-cyan-500 hover:shadow-xl transition-all duration-300">
+                <div class="bg-black rounded-2xl shadow-lg overflow-hidden border-l-4 border-cyan-500 hover:shadow-xl transition-all duration-300">
                     {{-- HEADER CARD --}}
                     <div class="bg-gradient-to-r from-cyan-50 to-blue-50 px-6 py-4 border-b border-cyan-100">
                         <div class="flex justify-between items-start gap-4">

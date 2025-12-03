@@ -13,8 +13,8 @@ class NotifikasiController extends Controller
         $userId = Auth::user()->id_akun ?? null;
         
         // Get notifications: either for specific user or for all users (null)
-        $notif = NotifikasiPasien::where('pasien_id', $userId)
-            ->orWhereNull('pasien_id')
+        $notif = NotifikasiPasien::where('user_id', $userId)
+            ->orWhereNull('user_id')
             ->latest()
             ->get();
 

@@ -9,9 +9,10 @@ class NotifikasiPasien extends Model
     protected $table = 'notifikasi_pasien';
 
     protected $fillable = [
-        'pasien_id',
+        'user_id',
         'berita_id',
         'judul',
+        'pesan',
         'is_read'
     ];
 }

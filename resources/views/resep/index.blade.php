@@ -18,7 +18,7 @@
         @if($resep->isNotEmpty())
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 mb-8">
             {{-- Total Resep --}}
-            <div class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-6 text-white shadow-lg">
+            <div class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-6 text-black shadow-lg">
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="text-sm uppercase tracking-wide opacity-90">Total Resep</p>
@@ -29,7 +29,7 @@
             </div>
 
             {{-- Total Pasien Unik --}}
-            <div class="bg-gradient-to-br from-purple-600 to-purple-700 rounded-2xl p-6 text-white shadow-lg">
+            <div class="bg-gradient-to-br from-purple-600 to-purple-700 rounded-2xl p-6 text-black shadow-lg">
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="text-sm uppercase tracking-wide opacity-90">Pasien Terlayani</p>
@@ -40,7 +40,7 @@
             </div>
 
             {{-- Total Obat --}}
-            <div class="bg-gradient-to-br from-orange-600 to-orange-700 rounded-2xl p-6 text-white shadow-lg">
+            <div class="bg-gradient-to-br from-orange-600 to-orange-700 rounded-2xl p-6 text-black shadow-lg">
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="text-sm uppercase tracking-wide opacity-90">Total Item Obat</p>
@@ -56,7 +56,7 @@
 
         {{-- TOMBOL BUAT RESEP BARU --}}
         <div class="mt-6 mb-8">
-            <a href="{{ route('resep.create') }}" class="inline-flex items-center bg-gradient-to-r from-blue-900 to-blue-800 hover:from-blue-800 hover:to-blue-700 text-white px-8 py-4 rounded-xl shadow-lg font-semibold transition-all duration-300 hover:shadow-xl">
+            <a href="{{ route('resep.create') }}" class="inline-flex items-center bg-gradient-to-r from-blue-900 to-blue-800 hover:from-blue-800 hover:to-blue-700 text-black px-8 py-4 rounded-xl shadow-lg font-semibold transition-all duration-300 hover:shadow-xl">
                 <span class="text-2xl mr-3">➕</span>
                 Buat Resep Obat Baru
             </a>

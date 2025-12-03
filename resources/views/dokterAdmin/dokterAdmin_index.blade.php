@@ -9,19 +9,19 @@
         <div class="mt-8 mb-8 flex flex-wrap gap-3 items-center">
             <span class="text-gray-700 font-bold text-lg">🏥 Filter Klaster:</span>
             <a href="{{ request()->url() }}" 
-               class="px-6 py-2 rounded-full font-semibold transition-all {{ request('klaster') == '' ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg' : 'bg-white text-gray-700 border-2 border-gray-200 hover:border-purple-400' }}">
+               class="px-6 py-2 rounded-full font-semibold transition-all {{ request('klaster') == '' ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-black shadow-lg' : 'bg-white text-gray-700 border-2 border-gray-200 hover:border-purple-400' }}">
                 📊 Semua Dokter
             </a>
             <a href="?klaster=Umum" 
-               class="px-6 py-2 rounded-full font-semibold transition-all {{ request('klaster') == 'Umum' ? 'bg-blue-600 text-white shadow-lg' : 'bg-white text-blue-700 border-2 border-blue-200 hover:border-blue-400' }}">
+               class="px-6 py-2 rounded-full font-semibold transition-all {{ request('klaster') == 'Umum' ? 'bg-blue-600 text-black shadow-lg' : 'bg-white text-blue-700 border-2 border-blue-200 hover:border-blue-400' }}">
                 🩺 Umum
             </a>
             <a href="?klaster=Gigi%20dan%20Mulut" 
-               class="px-6 py-2 rounded-full font-semibold transition-all {{ request('klaster') == 'Gigi dan Mulut' ? 'bg-pink-600 text-white shadow-lg' : 'bg-white text-pink-700 border-2 border-pink-200 hover:border-pink-400' }}">
+               class="px-6 py-2 rounded-full font-semibold transition-all {{ request('klaster') == 'Gigi dan Mulut' ? 'bg-pink-600 text-black shadow-lg' : 'bg-white text-pink-700 border-2 border-pink-200 hover:border-pink-400' }}">
                 🦷 Gigi & Mulut
             </a>
             <a href="?klaster=Bidan" 
-               class="px-6 py-2 rounded-full font-semibold transition-all {{ request('klaster') == 'Bidan' ? 'bg-rose-600 text-white shadow-lg' : 'bg-white text-rose-700 border-2 border-rose-200 hover:border-rose-400' }}">
+               class="px-6 py-2 rounded-full font-semibold transition-all {{ request('klaster') == 'Bidan' ? 'bg-rose-600 text-black shadow-lg' : 'bg-white text-rose-700 border-2 border-rose-200 hover:border-rose-400' }}">
                 👶 Bidan
             </a>
         </div>
