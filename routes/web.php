@@ -15,11 +15,8 @@ use App\Http\Controllers\KlasterController;
 use App\Http\Controllers\ResepObatController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\ProfileController;
-<<<<<<< HEAD
 use App\Http\Controllers\AdminDashboardController;
-=======
 use App\Http\Controllers\NotifikasiController;
->>>>>>> 02ed9ded4519580002367c4e9f8cb25b4756373e
 
 Route::get('/', function () {
     return view('home', ['title' => 'Home Page']);
@@ -95,16 +92,14 @@ Route::middleware(['auth', 'admin'])->prefix('laporanAdmin')->group(function () 
     Route::delete('/delete/{id_akun}', [LaporanController::class, 'destroy'])->name('laporanAdmin.destroy');
 });
 
-<<<<<<< HEAD
+// Admin Dashboard Route
 // Admin Dashboard Route
 Route::get('/admin-dashboard', [AdminDashboardController::class, 'index'])
     ->name('adminDashboard.index')
-    ->middleware('auth');
+    ->middleware(['auth', 'admin']);
 
-Route::prefix('updateBeritaAdmin')->group(function () {
-=======
+// Update Berita Admin Routes
 Route::middleware(['auth', 'admin'])->prefix('updateBeritaAdmin')->group(function () {
->>>>>>> 02ed9ded4519580002367c4e9f8cb25b4756373e
     Route::get('/', [BeritaController::class, 'index'])->name('berita.index');
     Route::get('/create', [BeritaController::class, 'create'])->name('berita.create');
     Route::post('/store', [BeritaController::class, 'store'])->name('berita.store');
@@ -113,6 +108,7 @@ Route::middleware(['auth', 'admin'])->prefix('updateBeritaAdmin')->group(functio
     Route::get('/show/{id}', [BeritaController::class, 'show'])->name('berita.show');
     Route::delete('/delete/{id}', [BeritaController::class, 'destroy'])->name('berita.destroy');
 });
+
 
 Route::middleware(['auth', 'admin'])->prefix('daftarPeriksaAdmin')->group(function () {
     Route::get('/', [PeriksaController::class, 'index'])->name('periksa.index');
@@ -187,12 +183,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/laporan/{id}', [LaporanPasienController::class, 'show'])->name('laporan_detail');
     Route::get('/laporan/{id}/pdf', [LaporanPasienController::class, 'downloadPdf'])->name('laporan_pdf');
 });
-<<<<<<< HEAD
 
 Route::prefix('admin')->group(function () {
     Route::resource('resep', \App\Http\Controllers\ResepObatController::class);
 });
-=======
+
 // REGISTER
 Route::get('/register', [LoginController::class, 'registerForm'])->name('register.form');
 Route::post('/register', [LoginController::class, 'register'])->name('register');
@@ -201,6 +196,6 @@ Route::post('/register', [LoginController::class, 'register'])->name('register')
 Route::get('/lupa-password', [LoginController::class, 'forgotPasswordForm'])->name('password.request');
 Route::post('/lupa-password', [LoginController::class, 'sendResetToken'])->name('password.email');
 
+// RESET PASSWORD
 Route::get('/reset-password/{token}', [LoginController::class, 'resetPasswordForm'])->name('password.reset');
 Route::post('/reset-password', [LoginController::class, 'resetPassword'])->name('password.update');
->>>>>>> 02ed9ded4519580002367c4e9f8cb25b4756373e
