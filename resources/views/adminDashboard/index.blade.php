@@ -1,82 +1,194 @@
 <x-layout4>
     {{-- HEADER SECTION --}}
-    <section class="px-6 md:px-20 pt-12 pb-6 bg-gradient-to-r from-blue-900 to-blue-800">
+    <section class="px-6 md:px-20 pt-12 pb-8 bg-gradient-to-br from-slate-900 via-blue-900 to-blue-800">
         <div class="flex justify-between items-center">
             <div>
-                <h1 class="text-4xl font-bold text-white mb-2">Dashboard Admin</h1>
-                <p class="text-blue-100">Selamat datang kembali! Berikut ringkasan data sistem kesehatan.</p>
+                <h1 class="text-5xl font-black text-white mb-2 tracking-tight">🏥 Dashboard Admin</h1>
+                <p class="text-blue-100 text-lg">Kelola sistem kesehatan puskesmas dengan mudah dan efisien</p>
             </div>
             <div class="text-right">
-                <p class="text-blue-100 text-sm">September 2025</p>
+                <p class="text-blue-200 text-sm font-semibold">{{ now()->format('d M Y') }}</p>
+                <p class="text-blue-100 text-xs">{{ now()->format('H:i') }}</p>
             </div>
         </div>
     </section>
 
     {{-- MAIN CONTENT --}}
-    <div class="px-6 md:px-20 py-12 bg-gray-50 min-h-screen">
+    <div class="px-6 md:px-20 py-12 bg-gradient-to-b from-gray-50 to-white min-h-screen">
 
         {{-- TOP STATS ROW --}}
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
 
             {{-- Stat 1: Semua Dokter --}}
-            <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-blue-500 hover:shadow-xl transition">
+            <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 shadow-lg border-l-4 border-blue-600 hover:shadow-xl transition-all duration-300">
                 <div class="flex justify-between items-start">
                     <div>
-                        <p class="text-sm text-gray-500 font-semibold uppercase">Semua Dokter</p>
-                        <h3 class="text-3xl font-bold text-blue-900 mt-2">{{ $totalDokter ?? 0 }}</h3>
-                        <p class="text-xs text-gray-400 mt-1">📈 Meningkat</p>
+                        <p class="text-xs text-blue-600 font-bold uppercase tracking-wider">Semua Dokter</p>
+                        <h3 class="text-4xl font-black text-blue-900 mt-3">{{ $totalDokter ?? 0 }}</h3>
+                        <p class="text-xs text-blue-500 mt-2">📈 Aktif melayani</p>
                     </div>
-                    <div class="text-4xl">👨‍⚕️</div>
+                    <div class="text-5xl">👨‍⚕️</div>
                 </div>
             </div>
 
             {{-- Stat 2: Janji Temu --}}
-            <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-orange-500 hover:shadow-xl transition">
+            <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-6 shadow-lg border-l-4 border-orange-600 hover:shadow-xl transition-all duration-300">
                 <div class="flex justify-between items-start">
                     <div>
-                        <p class="text-sm text-gray-500 font-semibold uppercase">Janji Temu</p>
-                        <h3 class="text-3xl font-bold text-orange-600 mt-2">{{ $totalJanjiTemu ?? '0' }}</h3>
-                        <p class="text-xs text-gray-400 mt-1">Kunjungan terakhir 7 hari</p>
+                        <p class="text-xs text-orange-600 font-bold uppercase tracking-wider">Janji Temu</p>
+                        <h3 class="text-4xl font-black text-orange-900 mt-3">{{ $totalJanjiTemu ?? '0' }}</h3>
+                        <p class="text-xs text-orange-500 mt-2">📅 Minggu ini</p>
                     </div>
-                    <div class="text-4xl">📅</div>
+                    <div class="text-5xl">📋</div>
                 </div>
             </div>
 
-            {{-- Stat 3: Total Kamar --}}
-            <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-green-500 hover:shadow-xl transition">
+            {{-- Stat 3: Total Pasien Aktif --}}
+            <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 shadow-lg border-l-4 border-green-600 hover:shadow-xl transition-all duration-300">
                 <div class="flex justify-between items-start">
                     <div>
-                        <p class="text-sm text-gray-500 font-semibold uppercase">Total Kamar</p>
-                        <h3 class="text-3xl font-bold text-green-600 mt-2">{{ $totalKamar ?? 0 }}</h3>
-                        <p class="text-xs text-gray-400 mt-1">
-                            <span class="text-white bg-gray-700 px-2 py-1 rounded">Pribadi: {{ $kamarPribadi ?? 0 }}</span>
-                        </p>
+                        <p class="text-xs text-green-600 font-bold uppercase tracking-wider">Pasien Aktif</p>
+                        <h3 class="text-4xl font-black text-green-900 mt-3">{{ $totalPasien ?? 0 }}</h3>
+                        <p class="text-xs text-green-500 mt-2">👥 Terdaftar</p>
                     </div>
-                    <div class="text-4xl">🏥</div>
+                    <div class="text-5xl">🏥</div>
                 </div>
             </div>
 
-            {{-- Stat 4: Pengunjung --}}
-            <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-purple-500 hover:shadow-xl transition">
+            {{-- Stat 4: Pengunjung Bulan Ini --}}
+            <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 shadow-lg border-l-4 border-purple-600 hover:shadow-xl transition-all duration-300">
                 <div class="flex justify-between items-start">
                     <div>
-                        <p class="text-sm text-gray-500 font-semibold uppercase">Pengunjung</p>
-                        <h3 class="text-3xl font-bold text-purple-600 mt-2">{{ $totalPengunjung ?? '0' }}</h3>
-                        <p class="text-xs text-gray-400 mt-1">Kunjungan terakhir 7 hari</p>
+                        <p class="text-xs text-purple-600 font-bold uppercase tracking-wider">Total Kunjungan</p>
+                        <h3 class="text-4xl font-black text-purple-900 mt-3">{{ $totalPengunjung ?? '0' }}</h3>
+                        <p class="text-xs text-purple-500 mt-2">📊 Bulan ini</p>
                     </div>
-                    <div class="text-4xl">👥</div>
+                    <div class="text-5xl">📈</div>
                 </div>
             </div>
 
         </div>
 
+        {{-- KLASTER BREAKDOWN SECTION --}}
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+            
+            {{-- Klaster: Umum (General) --}}
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden border-t-4 border-blue-500 hover:shadow-xl transition-all duration-300">
+                <div class="bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-4 text-white">
+                    <h3 class="text-xl font-bold">🩺 Klaster Umum</h3>
+                    <p class="text-blue-100 text-sm">Layanan Kesehatan Umum</p>
+                </div>
+                <div class="p-6">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                            <span class="text-gray-600 font-semibold">Dokter</span>
+                            <span class="text-2xl font-black text-blue-600">{{ $dokterUmum ?? 0 }}</span>
+                        </div>
+                        <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                            <span class="text-gray-600 font-semibold">Janji Temu Hari Ini</span>
+                            <span class="text-2xl font-black text-blue-600">{{ $janjiTemuUmum ?? 0 }}</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600 font-semibold">Periksa Aktif</span>
+                            <span class="text-2xl font-black text-blue-600">{{ $periksaUmum ?? 0 }}</span>
+                        </div>
+                    </div>
+                    <a href="{{ route('periksa.index', ['klaster' => 'Umum']) }}" class="mt-4 block w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-semibold transition text-center">
+                        Lihat Detail →
+                    </a>
+                </div>
+            </div>
+
+            {{-- Klaster: Gigi dan Mulut (Dental) --}}
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden border-t-4 border-pink-500 hover:shadow-xl transition-all duration-300">
+                <div class="bg-gradient-to-r from-pink-500 to-pink-600 px-6 py-4 text-white">
+                    <h3 class="text-xl font-bold">🦷 Klaster Gigi & Mulut</h3>
+                    <p class="text-pink-100 text-sm">Layanan Kesehatan Gigi</p>
+                </div>
+                <div class="p-6">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                            <span class="text-gray-600 font-semibold">Dokter</span>
+                            <span class="text-2xl font-black text-pink-600">{{ $dokterGigi ?? 0 }}</span>
+                        </div>
+                        <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                            <span class="text-gray-600 font-semibold">Janji Temu Hari Ini</span>
+                            <span class="text-2xl font-black text-pink-600">{{ $janjiTemuGigi ?? 0 }}</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600 font-semibold">Periksa Aktif</span>
+                            <span class="text-2xl font-black text-pink-600">{{ $periksaGigi ?? 0 }}</span>
+                        </div>
+                    </div>
+                    <a href="{{ route('periksa.index', ['klaster' => 'Gigi dan Mulut']) }}" class="mt-4 block w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-lg font-semibold transition text-center">
+                        Lihat Detail →
+                    </a>
+                </div>
+            </div>
+
+            {{-- Klaster: Bidan (Midwifery) --}}
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden border-t-4 border-rose-500 hover:shadow-xl transition-all duration-300">
+                <div class="bg-gradient-to-r from-rose-500 to-rose-600 px-6 py-4 text-white">
+                    <h3 class="text-xl font-bold">👶 Klaster Bidan</h3>
+                    <p class="text-rose-100 text-sm">Layanan Ibu dan Anak</p>
+                </div>
+                <div class="p-6">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                            <span class="text-gray-600 font-semibold">Bidan</span>
+                            <span class="text-2xl font-black text-rose-600">{{ $dokterBidan ?? 0 }}</span>
+                        </div>
+                        <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                            <span class="text-gray-600 font-semibold">Janji Temu Hari Ini</span>
+                            <span class="text-2xl font-black text-rose-600">{{ $janjiTemuBidan ?? 0 }}</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600 font-semibold">Periksa Aktif</span>
+                            <span class="text-2xl font-black text-rose-600">{{ $perikasaBidan ?? 0 }}</span>
+                        </div>
+                    </div>
+                    <a href="{{ route('periksa.index', ['klaster' => 'Bidan']) }}" class="mt-4 block w-full bg-rose-500 hover:bg-rose-600 text-white py-3 rounded-lg font-semibold transition text-center">
+                        Lihat Detail →
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        {{-- QUICK ACTIONS SECTION --}}
+        <div class="bg-white rounded-2xl p-8 shadow-lg mb-10 border-t-4 border-indigo-500">
+            <h2 class="text-2xl font-bold text-slate-900 mb-6">⚡ Aksi Cepat</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <a href="{{ route('akunPasienAdmin.create') }}" class="bg-gradient-to-br from-blue-500 to-blue-600 hover:shadow-lg text-white p-6 rounded-xl transition-all duration-300 text-center">
+                    <div class="text-4xl mb-2">➕</div>
+                    <h3 class="font-bold">Tambah Pasien</h3>
+                    <p class="text-blue-100 text-sm">Registrasi akun baru</p>
+                </a>
+                <a href="{{ route('berita.create') }}" class="bg-gradient-to-br from-green-500 to-green-600 hover:shadow-lg text-white p-6 rounded-xl transition-all duration-300 text-center">
+                    <div class="text-4xl mb-2">📰</div>
+                    <h3 class="font-bold">Buat Berita</h3>
+                    <p class="text-green-100 text-sm">Publikasikan informasi</p>
+                </a>
+                <a href="{{ route('obatAdmin.create') }}" class="bg-gradient-to-br from-purple-500 to-purple-600 hover:shadow-lg text-white p-6 rounded-xl transition-all duration-300 text-center">
+                    <div class="text-4xl mb-2">💊</div>
+                    <h3 class="font-bold">Tambah Obat</h3>
+                    <p class="text-purple-100 text-sm">Update inventori</p>
+                </a>
+                <a href="{{ route('resep.create') }}" class="bg-gradient-to-br from-orange-500 to-orange-600 hover:shadow-lg text-white p-6 rounded-xl transition-all duration-300 text-center">
+                    <div class="text-4xl mb-2">📋</div>
+                    <h3 class="font-bold">Buat Resep</h3>
+                    <p class="text-orange-100 text-sm">Resep untuk pasien</p>
+                </a>
+            </div>
+        </div>
+
         {{-- PATIENT OVERVIEW SECTION --}}
-        <div class="bg-white rounded-2xl p-8 shadow-lg mb-8">
+        <div class="bg-white rounded-2xl p-8 shadow-lg border-t-4 border-cyan-500">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-blue-900">📋 Daftar Janji Temu Terbaru</h2>
-                <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-lg text-sm font-semibold">
-                    Status: In Queue
-                </span>
+                <h2 class="text-2xl font-bold text-slate-900">📋 Daftar Janji Temu Terbaru</h2>
+                <a href="{{ route('periksa.index') }}" class="bg-cyan-100 text-cyan-700 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-cyan-200 transition">
+                    Lihat Semua →
+                </a>
             </div>
 
             {{-- Patient Cards Grid --}}
