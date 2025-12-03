@@ -17,11 +17,6 @@ use App\Http\Controllers\KontakController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\NotifikasiController;
-<<<<<<< HEAD
-
-// ==================== PUBLIC ROUTES ====================
-=======
->>>>>>> 0fd5fd6c2dd2146d73cbf26e718644a8c9792448
 
 Route::get('/', function () {
     return view('home', ['title' => 'Home Page']);
@@ -51,8 +46,7 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.for
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-<<<<<<< HEAD
-=======
+
 Route::middleware(['auth', 'admin'])->prefix('laporanAdmin')->group(function () {
     Route::get('/', [LaporanController::class, 'index'])->name('laporanAdmin.index');
     Route::get('/create', [LaporanController::class, 'create'])->name('laporanAdmin.create');
@@ -160,7 +154,6 @@ Route::prefix('admin')->group(function () {
 });
 
 // REGISTER
->>>>>>> 0fd5fd6c2dd2146d73cbf26e718644a8c9792448
 Route::get('/register', [LoginController::class, 'registerForm'])->name('register.form');
 Route::post('/register', [LoginController::class, 'register'])->name('register');
 
@@ -170,7 +163,6 @@ Route::post('/lupa-password', [LoginController::class, 'sendResetToken'])->name(
 // RESET PASSWORD
 Route::get('/reset-password/{token}', [LoginController::class, 'resetPasswordForm'])->name('password.reset');
 Route::post('/reset-password', [LoginController::class, 'resetPassword'])->name('password.update');
-<<<<<<< HEAD
 
 // ==================== AUTHENTICATED USER ROUTES ====================
 
@@ -295,6 +287,3 @@ Route::middleware(['auth', 'admin'])->group(function () {
 Route::get('/get-dokter-by-klaster/{klaster_id}', function ($klaster_id) {
     return \App\Models\Dokter::where('klaster_id', $klaster_id)->get();
 });
-
-=======
->>>>>>> 0fd5fd6c2dd2146d73cbf26e718644a8c9792448
