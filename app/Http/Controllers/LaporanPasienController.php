@@ -61,7 +61,11 @@ class LaporanPasienController extends Controller
 
         if ($laporan->id_akun != Auth::user()->id_akun) abort(403);
 
-        $pdf = Pdf::loadView('laporan_pdf', compact('laporan'));
-        return $pdf->download("Laporan_{$laporan->nama_pasien}.pdf");
+        try {
+            $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('laporan_pdf', compact('laporan'));
+            return $pdf->download("Laporan_{$laporan->nama_pasien}.pdf");
+        } catch (\Exception $e) {
+            return back()->with('error', 'Gagal membuat PDF: ' . $e->getMessage());
+        }
     }
 }

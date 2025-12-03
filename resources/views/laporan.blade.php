@@ -3,13 +3,13 @@
     <section class="relative bg-cover bg-center h-[400px] w-full" style="background-image: url('{{ asset('img/oke.avif') }}');">
         <div class="absolute inset-0 bg-black/50"></div>
         <div class="relative z-10 flex flex-col justify-center h-full max-w-7xl mx-auto px-6 lg:px-20 text-center md:text-left">
-            <h5 class="uppercase tracking-widest font-semibold text-white mb-2" data-aos="fade-down" data-aos-delay="200">
+            <h5 class="uppercase tracking-widest font-semibold text-black mb-2" data-aos="fade-down" data-aos-delay="200">
                 Beranda / Laporan
             </h5>
-            <h1 class="text-4xl sm:text-5xl font-bold text-white leading-tight" data-aos="fade-up" data-aos-delay="400">
+            <h1 class="text-4xl sm:text-5xl font-bold text-black leading-tight" data-aos="fade-up" data-aos-delay="400">
                 Laporan
             </h1>
-            <p class="text-white mt-4 max-w-2xl" data-aos="fade-up" data-aos-delay="600">
+            <p class="text-black mt-4 max-w-2xl" data-aos="fade-up" data-aos-delay="600">
                 Temukan berbagai layanan kesehatan unggulan dari rumah sakit kami, didukung oleh tenaga medis profesional dan fasilitas modern.
             </p>
     </section>
@@ -26,7 +26,7 @@
 
             {{-- Tidak ada riwayat --}}
             @if ($riwayat->isEmpty())
-            <div class="bg-white p-12 rounded-2xl shadow-lg text-center border-2 border-dashed border-gray-300">
+            <div class="bg-black p-12 rounded-2xl shadow-lg text-center border-2 border-dashed border-gray-300">
                 <p class="text-2xl text-gray-400 mb-2">📭</p>
                 <p class="text-lg text-gray-600 font-medium">Anda belum memiliki riwayat pemeriksaan</p>
                 <p class="text-gray-500 mt-2">Silakan membuat janji temu dengan dokter kami</p>
@@ -38,10 +38,10 @@
 
                 @foreach ($riwayat as $item)
 
-                <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-l-4 border-blue-900 relative group">
+                <div class="bg-black rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-l-4 border-blue-900 relative group">
                     
                     {{-- Header dengan Nomor Antrian --}}
-                    <div class="bg-gradient-to-r from-blue-900 to-blue-800 px-6 py-4 text-white">
+                    <div class="bg-gradient-to-r from-blue-900 to-blue-800 px-6 py-4 text-black">
                         <div class="flex justify-between items-start">
                             <div>
                                 <p class="text-sm text-black">📅 Tanggal Periksa</p>
@@ -50,7 +50,7 @@
                                 </p>
                             </div>
                             @if ($item->janjiTemu && $item->janjiTemu->nomor_antrian)
-                            <div class="bg-white/20 px-4 py-2 rounded-lg">
+                            <div class="bg-black/20 px-4 py-2 rounded-lg">
                                 <p class="text-xs opacity-90">Antrian</p>
                                 <p class="text-2xl font-bold">{{ $item->janjiTemu->nomor_antrian }}</p>
                             </div>
@@ -141,7 +141,7 @@
                                     @if ($resep->detail && $resep->detail->isNotEmpty())
                                         <div class="mt-2 space-y-2">
                                             @foreach ($resep->detail as $detail)
-                                                <div class="bg-white p-2 rounded border-l-3 border-orange-500">
+                                                <div class="bg-black p-2 rounded border-l-3 border-orange-500">
                                                     <p class="font-semibold text-gray-800 text-sm">
                                                         💊 {{ $detail->obat->nama_obat ?? '-' }}
                                                     </p>
