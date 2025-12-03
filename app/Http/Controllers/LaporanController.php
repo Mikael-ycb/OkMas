@@ -6,6 +6,7 @@ use App\Models\Akun;
 use App\Models\Laporan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class LaporanController extends Controller
 {
@@ -13,7 +14,7 @@ class LaporanController extends Controller
     public function index()
     {
         $laporan = Laporan::with('akun')
-            ->select('id_akun', \DB::raw('MAX(id) as id'), \DB::raw('MAX(updated_at) as updated_at'))
+            ->select('id_akun', DB::raw('MAX(id) as id'), DB::raw('MAX(updated_at) as updated_at'))
             ->groupBy('id_akun')
             ->paginate(7);
 

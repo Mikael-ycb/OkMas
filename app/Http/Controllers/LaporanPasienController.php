@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Laporan;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class LaporanPasienController extends Controller
 {
@@ -60,7 +61,7 @@ class LaporanPasienController extends Controller
 
         if ($laporan->id_akun != Auth::user()->id_akun) abort(403);
 
-        $pdf = \PDF::loadView('laporan_pdf', compact('laporan'));
+        $pdf = Pdf::loadView('laporan_pdf', compact('laporan'));
         return $pdf->download("Laporan_{$laporan->nama_pasien}.pdf");
     }
 }
