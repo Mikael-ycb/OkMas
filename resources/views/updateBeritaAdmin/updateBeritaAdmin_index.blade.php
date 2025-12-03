@@ -8,7 +8,7 @@
         {{-- STATISTIK --}}
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 mb-8">
             {{-- Total Berita --}}
-            <div class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-6 text-black shadow-lg">
+            <div class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-6 text-white shadow-lg">
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="text-sm uppercase tracking-wide opacity-90">Total Berita</p>
@@ -19,7 +19,7 @@
             </div>
 
             {{-- Berita Bulan Ini --}}
-            <div class="bg-gradient-to-br from-cyan-600 to-cyan-700 rounded-2xl p-6 text-black shadow-lg">
+            <div class="bg-gradient-to-br from-cyan-600 to-cyan-700 rounded-2xl p-6 text-white shadow-lg">
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="text-sm uppercase tracking-wide opacity-90">Bulan Ini</p>
@@ -30,7 +30,7 @@
             </div>
 
             {{-- Program Aktif --}}
-            <div class="bg-gradient-to-br from-teal-600 to-teal-700 rounded-2xl p-6 text-black shadow-lg">
+            <div class="bg-gradient-to-br from-teal-600 to-teal-700 rounded-2xl p-6 text-white shadow-lg">
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="text-sm uppercase tracking-wide opacity-90">Program Unik</p>
@@ -44,7 +44,7 @@
         {{-- TOMBOL TAMBAH --}}
         <div class="mb-8">
             <a href="{{ route('berita.create') }}" 
-               class="inline-flex items-center bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-black px-8 py-4 rounded-xl shadow-lg font-semibold transition-all duration-300 hover:shadow-xl">
+               class="inline-flex items-center bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-8 py-4 rounded-xl shadow-lg font-semibold transition-all duration-300 hover:shadow-xl">
                 <span class="text-2xl mr-3">➕</span>
                 Buat Berita Baru
             </a>

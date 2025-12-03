@@ -51,9 +51,9 @@
 
             <!-- LEFT IMAGE -->
             <div class="flex justify-center" data-aos="fade-right">
-                <img src="{{ asset('img/ihi2.jpg') }}"
+                <img src="{{ asset('img/puskesmas.jpg') }}"
                     alt="Doctor"
-                    class="w-[280px] md:w-[350px] rounded-xl shadow-lg object-cover hover:scale-105 transition-transform duration-500">
+                    class="w-[500px] md:w-[600px] rounded-xl shadow-lg object-cover hover:scale-105 transition-transform duration-500">
             </div>
 
             <!-- RIGHT GLASS CARD -->
@@ -76,7 +76,7 @@
     </section>
 
     <!-- MOTTO SECTION -->
-    <section class="relative bg-cover bg-center h-[450px] w-full" style="background-image: url('{{ asset('img/hehe1.jpg') }}');">
+    <section class="relative bg-cover bg-center h-[450px] w-full" style="background-image: url('{{ asset('img/iyaps.jpg') }}');">
         <div class="absolute inset-0 bg-blue-900/40"></div>
         <div class="relative z-10 max-w-4xl mx-auto px-6 py-20">
 

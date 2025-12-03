@@ -13,10 +13,10 @@
     <div>
       <h3 class="font-semibold text-lg mb-3">Tautan Penting</h3>
       <ul class="space-y-2 text-sm">
-        <li><a href="#" class="hover:underline">Janji Temu</a></li>
-        <li><a href="#" class="hover:underline">Dokter</a></li>
-        <li><a href="#" class="hover:underline">Layanan</a></li>
-        <li><a href="#" class="hover:underline">Tentang Kami</a></li>
+        <li><a href="/janjiTemu" class="hover:underline">Janji Temu</a></li>
+        <li><a href="/dokter" class="hover:underline">Dokter</a></li>
+        <li><a href="/layanan" class="hover:underline">Layanan</a></li>
+        <li><a href="tentangKami" class="hover:underline">Tentang Kami</a></li>
       </ul>
     </div>
 
