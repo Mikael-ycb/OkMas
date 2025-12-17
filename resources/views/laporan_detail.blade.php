@@ -53,13 +53,13 @@
                     <div class="pb-6 border-b md:border-b-0 md:border-r border-gray-200">
                         <p class="text-sm uppercase tracking-wider font-semibold text-gray-500 mb-2">👨‍⚕️ Dokter</p>
                         <p class="text-2xl font-bold text-gray-800">
-                            {{ $laporan->janjiTemu?->dokter?->nama_dokter ?? '-' }}
+                            {{ $laporan->janjiTemu?->dokter?->nama_dokter ?? 'Tidak tersedia' }}
                         </p>
                     </div>
                     <div>
                         <p class="text-sm uppercase tracking-wider font-semibold text-gray-500 mb-2">Keluhan Utama</p>
                         <p class="text-lg font-semibold text-gray-800">
-                            "{{ $laporan->janjiTemu?->keluhan ?? '-' }}"
+                            "{{ $laporan->janjiTemu?->keluhan ?? 'Tidak tersedia' }}"
                         </p>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                     <h3 class="text-xl font-bold text-red-600 mb-4">🚨 Diagnosa</h3>
                     <div class="bg-red-50 p-6 rounded-lg border-l-4 border-red-500">
                         <p class="text-gray-800 leading-relaxed">
-                            {{ $laporan->diagnosa ?? '-' }}
+                            {{ $laporan->diagnosa ?? 'Tidak tersedia' }}
                         </p>
                     </div>
                 </div>

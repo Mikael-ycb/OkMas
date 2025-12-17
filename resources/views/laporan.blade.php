@@ -3,13 +3,13 @@
     <section class="relative bg-cover bg-center h-[400px] w-full" style="background-image: url('{{ asset('img/oke.avif') }}');">
         <div class="absolute inset-0 bg-black/50"></div>
         <div class="relative z-10 flex flex-col justify-center h-full max-w-7xl mx-auto px-6 lg:px-20 text-center md:text-left">
-            <h5 class="uppercase tracking-widest font-semibold text-black mb-2" data-aos="fade-down" data-aos-delay="200">
+            <h5 class="uppercase tracking-widest font-semibold text-white mb-2" data-aos="fade-down" data-aos-delay="200">
                 Beranda / Laporan
             </h5>
-            <h1 class="text-4xl sm:text-5xl font-bold text-black leading-tight" data-aos="fade-up" data-aos-delay="400">
+            <h1 class="text-4xl sm:text-5xl font-bold text-white leading-tight" data-aos="fade-up" data-aos-delay="400">
                 Laporan
             </h1>
-            <p class="text-black mt-4 max-w-2xl" data-aos="fade-up" data-aos-delay="600">
+            <p class="text-white mt-4 max-w-2xl" data-aos="fade-up" data-aos-delay="600">
                 Temukan berbagai layanan kesehatan unggulan dari rumah sakit kami, didukung oleh tenaga medis profesional dan fasilitas modern.
             </p>
     </section>
@@ -26,7 +26,7 @@
 
             {{-- Tidak ada riwayat --}}
             @if ($riwayat->isEmpty())
-            <div class="bg-black p-12 rounded-2xl shadow-lg text-center border-2 border-dashed border-gray-300">
+            <div class="bg-white p-12 rounded-2xl shadow-lg text-center border-2 border-dashed border-gray-300">
                 <p class="text-2xl text-gray-400 mb-2">📭</p>
                 <p class="text-lg text-gray-600 font-medium">Anda belum memiliki riwayat pemeriksaan</p>
                 <p class="text-gray-500 mt-2">Silakan membuat janji temu dengan dokter kami</p>
@@ -38,19 +38,19 @@
 
                 @foreach ($riwayat as $item)
 
-                <div class="bg-black rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-l-4 border-blue-900 relative group">
+                <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-l-4 border-blue-900 relative group">
                     
                     {{-- Header dengan Nomor Antrian --}}
-                    <div class="bg-gradient-to-r from-blue-900 to-blue-800 px-6 py-4 text-black">
+                    <div class="bg-gradient-to-r from-blue-900 to-blue-800 px-6 py-4 text-white">
                         <div class="flex justify-between items-start">
                             <div>
-                                <p class="text-sm text-black">📅 Tanggal Periksa</p>
-                                <p class="text-2xl font-bold text-black">
+                                <p class="text-sm text-white">📅 Tanggal Periksa</p>
+                                <p class="text-2xl font-bold text-white">
                                     {{ $item->tanggal ? \Carbon\Carbon::parse($item->tanggal)->format('d M Y') : '-' }}
                                 </p>
                             </div>
                             @if ($item->janjiTemu && $item->janjiTemu->nomor_antrian)
-                            <div class="bg-black/20 px-4 py-2 rounded-lg">
+                            <div class="bg-white/20 px-4 py-2 rounded-lg">
                                 <p class="text-xs opacity-90">Antrian</p>
                                 <p class="text-2xl font-bold">{{ $item->janjiTemu->nomor_antrian }}</p>
                             </div>
@@ -129,34 +129,36 @@
 
                         {{-- Resep Obat --}}
                         @if ($item->resepObat && $item->resepObat->isNotEmpty())
-                        <div class="mb-4 bg-gradient-to-r from-orange-50 to-red-50 p-4 rounded-xl border-2 border-orange-200">
-                            <p class="text-sm font-bold text-orange-900 mb-3 flex items-center">
-                                <span class="text-2xl mr-2 text-black">💊</span> RESEP OBAT DIBERIKAN
-                            </p>
-                            
+                        <div class="mb-4">
                             @foreach ($item->resepObat as $resep)
-                                <div class="mb-3 pb-3 last:border-b-0 last:mb-0 last:pb-0">
-                                    <p class="text-xs text-orange-700 font-semibold">Dokter: {{ $resep->dokter }}</p>
-                                    
-                                    @if ($resep->detail && $resep->detail->isNotEmpty())
-                                        <div class="mt-2 space-y-2">
-                                            @foreach ($resep->detail as $detail)
-                                                <div class="bg-black p-2 rounded border-l-3 border-orange-500">
-                                                    <p class="font-semibold text-gray-800 text-sm">
-                                                        💊 {{ $detail->obat->nama_obat ?? '-' }}
-                                                    </p>
-                                                    <div class="text-xs text-gray-600 mt-1 space-y-1">
-                                                        <p><span class="font-semibold">Dosis:</span> {{ $detail->obat->dosis ?? '-' }}</p>
-                                                        <p><span class="font-semibold">Jumlah:</span> {{ $detail->jumlah }}</p>
-                                                        <p><span class="font-semibold">Aturan Pakai:</span> {{ $detail->aturan_pakai ?? '-' }}</p>
+                                @if ($resep->detail && $resep->detail->isNotEmpty())
+                                    <a href="{{ route('laporan_detail', $item->id) }}" class="block">
+                                        <div class="bg-gradient-to-r from-orange-50 to-red-50 p-4 rounded-xl border-2 border-orange-200 hover:shadow-lg hover:border-orange-300 transition-all duration-300 cursor-pointer">
+                                            <p class="text-sm font-bold text-orange-900 mb-3 flex items-center">
+                                                <span class="text-2xl mr-2">💊</span> RESEP OBAT DIBERIKAN
+                                            </p>
+                                            <p class="text-xs text-orange-700 font-semibold mb-3">Dokter: {{ $resep->dokter }}</p>
+                                            
+                                            <div class="space-y-2">
+                                                @foreach ($resep->detail as $detail)
+                                                    <div class="bg-white p-3 rounded border-l-4 border-orange-500 shadow-sm hover:shadow-md transition-all">
+                                                        <p class="font-semibold text-gray-800 text-sm">
+                                                            💊 {{ $detail->obat->nama_obat ?? '-' }}
+                                                        </p>
+                                                        <div class="text-xs text-gray-600 mt-2 space-y-1">
+                                                            <p><span class="font-semibold text-gray-700">Dosis:</span> {{ $detail->obat->dosis ?? '-' }}</p>
+                                                            <p><span class="font-semibold text-gray-700">Jumlah:</span> {{ $detail->jumlah }} • <span class="font-semibold text-gray-700">Aturan Pakai:</span> {{ $detail->aturan_pakai ?? '-' }}</p>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            @endforeach
+                                                @endforeach
+                                            </div>
+                                            
+                                            <div class="mt-3 text-center text-orange-700 font-semibold text-sm">
+                                                👁️ Klik untuk lihat detail lengkap
+                                            </div>
                                         </div>
-                                    @else
-                                        <p class="text-xs text-orange-700 mt-1">⚠️ Belum ada obat dalam resep ini.</p>
-                                    @endif
-                                </div>
+                                    </a>
+                                @endif
                             @endforeach
                         </div>
                         @else
@@ -177,20 +179,13 @@
 
                     </div>
 
-                    {{-- Tombol Aksi --}}
+                    <!-- {{-- Tombol Aksi --}}
                     <div class="px-6 pb-6 space-y-3 border-t pt-4">
-                        @if (!$item->resepObat || $item->resepObat->isEmpty())
-                        <a href="{{ route('resep.create', ['laporan_id' => $item->id]) }}"
-                            class="block text-center bg-gradient-to-r from-orange-600 to-red-600 text-black py-3 rounded-lg hover:from-orange-700 hover:to-red-700 font-semibold transition-all duration-300 shadow-md hover:shadow-lg">
-                            💊 LIHAT RESEP OBAT
-                        </a>
-                        @endif
-
                         <a href="{{ route('laporan_detail', $item->id) }}"
-                            class="block text-center bg-gradient-to-r from-green-600 to-emerald-600 text-black py-3 rounded-lg hover:from-green-700 hover:to-emerald-700 font-semibold transition-all duration-300 shadow-md hover:shadow-lg">
-                            📄 LIHAT LAPORAN LENGKAP
+                            class="block text-center bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 rounded-lg hover:from-blue-700 hover:to-blue-800 font-semibold transition-all duration-300 shadow-md hover:shadow-lg">
+                            👁️ LIHAT DETAIL LENGKAP
                         </a>
-                    </div>
+                    </div> -->
 
                 </div>
 

@@ -1,6 +1,6 @@
 <x-layout4>
     <section class="px-6 md:px-20 pt-12 pb-6 bg-gradient-to-r from-cyan-600 to-blue-600">
-        <h1 class="text-4xl font-bold text-black">👥 Manajemen Akun Pasien</h1>
+        <h1 class="text-4xl font-bold text-white">👥 Manajemen Akun Pasien</h1>
         <p class="text-cyan-100 mt-2">Kelola semua akun pasien dalam sistem</p>
     </section>
 
@@ -8,7 +8,7 @@
         {{-- STATISTIK --}}
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 mb-8">
             {{-- Total Pasien --}}
-            <div class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-6 text-black shadow-lg">
+            <div class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-6 text-white shadow-lg">
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="text-sm uppercase tracking-wide opacity-90">Total Pasien</p>
@@ -19,7 +19,7 @@
             </div>
 
             {{-- Total dengan Role Pasien --}}
-            <div class="bg-gradient-to-br from-purple-600 to-purple-700 rounded-2xl p-6 text-black shadow-lg">
+            <div class="bg-gradient-to-br from-purple-600 to-purple-700 rounded-2xl p-6 text-white shadow-lg">
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="text-sm uppercase tracking-wide opacity-90">Role Pasien</p>
@@ -30,7 +30,7 @@
             </div>
 
             {{-- Total Admin/Staff --}}
-            <div class="bg-gradient-to-br from-amber-600 to-amber-700 rounded-2xl p-6 text-black shadow-lg">
+            <div class="bg-gradient-to-br from-amber-600 to-amber-700 rounded-2xl p-6 text-white shadow-lg">
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="text-sm uppercase tracking-wide opacity-90">Admin & Staff</p>
@@ -44,7 +44,7 @@
         {{-- TOMBOL TAMBAH --}}
         <div class="mb-8">
             <a href="{{ route('akunPasienAdmin.create') }}" 
-               class="inline-flex items-center bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-black px-8 py-4 rounded-xl shadow-lg font-semibold transition-all duration-300 hover:shadow-xl">
+               class="inline-flex items-center bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white px-8 py-4 rounded-xl shadow-lg font-semibold transition-all duration-300 hover:shadow-xl">
                 <span class="text-2xl mr-3">➕</span>
                 Tambah Akun Baru
             </a>
@@ -54,7 +54,7 @@
         @if($akun->isNotEmpty())
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             @forelse($akun as $item)
-                <div class="bg-black rounded-2xl shadow-lg overflow-hidden border-l-4 border-cyan-500 hover:shadow-xl transition-all duration-300">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden border-l-4 border-cyan-500 hover:shadow-xl transition-all duration-300">
                     {{-- HEADER CARD --}}
                     <div class="bg-gradient-to-r from-cyan-50 to-blue-50 px-6 py-4 border-b border-cyan-100">
                         <div class="flex justify-between items-start gap-4">
@@ -102,7 +102,7 @@
                     {{-- FOOTER CARD - AKSI --}}
                     <div class="px-6 py-4 bg-gray-50 border-t border-gray-100 flex gap-3">
                         <a href="{{ route('akunPasienAdmin.edit', $item->id_akun) }}" 
-                           class="flex-1 inline-flex items-center justify-center bg-amber-600 hover:bg-amber-700 text-black py-2.5 rounded-lg font-semibold transition-all duration-200 text-sm">
+                           class="flex-1 inline-flex items-center justify-center bg-amber-600 hover:bg-amber-700 text-white py-2.5 rounded-lg font-semibold transition-all duration-200 text-sm">
                             <span class="mr-2">✏️</span>
                             <span>Edit</span>
                         </a>
@@ -112,7 +112,7 @@
                             @csrf
                             @method('DELETE')
                             <button type="submit" 
-                                    class="w-full bg-red-600 hover:bg-red-700 text-black py-2.5 rounded-lg font-semibold transition-all duration-200 text-sm">
+                                    class="w-full bg-red-600 hover:bg-red-700 text-white py-2.5 rounded-lg font-semibold transition-all duration-200 text-sm">
                                 <span class="mr-2">🗑️</span>
                                 <span>Hapus</span>
                             </button>
@@ -121,12 +121,12 @@
                 </div>
             @empty
                 <div class="col-span-full">
-                    <div class="bg-black rounded-2xl p-12 shadow-lg border-2 border-dashed border-gray-300 text-center">
+                    <div class="bg-white rounded-2xl p-12 shadow-lg border-2 border-dashed border-gray-300 text-center">
                         <p class="text-6xl mb-4">👥</p>
                         <h3 class="text-2xl font-bold text-gray-800 mb-2">Belum Ada Akun Pasien</h3>
                         <p class="text-gray-600 mb-6">Mulai dengan membuat akun pasien baru</p>
                         <a href="{{ route('akunPasienAdmin.create') }}" 
-                           class="inline-flex items-center bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-black px-8 py-4 rounded-xl shadow-lg font-semibold transition-all duration-300">
+                           class="inline-flex items-center bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white px-8 py-4 rounded-xl shadow-lg font-semibold transition-all duration-300">
                             <span class="text-2xl mr-3">➕</span>
                             Buat Akun Pertama
                         </a>
@@ -140,12 +140,12 @@
             {{ $akun->links() }}
         </div>
         @else
-        <div class="bg-black rounded-2xl p-12 shadow-lg border-2 border-dashed border-gray-300 text-center">
+        <div class="bg-white rounded-2xl p-12 shadow-lg border-2 border-dashed border-gray-300 text-center">
             <p class="text-6xl mb-4">👥</p>
             <h3 class="text-2xl font-bold text-gray-800 mb-2">Belum Ada Akun Pasien</h3>
             <p class="text-gray-600 mb-6">Mulai dengan membuat akun pasien baru untuk sistem</p>
             <a href="{{ route('akunPasienAdmin.create') }}" 
-               class="inline-flex items-center bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-black px-8 py-4 rounded-xl shadow-lg font-semibold transition-all duration-300 hover:shadow-xl">
+               class="inline-flex items-center bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white px-8 py-4 rounded-xl shadow-lg font-semibold transition-all duration-300 hover:shadow-xl">
                 <span class="text-2xl mr-3">➕</span>
                 Buat Akun Pertama
             </a>

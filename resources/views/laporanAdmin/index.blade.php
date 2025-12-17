@@ -1,11 +1,11 @@
 <x-layout4>
     {{-- HEADER --}}
     <section class="px-6 md:px-20 pt-12 pb-8 bg-gradient-to-br from-slate-900 via-blue-900 to-blue-800">
-        <h1 class="text-5xl font-black text-black mb-2 tracking-tight">📋 Manajemen Rekam Medis</h1>
+        <h1 class="text-5xl font-white text-white mb-2 tracking-tight">📋 Manajemen Rekam Medis</h1>
         <p class="text-blue-100 text-lg">Kelola riwayat kesehatan dan rekam medis seluruh pasien dengan mudah</p>
     </section>
 
-    <div class="px-6 md:px-20 pb-12 bg-gradient-to-b from-gray-50 to-black min-h-screen">
+    <div class="px-6 md:px-20 pb-12 bg-gradient-to-b from-gray-50 to-white min-h-screen">
         {{-- Pesan Sukses --}}
         @if(session('success'))
             <div class="mt-8 mb-6 bg-green-100 border-l-4 border-green-500 text-green-700 px-6 py-4 rounded-lg shadow-md" role="alert">
@@ -20,7 +20,7 @@
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="text-xs text-blue-600 font-bold uppercase tracking-wider">Total Rekam Medis</p>
-                        <p class="text-4xl font-black text-blue-900 mt-3">{{ $laporan->total() ?? 0 }}</p>
+                        <p class="text-4xl font-white text-blue-900 mt-3">{{ $laporan->total() ?? 0 }}</p>
                         <p class="text-xs text-blue-500 mt-2">📋 Pasien Tercatat</p>
                     </div>
                     <div class="text-5xl">📋</div>
@@ -32,7 +32,7 @@
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="text-xs text-indigo-600 font-bold uppercase tracking-wider">Jumlah Pasien</p>
-                        <p class="text-4xl font-black text-indigo-900 mt-3">{{ $laporan->groupBy('id_akun')->count() }}</p>
+                        <p class="text-4xl font-white text-indigo-900 mt-3">{{ $laporan->groupBy('id_akun')->count() }}</p>
                         <p class="text-xs text-indigo-500 mt-2">👥 Unik</p>
                     </div>
                     <div class="text-5xl">👥</div>
@@ -44,7 +44,7 @@
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="text-xs text-green-600 font-bold uppercase tracking-wider">Update Terbaru</p>
-                        <p class="text-2xl font-black text-green-900 mt-3">{{ optional($laporan->sortByDesc('updated_at')->first()?->updated_at)->format('d/m/Y') ?? 'Belum ada' }}</p>
+                        <p class="text-2xl font-white text-green-900 mt-3">{{ optional($laporan->sortByDesc('updated_at')->first()?->updated_at)->format('d/m/Y') ?? 'Belum ada' }}</p>
                         <p class="text-xs text-green-500 mt-2">⏰ Pembaruan</p>
                     </div>
                     <div class="text-5xl">⏰</div>
@@ -55,7 +55,7 @@
         {{-- TOMBOL TAMBAH --}}
         <div class="mb-8">
             <a href="{{ route('laporanAdmin.create') }}" 
-               class="inline-flex items-center bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-black px-8 py-4 rounded-xl shadow-lg font-semibold transition-all duration-300 hover:shadow-xl">
+               class="inline-flex items-center bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-4 rounded-xl shadow-lg font-semibold transition-all duration-300 hover:shadow-xl">
                 <span class="text-2xl mr-3">➕</span>
                 Tambah Rekam Medis Baru
             </a>
@@ -88,7 +88,7 @@
         @if($laporan->isNotEmpty())
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse($laporan as $item)
-                <div class="bg-black rounded-2xl shadow-lg overflow-hidden border-l-4 hover:shadow-xl transition-all duration-300" style="border-left-color: #3b82f6;" data-patient-name="{{ $item->akun->nama }}" data-patient-nik="{{ $item->akun->nik }}">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden border-l-4 hover:shadow-xl transition-all duration-300" style="border-left-color: #3b82f6;" data-patient-name="{{ $item->akun->nama }}" data-patient-nik="{{ $item->akun->nik }}">
                     {{-- HEADER CARD --}}
                     <div class="px-6 py-4 bg-gradient-to-r from-blue-50 to-blue-100 border-b-2 border-blue-200">
                         <div class="flex justify-between items-start">
@@ -122,12 +122,12 @@
                     {{-- FOOTER CARD - AKSI --}}
                     <div class="px-6 py-4 bg-gray-50 border-t border-gray-100 flex gap-3">
                         <a href="{{ route('laporanAdmin.show', $item->id_akun) }}" 
-                           class="flex-1 inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-black py-2.5 rounded-lg font-semibold transition-all duration-200 text-sm">
+                           class="flex-1 inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg font-semibold transition-all duration-200 text-sm">
                             <span class="mr-2">👁️</span>
                             <span>Lihat</span>
                         </a>
                         <a href="{{ route('laporanAdmin.edit', $item->id_akun) }}" 
-                           class="flex-1 inline-flex items-center justify-center bg-amber-600 hover:bg-amber-700 text-black py-2.5 rounded-lg font-semibold transition-all duration-200 text-sm">
+                           class="flex-1 inline-flex items-center justify-center bg-amber-600 hover:bg-amber-700 text-white py-2.5 rounded-lg font-semibold transition-all duration-200 text-sm">
                             <span class="mr-2">✏️</span>
                             <span>Edit</span>
                         </a>
@@ -135,12 +135,12 @@
                 </div>
             @empty
                 <div class="col-span-full">
-                    <div class="bg-black rounded-2xl p-12 shadow-lg border-2 border-dashed border-gray-300 text-center">
+                    <div class="bg-white rounded-2xl p-12 shadow-lg border-2 border-dashed border-gray-300 text-center">
                         <p class="text-6xl mb-4">📋</p>
                         <h3 class="text-2xl font-bold text-gray-800 mb-2">Belum Ada Rekam Medis</h3>
                         <p class="text-gray-600 mb-6">Mulai dengan menambahkan rekam medis pasien baru</p>
                         <a href="{{ route('laporanAdmin.create') }}" 
-                           class="inline-flex items-center bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-black px-8 py-4 rounded-xl shadow-lg font-semibold transition-all duration-300">
+                           class="inline-flex items-center bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-4 rounded-xl shadow-lg font-semibold transition-all duration-300">
                             <span class="text-2xl mr-3">➕</span>
                             Tambah Rekam Medis Pertama
                         </a>
@@ -154,12 +154,12 @@
             {{ $laporan->links() }}
         </div>
         @else
-        <div class="bg-black rounded-2xl p-12 shadow-lg border-2 border-dashed border-gray-300 text-center">
+        <div class="bg-white rounded-2xl p-12 shadow-lg border-2 border-dashed border-gray-300 text-center">
             <p class="text-6xl mb-4">📋</p>
             <h3 class="text-2xl font-bold text-gray-800 mb-2">Belum Ada Rekam Medis</h3>
             <p class="text-gray-600 mb-6">Mulai dengan menambahkan rekam medis pasien baru ke sistem</p>
             <a href="{{ route('laporanAdmin.create') }}" 
-               class="inline-flex items-center bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-black px-8 py-4 rounded-xl shadow-lg font-semibold transition-all duration-300 hover:shadow-xl">
+               class="inline-flex items-center bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-4 rounded-xl shadow-lg font-semibold transition-all duration-300 hover:shadow-xl">
                 <span class="text-2xl mr-3">➕</span>
                 Tambah Rekam Medis Pertama
             </a>

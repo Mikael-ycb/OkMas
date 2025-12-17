@@ -5,7 +5,7 @@
                 <h2 class="text-4xl font-bold text-blue-900 mb-2">🏥 Manajemen Klaster</h2>
                 <p class="text-gray-600">Kelola unit layanan kesehatan dan dokter yang tersedia</p>
             </div>
-            <a href="{{ route('klaster.create') }}" class="bg-blue-500 hover:bg-blue-600 text-black px-6 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg transition">
+            <a href="{{ route('klaster.create') }}" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg transition">
                 ➕ Tambah Klaster Baru
             </a>
         </div>
@@ -51,14 +51,14 @@
             <p class="text-3xl mb-4">📭</p>
             <p class="text-xl text-yellow-800 font-semibold mb-2">Belum ada data klaster</p>
             <p class="text-yellow-700 mb-6">Mulai dengan menambahkan klaster kesehatan baru</p>
-            <a href="{{ route('klaster.create') }}" class="inline-block bg-yellow-600 hover:bg-yellow-700 text-black px-6 py-2 rounded-lg font-semibold transition">
+            <a href="{{ route('klaster.create') }}" class="inline-block bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-2 rounded-lg font-semibold transition">
                 ➕ Buat Klaster Pertama
             </a>
         </div>
     @else
         <div class="grid grid-cols-1 gap-6">
             @foreach ($klasters as $klaster)
-                <div class="bg-black rounded-xl shadow-lg hover:shadow-xl transition border-t-4 border-blue-500 overflow-hidden">
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition border-t-4 border-blue-500 overflow-hidden">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
                             <div class="flex-1">
@@ -117,14 +117,14 @@
                     {{-- Action Buttons --}}
                     <div class="bg-gray-50 px-6 py-4 flex gap-3 justify-end border-t border-gray-200">
                         <a href="{{ route('klaster.edit', $klaster->id) }}" 
-                           class="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-black px-4 py-2 rounded-lg font-semibold transition">
+                           class="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-semibold transition">
                             ✏️ Edit
                         </a>
                         <form action="{{ route('klaster.destroy', $klaster->id) }}" method="POST" style="display: inline;"
                               onsubmit="return confirm('Yakin ingin menghapus klaster ini?');">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-black px-4 py-2 rounded-lg font-semibold transition">
+                            <button type="submit" class="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-semibold transition">
                                 🗑️ Hapus
                             </button>
                         </form>

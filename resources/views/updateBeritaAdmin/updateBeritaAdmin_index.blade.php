@@ -1,6 +1,6 @@
 <x-layout4>
     <section class="px-6 md:px-20 pt-12 pb-6 bg-gradient-to-r from-blue-600 to-cyan-600">
-        <h1 class="text-4xl font-bold text-black">📰 Manajemen Berita & Informasi</h1>
+        <h1 class="text-4xl font-bold text-white">📰 Manajemen Berita & Informasi</h1>
         <p class="text-blue-100 mt-2">Kelola berita dan informasi puskesmas untuk publik</p>
     </section>
 
@@ -8,7 +8,7 @@
         {{-- STATISTIK --}}
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 mb-8">
             {{-- Total Berita --}}
-            <div class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-6 text-black shadow-lg">
+            <div class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-6 text-white shadow-lg">
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="text-sm uppercase tracking-wide opacity-90">Total Berita</p>
@@ -19,7 +19,7 @@
             </div>
 
             {{-- Berita Bulan Ini --}}
-            <div class="bg-gradient-to-br from-cyan-600 to-cyan-700 rounded-2xl p-6 text-black shadow-lg">
+            <div class="bg-gradient-to-br from-cyan-600 to-cyan-700 rounded-2xl p-6 text-white shadow-lg">
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="text-sm uppercase tracking-wide opacity-90">Bulan Ini</p>
@@ -30,7 +30,7 @@
             </div>
 
             {{-- Program Aktif --}}
-            <div class="bg-gradient-to-br from-teal-600 to-teal-700 rounded-2xl p-6 text-black shadow-lg">
+            <div class="bg-gradient-to-br from-teal-600 to-teal-700 rounded-2xl p-6 text-white shadow-lg">
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="text-sm uppercase tracking-wide opacity-90">Program Unik</p>
@@ -44,7 +44,7 @@
         {{-- TOMBOL TAMBAH --}}
         <div class="mb-8">
             <a href="{{ route('berita.create') }}" 
-               class="inline-flex items-center bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-black px-8 py-4 rounded-xl shadow-lg font-semibold transition-all duration-300 hover:shadow-xl">
+               class="inline-flex items-center bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-8 py-4 rounded-xl shadow-lg font-semibold transition-all duration-300 hover:shadow-xl">
                 <span class="text-2xl mr-3">➕</span>
                 Buat Berita Baru
             </a>
@@ -54,7 +54,7 @@
         @if($berita->isNotEmpty())
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             @forelse($berita as $item)
-                <div class="bg-black rounded-2xl shadow-lg overflow-hidden border-l-4 border-blue-500 hover:shadow-xl transition-all duration-300">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden border-l-4 border-blue-500 hover:shadow-xl transition-all duration-300">
                     {{-- HEADER CARD --}}
                     <div class="bg-gradient-to-r from-blue-50 to-cyan-50 px-6 py-5 border-b border-blue-100">
                         <div class="flex justify-between items-start gap-4">
@@ -67,7 +67,7 @@
                                 </p>
                             </div>
                             @if($item->program)
-                            <div class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold blackspace-nowrap">
+                            <div class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap">
                                 🎯 {{ $item->program }}
                             </div>
                             @endif
@@ -104,12 +104,12 @@
                     {{-- FOOTER CARD - AKSI --}}
                     <div class="px-6 py-4 bg-gray-50 border-t border-gray-100 flex gap-2">
                         <a href="{{ route('berita.show', $item->id) }}" 
-                           class="flex-1 inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-black py-2.5 rounded-lg font-semibold transition-all duration-200 text-sm">
+                           class="flex-1 inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg font-semibold transition-all duration-200 text-sm">
                             <span class="mr-2">👁️</span>
                             <span>Lihat</span>
                         </a>
                         <a href="{{ route('berita.edit', $item->id) }}" 
-                           class="flex-1 inline-flex items-center justify-center bg-amber-600 hover:bg-amber-700 text-black py-2.5 rounded-lg font-semibold transition-all duration-200 text-sm">
+                           class="flex-1 inline-flex items-center justify-center bg-amber-600 hover:bg-amber-700 text-white py-2.5 rounded-lg font-semibold transition-all duration-200 text-sm">
                             <span class="mr-2">✏️</span>
                             <span>Edit</span>
                         </a>
@@ -119,7 +119,7 @@
                             @csrf
                             @method('DELETE')
                             <button type="submit" 
-                                    class="w-full bg-red-600 hover:bg-red-700 text-black py-2.5 rounded-lg font-semibold transition-all duration-200 text-sm">
+                                    class="w-full bg-red-600 hover:bg-red-700 text-white py-2.5 rounded-lg font-semibold transition-all duration-200 text-sm">
                                 <span class="mr-2">🗑️</span>
                                 <span>Hapus</span>
                             </button>
@@ -128,12 +128,12 @@
                 </div>
             @empty
                 <div class="col-span-full">
-                    <div class="bg-black rounded-2xl p-12 shadow-lg border-2 border-dashed border-gray-300 text-center">
+                    <div class="bg-white rounded-2xl p-12 shadow-lg border-2 border-dashed border-gray-300 text-center">
                         <p class="text-6xl mb-4">📰</p>
                         <h3 class="text-2xl font-bold text-gray-800 mb-2">Belum Ada Berita</h3>
                         <p class="text-gray-600 mb-6">Mulai dengan membuat berita baru untuk puskesmas</p>
                         <a href="{{ route('berita.create') }}" 
-                           class="inline-flex items-center bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-black px-8 py-4 rounded-xl shadow-lg font-semibold transition-all duration-300">
+                           class="inline-flex items-center bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-8 py-4 rounded-xl shadow-lg font-semibold transition-all duration-300">
                             <span class="text-2xl mr-3">➕</span>
                             Buat Berita Pertama
                         </a>
@@ -147,12 +147,12 @@
             {{ $berita->links() }}
         </div>
         @else
-        <div class="bg-black rounded-2xl p-12 shadow-lg border-2 border-dashed border-gray-300 text-center">
+        <div class="bg-white rounded-2xl p-12 shadow-lg border-2 border-dashed border-gray-300 text-center">
             <p class="text-6xl mb-4">📰</p>
             <h3 class="text-2xl font-bold text-gray-800 mb-2">Belum Ada Berita</h3>
             <p class="text-gray-600 mb-6">Mulai dengan membuat berita baru untuk puskesmas</p>
             <a href="{{ route('berita.create') }}" 
-               class="inline-flex items-center bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-black px-8 py-4 rounded-xl shadow-lg font-semibold transition-all duration-300 hover:shadow-xl">
+               class="inline-flex items-center bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-8 py-4 rounded-xl shadow-lg font-semibold transition-all duration-300 hover:shadow-xl">
                 <span class="text-2xl mr-3">➕</span>
                 Buat Berita Pertama
             </a>

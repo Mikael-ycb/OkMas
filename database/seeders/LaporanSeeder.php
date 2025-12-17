@@ -5,6 +5,9 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Laporan;
 use App\Models\Akun;
+use App\Models\JanjiTemu;
+use App\Models\Dokter;
+use App\Models\Tanggal;
 
 class LaporanSeeder extends Seeder
 {
@@ -19,38 +22,79 @@ class LaporanSeeder extends Seeder
             dd("Akun pasien belum ada. Seeder Laporan tidak bisa dijalankan.");
         }
 
+        // Ambil dokter, klaster, dan tanggal (untuk janji temu)
+        $dokter = Dokter::first();
+        $klaster = \App\Models\Klaster::first();
+        $tanggal = Tanggal::first();
+
+        if (!$dokter || !$klaster || !$tanggal) {
+            dd("Dokter, Klaster, atau Tanggal belum ada. Silakan jalankan seeder terlebih dahulu.");
+        }
+
+        // Buat Janji Temu 1
+        $janjiTemu1 = JanjiTemu::create([
+            'id_akun' => $akun1->id_akun,
+            'tanggal_id' => $tanggal->id,
+            'klaster_id' => $klaster->id,
+            'dokter_id' => $dokter->id,
+            'keluhan' => 'Sakit perut di ulu hati',
+            'nomor_antrian' => 1,
+            'status' => 'Selesai'
+        ]);
+
+        // Buat Janji Temu 2
+        $janjiTemu2 = JanjiTemu::create([
+            'id_akun' => $akun2->id_akun,
+            'tanggal_id' => $tanggal->id,
+            'klaster_id' => $klaster->id,
+            'dokter_id' => $dokter->id,
+            'keluhan' => 'Sakit gigi dan gusi bengkak',
+            'nomor_antrian' => 2,
+            'status' => 'Selesai'
+        ]);
+
+        // Buat Laporan 1 dengan link ke janji temu
         Laporan::create([
             'id_akun' => $akun1->id_akun,
             'nama_pasien' => $akun1->nama,
             'nik' => $akun1->nik,
-            'tanggal' => '2025-09-18',
-            'jenis_pemeriksaan' => 'Gigi',
+            'janji_temu_id' => $janjiTemu1->id,
+            'tanggal' => '2025-08-19',
+            'jenis_pemeriksaan' => 'Umum',
+            'diagnosa' => 'Gastritis akut dengan perdarahan minor',
+            'hasil_pemeriksaan' => 'Sakit',
             'anamnesis' => 'Sakit perut',
             'tekanan_darah' => '120/80 mmHg',
+            'saran' => 'Istirahat, hindari makanan pedas, minum obat sesuai resep',
             'riwayat_penyakit_sekarang' => 'Sakit perut di ulu hati menjalar ke kiri atas...',
             'riwayat_penyakit_dahulu' => '(+) Sejak 4 tahun yang lalu',
             'riwayat_penyakit_keluarga' => '-',
             'riwayat_kebiasaan' => 'Makan tidak teratur, merokok, sering makan pedas',
             'anamnesis_organ' => 'Nyeri epigastrium, mual, muntah, vertigo',
-            'created_at' => now(),    // ⬅ wajib
-            'updated_at' => now(),    // ⬅ wajib
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
+        // Buat Laporan 2 dengan link ke janji temu
         Laporan::create([
             'id_akun' => $akun2->id_akun,
             'nama_pasien' => $akun2->nama,
             'nik' => $akun2->nik,
-            'tanggal' => '2025-09-25',
+            'janji_temu_id' => $janjiTemu2->id,
+            'tanggal' => '2025-08-25',
             'jenis_pemeriksaan' => 'Gigi',
+            'diagnosa' => 'Karies gigi dengan infeksi ringan',
+            'hasil_pemeriksaan' => 'Sakit',
             'anamnesis' => 'Sakit gigi dan gusi bengkak',
             'tekanan_darah' => '118/79 mmHg',
+            'saran' => 'Pembersihan plak, penambalan, dan follow-up minggu depan',
             'riwayat_penyakit_sekarang' => 'Gigi berlubang dan nyeri saat makan',
             'riwayat_penyakit_dahulu' => 'Pernah sakit gigi 2 tahun lalu',
             'riwayat_penyakit_keluarga' => 'Tidak ada',
             'riwayat_kebiasaan' => 'Jarang gosok gigi malam',
             'anamnesis_organ' => 'Nyeri tekan pada molar kanan bawah',
-            'created_at' => now(),    // ⬅ wajib
-            'updated_at' => now(),    // ⬅ wajib
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
     }
 }

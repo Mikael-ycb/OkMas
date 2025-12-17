@@ -1,6 +1,6 @@
 <x-layout4>
     <section class="px-6 md:px-20 pt-12 pb-6 bg-gradient-to-r from-orange-600 to-red-600">
-        <h1 class="text-4xl font-bold text-black">💊 Daftar Resep Obat</h1>
+        <h1 class="text-4xl font-bold text-white">💊 Daftar Resep Obat</h1>
         <p class="text-orange-100 mt-2">Kelola dan lihat semua resep obat pasien dengan mudah</p>
     </section>
 
@@ -18,7 +18,7 @@
         @if($resep->isNotEmpty())
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 mb-8">
             {{-- Total Resep --}}
-            <div class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-6 text-black shadow-lg">
+            <div class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-6 text-white shadow-lg">
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="text-sm uppercase tracking-wide opacity-90">Total Resep</p>
@@ -29,7 +29,7 @@
             </div>
 
             {{-- Total Pasien Unik --}}
-            <div class="bg-gradient-to-br from-purple-600 to-purple-700 rounded-2xl p-6 text-black shadow-lg">
+            <div class="bg-gradient-to-br from-purple-600 to-purple-700 rounded-2xl p-6 text-white shadow-lg">
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="text-sm uppercase tracking-wide opacity-90">Pasien Terlayani</p>
@@ -40,7 +40,7 @@
             </div>
 
             {{-- Total Obat --}}
-            <div class="bg-gradient-to-br from-orange-600 to-orange-700 rounded-2xl p-6 text-black shadow-lg">
+            <div class="bg-gradient-to-br from-orange-600 to-orange-700 rounded-2xl p-6 text-white shadow-lg">
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="text-sm uppercase tracking-wide opacity-90">Total Item Obat</p>
@@ -56,7 +56,7 @@
 
         {{-- TOMBOL BUAT RESEP BARU --}}
         <div class="mt-6 mb-8">
-            <a href="{{ route('resep.create') }}" class="inline-flex items-center bg-gradient-to-r from-blue-900 to-blue-800 hover:from-blue-800 hover:to-blue-700 text-black px-8 py-4 rounded-xl shadow-lg font-semibold transition-all duration-300 hover:shadow-xl">
+            <a href="{{ route('resep.create') }}" class="inline-flex items-center bg-gradient-to-r from-blue-900 to-blue-800 hover:from-blue-800 hover:to-blue-700 text-white px-8 py-4 rounded-xl shadow-lg font-semibold transition-all duration-300 hover:shadow-xl">
                 <span class="text-2xl mr-3">➕</span>
                 Buat Resep Obat Baru
             </a>
@@ -66,7 +66,7 @@
         @if($resep->isNotEmpty())
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             @forelse($resep as $r)
-                <div class="bg-black rounded-2xl shadow-lg overflow-hidden border-l-4 border-orange-500 hover:shadow-xl transition-all duration-300">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden border-l-4 border-orange-500 hover:shadow-xl transition-all duration-300">
                     {{-- HEADER CARD --}}
                     <div class="bg-gradient-to-r from-orange-50 to-red-50 px-6 py-4 border-b border-orange-100">
                         <div class="flex justify-between items-start gap-4">
@@ -78,7 +78,7 @@
                                     📋 Resep ID: <span class="font-mono font-semibold text-orange-600">#{{ str_pad($r->id, 4, '0', STR_PAD_LEFT) }}</span>
                                 </p>
                             </div>
-                            <div class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-semibold blackspace-nowrap">
+                            <div class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap">
                                 {{ $r->detail ? $r->detail->count() : 0 }} Obat
                             </div>
                         </div>
@@ -133,7 +133,7 @@
                     {{-- FOOTER CARD - AKSI --}}
                     <div class="px-6 py-4 bg-gray-50 border-t border-gray-100 flex gap-3">
                         <a href="{{ route('resep.show', $r->id) }}" 
-                           class="flex-1 inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-black py-2.5 rounded-lg font-semibold transition-all duration-200 text-sm group">
+                           class="flex-1 inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg font-semibold transition-all duration-200 text-sm group">
                             <span class="mr-2">👁️</span>
                             <span>Lihat Detail</span>
                         </a>
@@ -143,7 +143,7 @@
                             @csrf
                             @method('DELETE')
                             <button type="submit" 
-                                    class="w-full bg-red-600 hover:bg-red-700 text-black py-2.5 rounded-lg font-semibold transition-all duration-200 text-sm">
+                                    class="w-full bg-red-600 hover:bg-red-700 text-white py-2.5 rounded-lg font-semibold transition-all duration-200 text-sm">
                                 <span class="mr-2">🗑️</span>
                                 <span>Hapus</span>
                             </button>
@@ -165,12 +165,12 @@
         </div>
         @else
         {{-- EMPTY STATE --}}
-        <div class="mt-12 bg-black rounded-2xl p-12 shadow-lg border-2 border-dashed border-gray-300 text-center">
+        <div class="mt-12 bg-white rounded-2xl p-12 shadow-lg border-2 border-dashed border-gray-300 text-center">
             <p class="text-6xl mb-4">📭</p>
             <h3 class="text-2xl font-bold text-gray-800 mb-2">Tidak Ada Resep Obat</h3>
             <p class="text-gray-600 mb-6">Mulai dengan membuat resep obat baru untuk pasien Anda</p>
             <a href="{{ route('resep.create') }}" 
-               class="inline-flex items-center bg-gradient-to-r from-blue-900 to-blue-800 hover:from-blue-800 hover:to-blue-700 text-black px-8 py-4 rounded-lg shadow-lg font-semibold transition-all duration-300 hover:shadow-xl">
+               class="inline-flex items-center bg-gradient-to-r from-blue-900 to-blue-800 hover:from-blue-800 hover:to-blue-700 text-white px-8 py-4 rounded-lg shadow-lg font-semibold transition-all duration-300 hover:shadow-xl">
                 <span class="text-2xl mr-3">➕</span>
                 Buat Resep Pertama Anda
             </a>
