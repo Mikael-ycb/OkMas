@@ -16,6 +16,7 @@ class LaporanSeeder extends Seeder
         // Ambil akun berdasarkan nik (biar matching)
         $akun1 = Akun::where('nik', '1315611233117')->first();
         $akun2 = Akun::where('nik', '1315611233118')->first();
+        $akun3 = Akun::where('nik', '1315611233119')->first();
 
         // Kalau akun belum ada → hentikan
         if (!$akun1 || !$akun2) {
@@ -50,6 +51,17 @@ class LaporanSeeder extends Seeder
             'dokter_id' => $dokter->id,
             'keluhan' => 'Sakit gigi dan gusi bengkak',
             'nomor_antrian' => 2,
+            'status' => 'Selesai'
+        ]);
+
+        // Buat Janji Temu 3
+        $janjiTemu3 = JanjiTemu::create([
+            'id_akun' => $akun3->id_akun ?? $akun1->id_akun,
+            'tanggal_id' => $tanggal->id,
+            'klaster_id' => $klaster->id,
+            'dokter_id' => $dokter->id,
+            'keluhan' => 'Pemeriksaan rutin kesehatan',
+            'nomor_antrian' => 3,
             'status' => 'Selesai'
         ]);
 
@@ -93,6 +105,28 @@ class LaporanSeeder extends Seeder
             'riwayat_penyakit_keluarga' => 'Tidak ada',
             'riwayat_kebiasaan' => 'Jarang gosok gigi malam',
             'anamnesis_organ' => 'Nyeri tekan pada molar kanan bawah',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        // Buat Laporan 3 dengan link ke janji temu
+        Laporan::create([
+            'id_akun' => $janjiTemu3->id_akun,
+            'nama_pasien' => ($akun3 ?? $akun1)->nama,
+            'nik' => ($akun3 ?? $akun1)->nik,
+            'janji_temu_id' => $janjiTemu3->id,
+            'tanggal' => '2025-09-02',
+            'jenis_pemeriksaan' => 'Umum',
+            'diagnosa' => 'Sehat, tidak ada kelainan',
+            'hasil_pemeriksaan' => 'Sehat',
+            'anamnesis' => 'Pemeriksaan rutin kesehatan',
+            'tekanan_darah' => '115/75 mmHg',
+            'saran' => 'Lanjutkan gaya hidup sehat, olahraga rutin 3-4 kali seminggu',
+            'riwayat_penyakit_sekarang' => '-',
+            'riwayat_penyakit_dahulu' => '-',
+            'riwayat_penyakit_keluarga' => '-',
+            'riwayat_kebiasaan' => 'Aktif berolahraga',
+            'anamnesis_organ' => 'Semua organ dalam kondisi baik',
             'created_at' => now(),
             'updated_at' => now(),
         ]);

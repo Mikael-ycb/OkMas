@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\JanjiTemu;
 use App\Models\Periksa;
 use App\Models\Laporan;
+use App\Models\NotifikasiPasien;
 use Carbon\Carbon;
 
 class PeriksaController extends Controller
@@ -32,20 +33,28 @@ class PeriksaController extends Controller
 
 
     public function toggleStatus($id)
-{
-    $periksa = Periksa::findOrFail($id);
+    {
+        $periksa = Periksa::findOrFail($id);
 
-    // Toggle status
-    $periksa->status = $periksa->status === 'Aktif' ? 'Tidak Aktif' : 'Aktif';
-    $periksa->save();
+        // Toggle status
+        $periksa->status = $periksa->status === 'Aktif' ? 'Tidak Aktif' : 'Aktif';
+        $periksa->save();
 
-    
+        // Send notification when appointment is accepted (toggled to 'Tidak Aktif')
+        if ($periksa->status === 'Tidak Aktif') {
+            NotifikasiPasien::create([
+                'user_id' => $periksa->id_akun,
+                'berita_id' => null,
+                'judul' => "Janji Temu Anda Diterima",
+                'pesan' => "Janji temu Anda untuk " . $periksa->klaster . " pada tanggal " . \Carbon\Carbon::parse($periksa->tanggal_periksa)->format('d M Y') . " telah diterima oleh admin.",
+            ]);
+        }
 
-    return response()->json([
-        'success' => true,
-        'status' => $periksa->status
-    ]);
-}
+        return response()->json([
+            'success' => true,
+            'status' => $periksa->status
+        ]);
+    }
 
 
 
@@ -103,6 +112,7 @@ class PeriksaController extends Controller
         Laporan::create([
             'id_akun' => $periksa->id_akun,
             'periksa_id' => $periksa->id,               // PENTING !!!
+            'janji_temu_id' => $periksa->janji_temu_id, // Link ke janji temu
             'nama_pasien' => $periksa->nama_pasien,
             'nik' => optional($periksa->janjiTemu)->akun->nik ?? '-',
             'tanggal' => $periksa->tanggal_periksa,     // tanggal periksa asli
@@ -110,8 +120,18 @@ class PeriksaController extends Controller
             'hasil_pemeriksaan' => $request->hasil,
             'anamnesis' => optional($periksa->janjiTemu)->keluhan ?? '-',
             'tekanan_darah' => $request->tekanan_darah,
+            'diagnosa' => $request->diagnosa,           // Set diagnosa properly
+            'saran' => $request->saran,                 // Set saran properly
             'riwayat_penyakit_sekarang' => $request->diagnosa,
             'riwayat_kebiasaan' => $request->saran,
+        ]);
+
+        // Send notification to patient
+        NotifikasiPasien::create([
+            'user_id' => $periksa->id_akun,
+            'berita_id' => null,
+            'judul' => "Laporan Pemeriksaan Tersedia",
+            'pesan' => "Laporan pemeriksaan Anda untuk " . $periksa->klaster . " telah selesai diproses. Silakan cek di halaman laporan Anda.",
         ]);
 
         return redirect()->route('periksa.index')

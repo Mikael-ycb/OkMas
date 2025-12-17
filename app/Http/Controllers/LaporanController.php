@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Akun;
 use App\Models\Laporan;
+use App\Models\NotifikasiPasien;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -92,7 +93,7 @@ class LaporanController extends Controller
             }
         }
 
-        Laporan::create([
+        $laporan = Laporan::create([
             'id_akun' => $akun->id_akun,
             'nama_pasien' => $akun->nama,
             'nik' => $akun->nik,
@@ -112,6 +113,14 @@ class LaporanController extends Controller
             'riwayat_kebiasaan' => $request->riwayat_kebiasaan,
             'anamnesis_organ' => $request->anamnesis_organ,
             'janji_temu_id' => $request->janji_temu_id
+        ]);
+
+        // Send notification to patient
+        NotifikasiPasien::create([
+            'user_id' => $akun->id_akun,
+            'berita_id' => null,
+            'judul' => "Laporan Pemeriksaan Tersedia",
+            'pesan' => "Laporan pemeriksaan Anda untuk " . $request->jenis_pemeriksaan . " telah selesai diproses. Silakan cek di halaman laporan Anda.",
         ]);
 
         return redirect()->route('laporanAdmin.index')

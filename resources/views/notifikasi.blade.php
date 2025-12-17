@@ -54,12 +54,22 @@
 
                     {{-- Judul & waktu --}}
                     <div class="max-w-3xl">
-                        <a href="{{ route('beritaDetail', $n->berita_id) }}"
-                            class="font-semibold text-blue-900 text-lg">
-                            {{ $n->judul }}
-                        </a>
+                        @if($n->berita_id)
+                            <a href="{{ route('beritaDetail', $n->berita_id) }}"
+                                class="font-semibold text-blue-900 text-lg hover:text-blue-600">
+                                {{ $n->judul }}
+                            </a>
+                        @else
+                            <div class="font-semibold text-blue-900 text-lg">
+                                {{ $n->judul }}
+                            </div>
+                        @endif
 
                         <p class="text-sm text-gray-600 mt-2">
+                            {{ $n->pesan ?? '' }}
+                        </p>
+
+                        <p class="text-xs text-gray-500 mt-2">
                             {{ $n->created_at->diffForHumans() }}
                         </p>
 
